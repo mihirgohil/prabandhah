@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "200702333508",
+    "firebase_url": "https://prabandhah-8141.firebaseio.com",
+    "project_id": "prabandhah-8141",
+    "storage_bucket": "prabandhah-8141.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200702333508:android:23a6cb65674bb055",
+        "android_client_info": {
+          "package_name": "com.prabandhah.prabandhah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "200702333508-gbqf3veufi8atc63eefnvqnqto2gnas3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prabandhah.prabandhah",
+            "certificate_hash": "9fe815f1d518be00606197e986bb3b80c2305abf"
+          }
+        },
+        {
+          "client_id": "200702333508-ra6mofhd9putc24u5h4j7vtv9car0bfc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbousxWlynUDChEXdFdNDGJ-sJIjqXTyA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "200702333508-ra6mofhd9putc24u5h4j7vtv9car0bfc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

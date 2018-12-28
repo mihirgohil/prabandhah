@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Prabandhah</string>
+    <string name="welcome_to_prabandhah">Welcome to Prabandhah!</string>
+    <string name="email">Email</string>
+    <string name="sign_up"><u>Sign up!</u></string>
+    <string name="password">Password</string>
+    <string name="are_you_new_user">Are you new user</string>
+    <string name="forget_password">Forget password</string>
+    <string name="next">Next</string>
+    <string name="str_username">User name</string>
+    <string name="str_password">Password</string>
+    <string name="login">Login</string>
+    <string name="new_user">New user? </string>
+    <string name="i_am">I am Employee</string>
+    <string name="owner">I am Owner</string>
+    <string name="Create_company_profile">Create Company Profile</string>
+    <string name="join_Company">Join Company</string>
+    <string name="Crete_or_join">Create or Join your Compnay!</string>
+    <string name="verify_mail">Verify Your Email id!</string>
+    <string name="enter_code">Enter code</string>
+    <string name="resend">Resend Code!</string>
+    <string name="enter_code_sent_to_your_mail">enter code sent to your mail</string>
+    <string name="ask_admin">Ask your Admin for Rafael Code</string>
+    <string name="EnterPass">Enter New Password</string>
+    <string name="EnterMail">Enter mail id</string>
+    <string name="done">Done</string>
+    <string name="title_activity_choose_road">ChooseRoad</string>
+    <string name="Check_mail">Verify your Mail id Then press continue!</string>
+    <string name="continue_1">Continue</string>
+    <string name="name_of_cmp">Name of Company</string>
+    <string name="Address">Address</string>
+    <string name="title_activity_temp">temp</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

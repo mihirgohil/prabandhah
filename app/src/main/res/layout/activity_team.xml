@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_email_black_24dp"
+    tools:context="com.prabandhah.prabandhah.tabs.Team">
+    <!--<android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_add_black_24dp"
+            app:fabSize="normal"
+            app:backgroundTint="@color/floatplusbtn">
+        </android.support.design.widget.FloatingActionButton>
+
+    </android.support.design.widget.CoordinatorLayout>-->
+
+</LinearLayout>

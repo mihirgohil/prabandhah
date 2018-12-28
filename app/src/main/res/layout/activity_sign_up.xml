@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.prabandhah.prabandhah.Sign_up"
+    android:orientation="vertical"
+    android:background="@drawable/login_img">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:padding="@dimen/_20sdp">
+        <ImageView
+            android:id="@+id/profile_pic_signup"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/ic_user_avatar_main_picture"
+            />
+        <!--Email-->
+        <EditText
+            android:id="@+id/email"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_txt_bubble"
+            android:drawableStart="@drawable/ic_email_black_24dp"
+            android:hint="Email"
+            android:textSize="@dimen/_15sdp"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="@dimen/_7sdp"
+            />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_txt_bubble"
+            android:hint="Name"
+            android:textSize="@dimen/_15sdp"
+            android:paddingLeft="@dimen/_12sdp"
+            />
+        <EditText
+            android:id="@+id/reg_password"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_txt_bubble"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textSize="@dimen/_15sdp"
+            android:paddingLeft="@dimen/_12sdp"
+            />
+
+        <EditText
+            android:id="@+id/retype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/edit_txt_bubble"
+            android:hint="Re-Type Password"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/_12sdp"
+            android:textSize="@dimen/_15sdp" />
+
+        <Button
+            android:id="@+id/signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/rac_btn"
+            android:text="Next" />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
