@@ -12,10 +12,7 @@
         <activity android:name=".Splash_screen" />
         <activity android:name=".LoginPage" />
         <activity android:name=".Sign_up" />
-        <activity android:name=".HomePage">
-
-        </activity>
-        <activity android:name=".Admin_homePage" />
+        <activity android:name=".HomePage" />
         <activity android:name=".ForgetPassNewPassword" />
         <activity android:name=".are_you_owner_or_admin">
             <intent-filter>
@@ -24,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

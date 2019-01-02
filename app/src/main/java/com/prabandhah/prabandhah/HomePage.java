@@ -61,7 +61,12 @@ public class HomePage extends AppCompatActivity implements TabLayout.OnTabSelect
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        
+        //floating action button visblity
+        if(role == 1)
+        {
+            fab.show();
+        }
+
     }
 
     @Override
@@ -69,7 +74,7 @@ public class HomePage extends AppCompatActivity implements TabLayout.OnTabSelect
         viewPager.setCurrentItem(tab.getPosition());
         tabLayout.setOnTabSelectedListener(this);
        if(role == 1)
-       {  fab.show();
+       {
            if(viewPager.getCurrentItem() == 1)
         {
            fab.setImageResource(R.drawable.ic_create_group_button);
