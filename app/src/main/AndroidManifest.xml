@@ -13,15 +13,17 @@
         <activity android:name=".LoginPage" />
         <activity android:name=".Sign_up" />
         <activity android:name=".HomePage">
+
+        </activity>
+        <activity android:name=".Admin_homePage" />
+        <activity android:name=".ForgetPassNewPassword" />
+        <activity android:name=".are_you_owner_or_admin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Admin_homePage">
-        </activity>
-        <activity android:name=".ForgetPassNewPassword" />
     </application>
 
 </manifest>

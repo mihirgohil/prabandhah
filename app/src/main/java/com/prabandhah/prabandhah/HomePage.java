@@ -1,7 +1,8 @@
 package com.prabandhah.prabandhah;
-
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
@@ -13,11 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+
 //sample for beta testing
 //Implementing the interface OnTabSelectedListener to our MainActivity
 //This interface would help in swiping views
 public class HomePage extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
-
+    int role;
     //This is our tablayout
     private TabLayout tabLayout;
     Toolbar toolbar;
@@ -28,15 +31,17 @@ public class HomePage extends AppCompatActivity implements TabLayout.OnTabSelect
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        //floating action button
+        //getting role
+        Intent intent=getIntent();
+        role = intent.getIntExtra("selected",0);
+        // floating action button
         fab = findViewById(R.id.fabtn);
         //Adding toolbar to the activity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         //Initializing the tablayout
-        tabLayout = (TabLayout) findViewById(R.id.tabLayoutF);
+        tabLayout = findViewById(R.id.tabLayoutF);
 
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Event"));
@@ -56,15 +61,19 @@ public class HomePage extends AppCompatActivity implements TabLayout.OnTabSelect
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
         tabLayout.setOnTabSelectedListener(this);
-        if(viewPager.getCurrentItem() == 1)
+       if(role == 1)
+       {  fab.show();
+           if(viewPager.getCurrentItem() == 1)
         {
            fab.setImageResource(R.drawable.ic_create_group_button);
+
         }
         if(viewPager.getCurrentItem() == 2)
         {
@@ -73,7 +82,7 @@ public class HomePage extends AppCompatActivity implements TabLayout.OnTabSelect
         if(viewPager.getCurrentItem() == 0)
         {
             fab.setImageResource(R.drawable.ic_add_black_24dp);
-        }
+        }}
 
     }
 
@@ -91,7 +100,13 @@ public class HomePage extends AppCompatActivity implements TabLayout.OnTabSelect
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options , menu);
+        if(role == 1) {
+            inflater.inflate(R.menu.options, menu);
+        }
+        else if(role == 2)
+        {
+            inflater.inflate(R.menu.optn_for_emp, menu);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
