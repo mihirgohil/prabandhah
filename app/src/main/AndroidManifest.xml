@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".Ui_home" />
+        <activity android:name=".Ui_notification"></activity>
     </application>
 
 </manifest>

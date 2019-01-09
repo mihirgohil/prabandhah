@@ -38,4 +38,11 @@
     <string name="create_or_join_your_company">Create or Join Your Company!</string>
     <string name="i_am_employee_join_your_company">I am Employee. Join your Company</string>
     <string name="i_am_owner_create_company_profile">I am owner. Create Company Profile.</string>
+    <string name="no_new_notification">no new notification</string>
+    <string name="emlpoyee_list">Employee List</string>
+    <string name="Event_list">Event List</string>
+    <string name="Team_list">Team List</string>
+    <string name="Task_list">Task List</string>
+    <string name="Setting">Setting</string>
+    <string name="Logout">Log out!</string>
 </resources>

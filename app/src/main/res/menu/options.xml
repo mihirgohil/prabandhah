@@ -19,21 +19,5 @@
                 app:showAsAction="never" />
         </group>
 
-
-    <item
-        android:id="@+id/notification"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:orderInCategory="100"
-        android:title="profile"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/menu_toolbarsearch"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:orderInCategory="100"
-        android:title="profile"
-        app:showAsAction="always" />
-
-
-
-    </menu>
+</menu>
 

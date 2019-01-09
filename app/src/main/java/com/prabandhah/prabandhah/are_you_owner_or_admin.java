@@ -26,16 +26,18 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                 rb2=findViewById(R.id.Rb2);
                 if(rb1.isChecked())
                 {
-                    Intent intent=new Intent(getApplicationContext(),HomePage.class);
+                    Intent intent=new Intent(getApplicationContext(),Ui_home.class);
                     intent.putExtra("selected",1);
                     startActivity(intent);
+                    finish();
 
                 }
                 else if (rb2.isChecked())
                 {
-                    Intent intent=new Intent(getApplicationContext(),HomePage.class);
+                    Intent intent=new Intent(getApplicationContext(),Ui_home.class);
                     intent.putExtra("selected",2);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
