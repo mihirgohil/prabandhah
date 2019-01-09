@@ -108,7 +108,7 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         if(role == 1) {
-            inflater.inflate(R.menu.optn_for_emp, menu);
+            inflater.inflate(R.menu.optn_for_admin, menu);
             inflater.inflate(R.menu.notification,menu);
             inflater.inflate(R.menu.search,menu);
         }
@@ -132,6 +132,37 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
                 return true;
             case R.id.menu_toolbarsearch:
                 Toast.makeText(this, "Search clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            //admin options
+            case R.id.adm_profile:
+                intent=new Intent(getApplicationContext(),Profile.class);
+                intent.putExtra("selected",role);
+                startActivity(intent);
+                return true;
+            case R.id.adm_empList:
+                intent=new Intent(getApplicationContext(),Ui_employeeList.class);
+                intent.putExtra("selected",role);
+                startActivity(intent);
+                return true;
+            case R.id.adm_eventList:
+                intent=new Intent(getApplicationContext(),Ui_eventList.class);
+                intent.putExtra("selected",role);
+                startActivity(intent);
+                return true;
+            case R.id.adm_teamList:
+                intent=new Intent(getApplicationContext(),Ui_teamList.class);
+                intent.putExtra("selected",role);
+                startActivity(intent);
+                return true;
+            case R.id.adm_taskList:
+                intent=new Intent(getApplicationContext(),Ui_taskList.class);
+                intent.putExtra("selected",role);
+                startActivity(intent);
+                return true;
+            case R.id.adm_setting:
+                intent=new Intent(getApplicationContext(),Ui_setting.class);
+                intent.putExtra("selected",role);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
