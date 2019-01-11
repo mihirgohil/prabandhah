@@ -49,4 +49,6 @@
     <string name="employee_list">employee list</string>
     <string name="task_list">task list</string>
     <string name="title_activity_ui__setting">UI_Setting</string>
+    <string name="create_team">Create team</string>
+    <string name="create_event">create event</string>
 </resources>

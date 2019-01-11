@@ -25,15 +25,14 @@
         <activity android:name=".Ui_notification" />
         <activity android:name=".Profile" />
         <activity android:name=".Ui_employeeList" />
-        <activity android:name=".EventList" />
+
         <activity android:name=".Ui_eventList" />
         <activity android:name=".Ui_taskList" />
-        <activity
-            android:name=".UI_Setting"
-            android:label="@string/title_activity_ui__setting"
-            android:theme="@style/AppTheme" />
+        
         <activity android:name=".Ui_setting" />
-        <activity android:name=".Ui_teamList"></activity>
+        <activity android:name=".Ui_teamList" />
+        <activity android:name=".Ui_createTeam" />
+        <activity android:name=".Ui_createEvent"></activity>
     </application>
 
 </manifest>

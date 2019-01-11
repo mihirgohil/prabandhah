@@ -1,6 +1,8 @@
 package com.prabandhah.prabandhah;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +43,10 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                 }
             }
         });
+        //status bar color
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.statusbarBlack));//status bar or the time bar at the top
+        }
 
 
     }

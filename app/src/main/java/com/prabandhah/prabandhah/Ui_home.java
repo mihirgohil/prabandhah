@@ -15,7 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 //sample for beta testing
@@ -68,7 +70,13 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         {
             fab.show();
         }
-
+        //floating action button click
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionBtnClick();
+            }
+        });
     }
 
     @Override
@@ -77,19 +85,20 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         tabLayout.setOnTabSelectedListener(this);
         if(role == 1)
         {
+            if(viewPager.getCurrentItem() == 0)
+            {   fab.show();
+                fab.setImageResource(R.drawable.ic_add_black_24dp);
+            }
             if(viewPager.getCurrentItem() == 1)
-            {
+            {   fab.show();
                 fab.setImageResource(R.drawable.ic_create_group_button);
 
             }
             if(viewPager.getCurrentItem() == 2)
             {
-                fab.setImageResource(R.drawable.ic_chat);
+                fab.hide();
             }
-            if(viewPager.getCurrentItem() == 0)
-            {
-                fab.setImageResource(R.drawable.ic_add_black_24dp);
-            }}
+           }
 
     }
 
@@ -125,6 +134,7 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
     {
         // Handle item selection
         switch (item.getItemId()) {
+            //for admin
             case R.id.menu_toolbarnotification:
                 Intent intent=new Intent(getApplicationContext(),Ui_notification.class);
                 intent.putExtra("selected",role);
@@ -168,6 +178,23 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
                 return super.onOptionsItemSelected(item);
         }
     }
+    //floating action button click
+    public void actionBtnClick()
+    {
+        if(viewPager.getCurrentItem() == 0)
+        {   Intent intent = getIntent();
+            intent=new Intent(getApplicationContext(),Ui_createEvent.class);
+            intent.putExtra("selected",role);
+            startActivity(intent);
+        }
+        if(viewPager.getCurrentItem() == 1)
+        {
+            Intent intent = getIntent();
+            intent=new Intent(getApplicationContext(),Ui_createTeam.class);
+            intent.putExtra("selected",role);
+            startActivity(intent);
 
+        }
 
+    }
 }
