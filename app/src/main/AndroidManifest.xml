@@ -28,7 +28,7 @@
 
         <activity android:name=".Ui_eventList" />
         <activity android:name=".Ui_taskList" />
-        
+
         <activity android:name=".Ui_setting" />
         <activity android:name=".Ui_teamList" />
         <activity android:name=".Ui_createTeam" />

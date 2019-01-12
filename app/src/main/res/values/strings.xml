@@ -43,7 +43,7 @@
     <string name="Event_list">Event List</string>
     <string name="Team_list">Team List</string>
     <string name="Task_list">Task List</string>
-    <string name="Setting">Settings</string>
+    <string name="Setting" >Settings</string>
     <string name="Logout">Log out!</string>
     <string name="profile">profile</string>
     <string name="employee_list">employee list</string>
@@ -51,4 +51,9 @@
     <string name="title_activity_ui__setting">UI_Setting</string>
     <string name="create_team">Create team</string>
     <string name="create_event">create event</string>
+    <string name="accout_setting">Account Settings</string>
+    <string name="chat">Chat</string>
+    <string name="notification_setting">Notification Settings</string>
+    <string name="report_bug">Report Bug</string>
+    <string name="help">Help</string>
 </resources>
