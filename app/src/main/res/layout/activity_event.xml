@@ -7,19 +7,17 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.prabandhah.prabandhah.tabs.Event">
-   <!--    <android.support.design.widget.CoordinatorLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
-           <android.support.design.widget.FloatingActionButton
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_margin="@dimen/_10sdp"
-               android:layout_gravity="end|bottom"
-               android:src="@drawable/ic_add_black_24dp"
-               app:fabSize="normal"
-               app:backgroundTint="@color/floatplusbtn">
-           </android.support.design.widget.FloatingActionButton>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+      <TextView
+          android:layout_gravity="center"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/EventListDetailsample"
+          android:textSize="@dimen/_40sdp"
+          android:text="@string/Event_list"/>
 
-       </android.support.design.widget.CoordinatorLayout>-->
+   </LinearLayout>
 
 </LinearLayout>

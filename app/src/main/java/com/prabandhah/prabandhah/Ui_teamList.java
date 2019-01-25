@@ -1,6 +1,7 @@
 package com.prabandhah.prabandhah;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +14,10 @@ public class Ui_teamList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_team_list);
-        Intent intent = getIntent();
         bckbtn = findViewById(R.id.teamList_bckbtn);
-        role = intent.getIntExtra("selected",0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
+        role = pref.getInt("role",0);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,5 +27,11 @@ public class Ui_teamList extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(getApplicationContext(), Ui_home.class);
+        startActivity(intent);
+        finish();
     }
 }

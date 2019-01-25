@@ -1,6 +1,7 @@
 package com.prabandhah.prabandhah;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,8 @@ public class are_you_owner_or_admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_are_you_owner_or_admin);
         rg1 = findViewById(R.id.rg1);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
         b1 = findViewById(R.id.btn_chose_role);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,18 +31,16 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                 rb2=findViewById(R.id.Rb2);
                 if(rb1.isChecked())
                 {
-                    Intent intent=new Intent(getApplicationContext(),Ui_home.class);
-                    intent.putExtra("selected",1);
-                    startActivity(intent);
-                    finish();
-
+                    editor.putInt("role", 1);
+                    editor.commit();
+                    startActivity(new Intent(are_you_owner_or_admin.this,Ui_home.class));
                 }
                 else if (rb2.isChecked())
                 {
-                    Intent intent=new Intent(getApplicationContext(),Ui_home.class);
-                    intent.putExtra("selected",2);
-                    startActivity(intent);
-                    finish();
+
+                    editor.putInt("role", 2);
+                    editor.commit();
+                    startActivity(new Intent(are_you_owner_or_admin.this,Ui_home.class));
                 }
             }
         });

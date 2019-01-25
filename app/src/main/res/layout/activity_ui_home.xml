@@ -54,6 +54,7 @@
             app:backgroundTint="@color/floatplusbtn"
             app:fabSize="normal"/>
         <TextView
+            android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ui interface"/>

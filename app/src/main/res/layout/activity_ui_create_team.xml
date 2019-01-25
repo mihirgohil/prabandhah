@@ -20,10 +20,29 @@
             android:id="@+id/createTeam_png_backbtn"
             android:contentDescription="TODO"
             android:src="@drawable/ic_arrow_back_black_24dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_team"
+            android:layout_marginLeft="@dimen/_28sdp"
+            android:textSize="@dimen/_17sdp"
+            android:textColor="#fff" />
 
     </android.support.v7.widget.Toolbar>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_team"/>
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabtn_create_Team"
+            android:layout_width="62dp"
+            android:layout_height="59dp"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_arrow_forward_black_24dp"
+            app:backgroundTint="@color/lablegreen"
+            app:fabSize="normal"
+            tools:layout_editor_absoluteX="336dp"
+            tools:layout_editor_absoluteY="-72dp" />
+    </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

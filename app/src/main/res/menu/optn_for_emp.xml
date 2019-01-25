@@ -6,21 +6,34 @@
     tools:context=".MainActivity">
     <group android:id="@+id/admin_optn">
         <item
-            android:id="@+id/action_profile"
-            android:icon="@drawable/ic_keyboard_arrow_down_black_24dp"
+            android:id="@+id/adm_profile"
             android:orderInCategory="100"
-            android:title="profile"
+            android:title="Profile"
             app:showAsAction="never" />
         <item
-            android:id="@+id/team"
-            android:icon="@drawable/ic_keyboard_arrow_down_black_24dp"
+            android:id="@+id/adm_companyProfile"
             android:orderInCategory="100"
-            android:title="teams"
+            android:title="@string/company_profile"
             app:showAsAction="never" />
-        <item android:id="@+id/boom"
-            android:orderInCategory="200"
-            android:title="@string/next"
-            app:showAsAction="never"/>
+        <item
+            android:id="@+id/adm_empList"
+            android:orderInCategory="100"
+            android:title="@string/emlpoyee_list"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/adm_setting"
+            android:orderInCategory="100"
+            android:title="@string/Setting"
+            app:showAsAction="never"
+            />
+        <item
+            android:id="@+id/adm_Logout"
+            android:orderInCategory="100"
+            android:title="@string/Logout"
+            app:showAsAction="never"
+            />
+
     </group>
 
 </menu>
+

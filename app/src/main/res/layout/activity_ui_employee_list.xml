@@ -21,9 +21,46 @@
             android:id="@+id/emplist_bckbtn"
             android:contentDescription="TODO"
             android:src="@drawable/ic_arrow_back_black_24dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/emlpoyee_list"
+            android:layout_marginLeft="@dimen/_28sdp"
+            android:textSize="@dimen/_17sdp"
+            android:textColor="#fff" />
     </android.support.v7.widget.Toolbar>
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayoutE"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/employee_list"/>
+        android:background="@drawable/appbarcolor"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:tabIndicatorColor="#858282"
+        app:tabIndicatorHeight="@dimen/_3sdp"
+        app:tabSelectedTextColor="#ffffff"
+        app:tabTextColor="#7bffffff" />
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false">
+
+        </android.support.v4.view.ViewPager>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabtn"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_add_black_24dp"
+            app:backgroundTint="@color/floatplusbtn"
+            app:fabSize="normal"/>
+
+
+    </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

@@ -45,6 +45,7 @@
                 android:src="@drawable/ic_account_settings_1" />
 
             <TextView
+                android:id="@+id/accountSetting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -63,6 +64,7 @@
                 android:src="@drawable/ic_chat_settings" />
 
             <TextView
+                android:id="@+id/chatSetting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -81,6 +83,7 @@
                 android:src="@drawable/ic_notification" />
 
             <TextView
+                android:id="@+id/notificationSetting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -121,6 +124,25 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:text="@string/help"
+                android:textColor="#000"
+                android:textSize="@dimen/_13sdp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_about_us" />
+
+            <TextView
+                android:id="@+id/aboutus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/about_us"
                 android:textColor="#000"
                 android:textSize="@dimen/_13sdp" />
         </LinearLayout>

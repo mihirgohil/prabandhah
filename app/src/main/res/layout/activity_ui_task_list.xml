@@ -1,29 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="com.prabandhah.prabandhah.Ui_employeeList">
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.prabandhah.prabandhah.Ui_employeeList">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/appbarcolor"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/custPopupstyle">
+    android:layout_height="wrap_content"
+    android:background="@drawable/appbarcolor"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:popupTheme="@style/custPopupstyle">
 
-        <ImageView
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:id="@+id/tasklist_bckbtn"
+    <ImageView
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:id="@+id/tasklist_bckbtn"
 
-            android:src="@drawable/ic_arrow_back_black_24dp" />
-    </android.support.v7.widget.Toolbar>
+        android:src="@drawable/ic_arrow_back_black_24dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/task_list"/>
+        android:text="@string/Task_list"
+        android:layout_marginLeft="@dimen/_28sdp"
+        android:textSize="@dimen/_17sdp"
+        android:textColor="#fff" />
+</android.support.v7.widget.Toolbar>
+<android.support.design.widget.TabLayout
+    android:id="@+id/tabLayoutE"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/appbarcolor"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:tabIndicatorColor="#858282"
+    app:tabIndicatorHeight="@dimen/_3sdp"
+    app:tabSelectedTextColor="#ffffff"
+    app:tabTextColor="#7bffffff" />
+<android.support.v4.view.ViewPager
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false">
+</android.support.v4.view.ViewPager>
 </LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.prabandhah.prabandhah.are_you_owner_or_admin"
+    android:orientation="vertical"
+    android:background="@drawable/login_img">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_20sdp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:text="@string/Testing"
+            android:textColor="#fff" android:gravity="center"
+            android:textSize="@dimen/_20sdp"/>
+        <RadioGroup
+            android:id="@+id/rg1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp">
+            <RadioButton
+                android:id="@+id/Rb1"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:checked="true"
+                android:textColor="#fff"/>
+            <RadioButton
+                android:id="@+id/Rb2"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textColor="#fff"/>
+            <RadioButton
+                android:id="@+id/Rb3"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textColor="#fff"/>
+            <RadioButton
+                android:id="@+id/Rb4"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textColor="#fff"/>
+        </RadioGroup>
+        <Button
+            android:id="@+id/btn_chose_role"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rac_btn"
+            android:text="@string/done"/>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

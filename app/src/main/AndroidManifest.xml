@@ -14,25 +14,60 @@
         <activity android:name=".Sign_up" />
         <activity android:name=".HomePage" />
         <activity android:name=".ForgetPassNewPassword" />
-        <activity android:name=".are_you_owner_or_admin">
+        <activity android:name=".are_you_owner_or_admin" />
+        <activity android:name=".Ui_home" />
+        <activity android:name=".Ui_notification" />
+        <activity android:name=".Profile" />
+        <activity android:name=".Ui_employeeList" />
+        <activity android:name=".Ui_eventList" />
+        <activity android:name=".Ui_taskList" />
+        <activity android:name=".Ui_setting" />
+        <activity android:name=".Ui_teamList" />
+        <activity android:name=".Ui_createTeam" />
+        <activity android:name=".Ui_createEvent" />
+        <activity
+            android:name=".addEventManagerInEvent"
+            android:label="@string/title_activity_add_event_manager_in_event"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".UI_addEventManagerInEvent" />
+        <activity android:name=".addNewEventManger" />
+        <activity android:name=".tabs.EmpList" />
+        <activity android:name=".tabs.EventMangerList" />
+        <activity android:name=".tabs.adminOrOwnerList" />
+        <activity android:name=".UI_employeeListPager" />
+        <activity android:name=".tabs.adminList" />
+        <activity android:name=".tabs.AdminList" />
+        <activity android:name=".tabs.Assing_event" />
+        <activity android:name=".tabs.Completed_event" />
+        <activity android:name=".Ui_EventListPager" />
+        <activity android:name=".UI_Task_ListPager" />
+        <activity android:name=".tabs.Delay_event" />
+        <activity android:name=".UI_Profile_details" />
+        <activity android:name=".Ui_companyProfile" />
+        <activity android:name=".Ui_company_profile_edit" />
+        <activity android:name=".Ui_profile_details_edit" />
+        <activity android:name=".Ui_createTeamProfile" />
+        <activity android:name=".Ui_settings_Account_setting" />
+        <activity android:name=".UI_settings_Chat_Settings" />
+        <activity android:name=".Ui_settings_notification_setting" />
+        <activity android:name=".Settings_about_us" />
+        <activity android:name=".Ui_settings_about_us" />
+        <activity android:name=".Ui_AssignNewEventmanger" />
+        <activity android:name=".UI_AssignNewAdmin" />
+        <activity android:name=".Ui_team_in_DetaiView" />
+        <activity android:name=".Ui_add_EmpInTeam" />
+        <activity android:name=".Ui_Detail_ViewOfEvent" />
+        <activity android:name=".Ui_edit_Detail_of_event" />
+        <activity android:name=".Temp_role_testing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Ui_home" />
-        <activity android:name=".Ui_notification" />
-        <activity android:name=".Profile" />
-        <activity android:name=".Ui_employeeList" />
-
-        <activity android:name=".Ui_eventList" />
-        <activity android:name=".Ui_taskList" />
-
-        <activity android:name=".Ui_setting" />
-        <activity android:name=".Ui_teamList" />
-        <activity android:name=".Ui_createTeam" />
-        <activity android:name=".Ui_createEvent"></activity>
+        <activity android:name=".Ui_incluededTeams" />
+        <activity android:name=".Ui_addTeamToEvent" />
+        <activity android:name=".Ui_AssignTask_To_addedTeam"></activity>
     </application>
 
 </manifest>

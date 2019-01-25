@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Prabandhah</string>
     <string name="welcome_to_prabandhah">Welcome to Prabandhah!</string>
-    <string name="email">Email</string>
+
     <string name="sign_up"><u>Sign up!</u></string>
     <string name="password">Password</string>
     <string name="are_you_new_user">Are you new user</string>
@@ -43,7 +43,7 @@
     <string name="Event_list">Event List</string>
     <string name="Team_list">Team List</string>
     <string name="Task_list">Task List</string>
-    <string name="Setting" >Settings</string>
+    <string name="Setting">Settings</string>
     <string name="Logout">Log out!</string>
     <string name="profile">profile</string>
     <string name="employee_list">employee list</string>
@@ -56,4 +56,34 @@
     <string name="notification_setting">Notification Settings</string>
     <string name="report_bug">Report Bug</string>
     <string name="help">Help</string>
+    <string name="create_event_title">Create a new event</string>
+    <string name="name_of_event">Name of event</string>
+    <string name="select_datetime">Select Date Time of Event</string>
+    <string name="select_start_date">Start</string>
+    <string name="select_start_dateandtime">Select Start Date and Time</string>
+    <string name="select_end_date">End</string>
+    <string name="no_of_guest">No of guest</string>
+    <string name="buget">Budget</string>
+    <string name="desription_of_event">Descrition of event</string>
+    <string name="title_activity_add_event_manager_in_event">addEventManagerInEvent</string>
+    <string name="select_event_manger">Select EventManger</string>
+    <string name="company_profile">Company Profile</string>
+    <string name="company_name">Company Name</string>
+    <string name="email">Email</string>
+    <string name="owner_name">Owner Name</string>
+    <string name="notification">Notification</string>
+    <string name="about_us">About Us!</string>
+    <string name="save">save</string>
+    <string name="name_of_team">name of team</string>
+    <string name="add_new_event_manager">Add New Event Manager</string>
+    <string name="add_new_admin">Add New Admin</string>
+    <string name="add_new_employee_in_team">Add new Employee in Team</string>
+    <string name="type_of_event">type Of event</string>
+    <string name="detail_of_event">Detail of Event</string>
+    <string name="edit_event_detail">Edit Event Detail</string>
+    <string name="Testing">Testing</string>
+    <string name="included_teams">Included Teams</string>
+    <string name="add_new_team">Add new Team</string>
+    <string name="assign_task">Assign Task</string>
+
 </resources>

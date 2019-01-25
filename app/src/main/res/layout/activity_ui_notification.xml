@@ -22,6 +22,13 @@
             android:id="@+id/noti_png_backbtn"
             android:contentDescription="TODO"
             android:src="@drawable/ic_arrow_back_black_24dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notification"
+            android:layout_marginLeft="@dimen/_28sdp"
+            android:textSize="@dimen/_17sdp"
+            android:textColor="#fff" />
 
     </android.support.v7.widget.Toolbar>
 

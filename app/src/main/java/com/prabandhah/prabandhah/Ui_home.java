@@ -1,30 +1,30 @@
 package com.prabandhah.prabandhah;
 
-import android.app.SearchManager;
-import android.content.Context;
+
 import android.content.Intent;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.prabandhah.prabandhah.tabs.Team;
 
 //sample for beta testing
 //Implementing the interface OnTabSelectedListener to our MainActivity
 //This interface would help in swiping views
 public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
     int role;
+    String str;
+    TextView textView;
     //This is our tablayout
     private TabLayout tabLayout;
     Toolbar toolbar;
@@ -35,9 +35,11 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_home);
+        textView =findViewById(R.id.text);
         //getting role
-        Intent intent=getIntent();
-        role = intent.getIntExtra("selected",0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
+        role = pref.getInt("role",0);
         // floating action button
         fab = findViewById(R.id.fabtn);
         //Adding toolbar to the activity
@@ -65,11 +67,7 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        //floating action button visblity
-        if(role == 1)
-        {
-            fab.show();
-        }
+
         //floating action button click
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +75,34 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
                 actionBtnClick();
             }
         });
+        //ui changer fuction
+        uichange(role);
     }
+    public void uichange(int role)
+    {
+        //floating action button visblity
+        if(role == 1)
+        {   str = "admin ui";
+            textView.setText(str);
+            fab.show();
+        }
+        else if(role == 2)
+        {
+            str = "Event manager ui";
+            textView.setText(str);
+        }
+        else if(role == 3)
+        {
+            str = "team head ui";
+            textView.setText(str);
+        }
+        else if(role == 4)
+        {
+            str = "employee ui";
+            textView.setText(str);
+        }
 
+    }
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
@@ -98,7 +122,23 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
             {
                 fab.hide();
             }
-           }
+        }
+        if(role == 2)
+        {
+            if(viewPager.getCurrentItem() == 0)
+            {   fab.hide();
+
+            }
+            if(viewPager.getCurrentItem() == 1)
+            {   fab.show();
+                fab.setImageResource(R.drawable.ic_create_group_button);
+
+            }
+            if(viewPager.getCurrentItem() == 2)
+            {
+                fab.hide();
+            }
+        }
 
     }
 
@@ -123,6 +163,19 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         }
         else if(role == 2)
         {
+            inflater.inflate(R.menu.optn_for_eventmanger, menu);
+            inflater.inflate(R.menu.notification,menu);
+            inflater.inflate(R.menu.search,menu);
+        }
+        else if(role == 3)
+        {
+            inflater.inflate(R.menu.optn_for_eventmanger, menu);
+            inflater.inflate(R.menu.notification,menu);
+            inflater.inflate(R.menu.search,menu);
+        }
+
+        else if(role == 4)
+        {
             inflater.inflate(R.menu.optn_for_emp, menu);
             inflater.inflate(R.menu.notification,menu);
             inflater.inflate(R.menu.search,menu);
@@ -137,42 +190,49 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
             //for admin
             case R.id.menu_toolbarnotification:
                 Intent intent=new Intent(getApplicationContext(),Ui_notification.class);
-                intent.putExtra("selected",role);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.menu_toolbarsearch:
                 Toast.makeText(this, "Search clicked", Toast.LENGTH_SHORT).show();
                 return true;
             //admin options
             case R.id.adm_profile:
-                intent=new Intent(getApplicationContext(),Profile.class);
-                intent.putExtra("selected",role);
+                intent=new Intent(getApplicationContext(),UI_Profile_details.class);
                 startActivity(intent);
+                finish();
                 return true;
+            case R.id.adm_companyProfile:
+                intent=new Intent(getApplicationContext(),Ui_companyProfile.class);
+                startActivity(intent);
+                finish();
+                return true;
+
             case R.id.adm_empList:
                 intent=new Intent(getApplicationContext(),Ui_employeeList.class);
-                intent.putExtra("selected",role);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.adm_eventList:
                 intent=new Intent(getApplicationContext(),Ui_eventList.class);
-                intent.putExtra("selected",role);
                 startActivity(intent);
+                finish();
                 return true;
-            case R.id.adm_teamList:
+           /* case R.id.adm_teamList:
                 intent=new Intent(getApplicationContext(),Ui_teamList.class);
                 intent.putExtra("selected",role);
                 startActivity(intent);
-                return true;
+                finish();
+                return true;*/
             case R.id.adm_taskList:
                 intent=new Intent(getApplicationContext(),Ui_taskList.class);
-                intent.putExtra("selected",role);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.adm_setting:
                 intent=new Intent(getApplicationContext(),Ui_setting.class);
-                intent.putExtra("selected",role);
                 startActivity(intent);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -184,14 +244,12 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         if(viewPager.getCurrentItem() == 0)
         {   Intent intent = getIntent();
             intent=new Intent(getApplicationContext(),Ui_createEvent.class);
-            intent.putExtra("selected",role);
             startActivity(intent);
         }
         if(viewPager.getCurrentItem() == 1)
         {
             Intent intent = getIntent();
             intent=new Intent(getApplicationContext(),Ui_createTeam.class);
-            intent.putExtra("selected",role);
             startActivity(intent);
 
         }
