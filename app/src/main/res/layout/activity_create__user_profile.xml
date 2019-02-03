@@ -14,47 +14,23 @@
         android:layout_marginTop="@dimen/_100sdp"
         android:padding="@dimen/_20sdp">
 
-        <!--Email-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/logocom"/>
         <EditText
-            android:id="@+id/email"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/name"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/_5sdp"
             android:background="@drawable/edit_txt_bubble"
-            android:drawableStart="@drawable/ic_email_black_24dp"
-            android:hint="Email"
+            android:hint="Name"
             android:textSize="@dimen/_15sdp"
             android:inputType="textEmailAddress"
             android:paddingLeft="@dimen/_7sdp"
             />
-
-
-        <EditText
-            android:id="@+id/reg_password"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp"
-            android:background="@drawable/edit_txt_bubble"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textSize="@dimen/_15sdp"
-            android:paddingLeft="@dimen/_12sdp"
-            />
-
-        <EditText
-            android:id="@+id/retype"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/edit_txt_bubble"
-            android:hint="Re-Type Password"
-            android:padding="@dimen/_5sdp"
-            android:inputType="textPassword"
-            android:paddingLeft="@dimen/_12sdp"
-            android:textSize="@dimen/_15sdp" />
-
         <Button
             android:id="@+id/signin"
             android:layout_width="match_parent"

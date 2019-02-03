@@ -85,5 +85,6 @@
     <string name="included_teams">Included Teams</string>
     <string name="add_new_team">Add new Team</string>
     <string name="assign_task">Assign Task</string>
+    <string name="verification_mail_has_been_sent_on_your_mail_id">Verification mail has been sent on your mail id!</string>
 
 </resources>

@@ -20,7 +20,7 @@ public class LoginPage extends AppCompatActivity {
     Button login;
     EditText mail,password;
     FirebaseAuth fba;
-    TextView signin,forgetpass;
+    TextView signin,signin1,forgetpass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +30,7 @@ public class LoginPage extends AppCompatActivity {
         forgetpass = findViewById(R.id.forget_pass_page);
         mail = findViewById(R.id.txt_email);
         password = findViewById(R.id.txt_password);
+        signin1 = findViewById(R.id.sigin1);
         signin = findViewById(R.id.signin);
         fba = FirebaseAuth.getInstance();
         //signin
@@ -40,13 +41,14 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(new Intent(LoginPage.this,Sign_up.class));
             }
         });
-        //if user logged in
-        //temporary hidden
-        //FirebaseUser user = fba.getCurrentUser();
-        //if(user != null)
-        //{   finish();
-        //  startActivity(new Intent (Loginf.this,HomePage.class));
-        //}
+        signin1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(LoginPage.this,Sign_up.class));
+            }
+        });
+
         //login btn click
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,17 +84,17 @@ public class LoginPage extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())
                 {
-                    emil_verifed();
+                    email_verifed();
                 }
                 else{
-                    Toast.makeText(LoginPage.this, "Login fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPage.this, "No account Exist on This Mail id!", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
 
     }
-    private void emil_verifed()
+    private void email_verifed()
     {
         FirebaseUser fbu =fba.getInstance().getCurrentUser();
         Boolean mailflag = fbu.isEmailVerified();
@@ -100,10 +102,13 @@ public class LoginPage extends AppCompatActivity {
         {   finish();
             startActivity(new Intent(LoginPage.this,HomePage.class));
         }
+        else if(mailflag == false)
+        {
+            startActivity(new Intent(LoginPage.this,verfiy_your_mail.class));
+        }
         else
         {
-            Toast.makeText(this, "Verify Your Email id", Toast.LENGTH_SHORT).show();
-            fba.signOut();
+            Toast.makeText(this, "Error on Email verfication", Toast.LENGTH_SHORT).show();
         }
     }
 

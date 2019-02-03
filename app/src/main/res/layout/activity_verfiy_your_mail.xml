@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.prabandhah.prabandhah.are_you_owner_or_admin"
+    android:orientation="vertical"
+    android:background="@drawable/login_img">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_20sdp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:text="@string/verify_mail"
+            android:textColor="#fff" android:gravity="center"
+            android:textSize="@dimen/_20sdp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="@string/verification_mail_has_been_sent_on_your_mail_id"
+            android:textColor="#fff"
+            android:textSize="@dimen/_12sdp"/>
+
+        <Button
+            android:id="@+id/next"
+            android:layout_marginTop="@dimen/_120sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rac_btn"
+            android:text="@string/next"/>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

@@ -1,9 +1,13 @@
 package com.prabandhah.prabandhah;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class Splash_screen extends AppCompatActivity {
     int SPLASH_DISPLAY_LENGTH=2000;
@@ -20,6 +24,16 @@ public class Splash_screen extends AppCompatActivity {
                 Splash_screen.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
-
+        //if user logged in
+        //FirebaseUser user = fba.getCurrentUser();
+        //if(user != null)
+        //{   finish();
+        //  startActivity(new Intent (Splash_screen.this,HomePage.class));
+        //}
+        //status bar color
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window w = getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);//status bar or the time bar at the top
+        }
     }
 }

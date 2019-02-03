@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash_screen" />
+        <activity android:name=".Splash_screen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".LoginPage" />
         <activity android:name=".Sign_up" />
         <activity android:name=".HomePage" />
@@ -58,16 +64,12 @@
         <activity android:name=".Ui_add_EmpInTeam" />
         <activity android:name=".Ui_Detail_ViewOfEvent" />
         <activity android:name=".Ui_edit_Detail_of_event" />
-        <activity android:name=".Temp_role_testing">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Temp_role_testing" />
         <activity android:name=".Ui_incluededTeams" />
         <activity android:name=".Ui_addTeamToEvent" />
-        <activity android:name=".Ui_AssignTask_To_addedTeam"></activity>
+        <activity android:name=".Ui_AssignTask_To_addedTeam" />
+        <activity android:name=".verfiy_your_mail" />
+        <activity android:name=".Create_UserProfile"></activity>
     </application>
 
 </manifest>

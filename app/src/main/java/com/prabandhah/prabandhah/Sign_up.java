@@ -20,103 +20,97 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.ProviderQueryResult;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.prabandhah.prabandhah.dataclasses.NewUserProfilef;
 
 import java.io.IOException;
 
 public class Sign_up extends AppCompatActivity {
     FirebaseAuth fba;
-    ImageView img;
+    EditText Email,password,retypepass;
     int  REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Button signin;
-        final EditText Email,password,retypepass;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         fba = FirebaseAuth.getInstance();
         signin = findViewById(R.id.signin);
-        img = findViewById(R.id.profile_pic_signup);
         Email = findViewById(R.id.email);
         password = findViewById(R.id.reg_password);
         retypepass = findViewById(R.id.retype);
+
         //sign in
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                // name nu kam baki che
-                if (Email.getText().toString().trim().equalsIgnoreCase("")) {
-                    Email.setError("Please Enter Email");
+                checkdatafromat();
+                
 
-                } else if (!Email.getText().toString().matches(emailPattern)) {
-                    Email.setError("Please Enter valid Email");
+            }
+        });
 
-                } else if (password.getText().toString().trim().equalsIgnoreCase("")) {
-                    password.setError("Please Enter password");
-                }
-                else if (retypepass.getText().toString().trim().equalsIgnoreCase(""))
-                {   retypepass.setError("Please Enter Password Again");
+    }
+
+
+  
+    void checkdatafromat()
+    {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        // name nu kam baki che
+        if (Email.getText().toString().trim().equalsIgnoreCase("")) {
+            Email.setError("Please Enter Email");
+
+        } else if (!Email.getText().toString().matches(emailPattern)) {
+            Email.setError("Please Enter valid Email");
+
+        } else if (password.getText().toString().trim().equalsIgnoreCase("")) {
+            password.setError("Please Enter password");
+        }
+        else if (retypepass.getText().toString().trim().equalsIgnoreCase(""))
+        {   retypepass.setError("Please Enter Password Again");
+        }
+        else
+        {
+            if(password.getText().toString().equals(retypepass.getText().toString()))
+            {
+                Submit(Email.getText().toString(),password.getText().toString());
+            }
+            else
+            {
+                Toast.makeText(Sign_up.this, "Password and retype password not matched", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    void Submit(final String Email, String password)
+    {  checkmailexist(Email,password);     
+    }
+    void checkmailexist(final String Email, final String password){
+        fba.fetchProvidersForEmail(Email).addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
+            @Override
+            public void onComplete(@NonNull Task<ProviderQueryResult> task) {
+                boolean emailpresent = !task.getResult().getProviders().isEmpty();
+                
+                if(!emailpresent){
+                    //not present
+                    CreateUserNewUserFinal(Email,password);
                 }
                 else
                 {
-                    if(password.getText().toString().equals(retypepass.getText().toString()))
-                    {
-                        Submit(Email.getText().toString(),password.getText().toString());
-                    }
-                    else
-                    {
-                        Toast.makeText(Sign_up.this, "Password and retype password not matched", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(Sign_up.this, "email id exist", Toast.LENGTH_SHORT).show();
                 }
-
-            }
-        });
-        //image upload to profile pic
-        img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create the Intent for Image Gallery.
-                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                // Start new activity with the LOAD_IMAGE_RESULTS to handle back the results when image is picked from the Image Gallery.
-                startActivityForResult(i, REQUEST_CODE);
-
             }
         });
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Here we need to check if the activity that was triggers was the Image Gallery.
-        // If it is the requestCode will match the LOAD_IMAGE_RESULTS value.
-        // If the resultCode is RESULT_OK and there is some data we know that an image was picked.
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri pickedImage = data.getData();
-            // Let's read picked image path using content resolver
-            String[] filePath = { MediaStore.Images.Media.DATA };
-            Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
-            cursor.moveToFirst();
-            String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
-
-            // Now we need to set the GUI ImageView data with data read from the picked file.
-            img.setImageBitmap(BitmapFactory.decodeFile(imagePath));
-
-            // At the end remember to close the cursor or you will end with the RuntimeException!
-            cursor.close();
-        }
-    }
-
-
-    void Submit(String Email,String password)
+    void CreateUserNewUserFinal(final String Email, final String password)
     {
-
         fba.createUserWithEmailAndPassword(Email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())
                 {
-
                     FirebaseUser Fbuser = fba.getInstance().getCurrentUser();
                     if(Fbuser != null)
                     {
@@ -125,9 +119,10 @@ public class Sign_up extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful())
                                 {   finish();
-                                    startActivity(new Intent(Sign_up.this,LoginPage.class));
+                                    Intent intent = new Intent(getBaseContext(), verfiy_your_mail.class);
+                                    intent.putExtra("Email", Email);
+                                    startActivity(intent);
                                     Toast.makeText(Sign_up.this, "Verification mail has been sent", Toast.LENGTH_SHORT).show();
-                                    fba.signOut();
                                 }
                                 else
                                 {
@@ -141,5 +136,6 @@ public class Sign_up extends AppCompatActivity {
             }
         });
     }
+
 
 }
