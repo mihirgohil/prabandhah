@@ -103,8 +103,11 @@ public class LoginPage extends AppCompatActivity {
             startActivity(new Intent(LoginPage.this,HomePage.class));
         }
         else if(mailflag == false)
-        {
-            startActivity(new Intent(LoginPage.this,verfiy_your_mail.class));
+        {   finish();
+            String Email = mail.getText().toString();
+            Intent intent = new Intent(getBaseContext(), verfiy_your_mail.class);
+            intent.putExtra("Email", Email);
+            startActivity(intent);
         }
         else
         {
