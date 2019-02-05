@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -16,7 +17,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,23 +58,8 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                 else if (rb2.isChecked())
                 {   role = 2 ;
                     emplyee();
-                    rootRef = FirebaseDatabase.getInstance().getReference();
-
-                    //database reference pointing to demo node
-                    dataref = rootRef.child("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                    dataref.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            retrole = dataSnapshot.child("role").getValue(Integer.class);
-                            Toast.makeText(are_you_owner_or_admin.this,String.valueOf(retrole), Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-                    Toast.makeText(are_you_owner_or_admin.this,"outside the function"+String.valueOf(retrole), Toast.LENGTH_SHORT).show();
+                    getrolefromdb();
+                    Toast.makeText(are_you_owner_or_admin.this,String.valueOf(retrole), Toast.LENGTH_SHORT).show();
                     editor.putInt("role", retrole);
                     editor.commit();
                     finish();
@@ -113,6 +103,21 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                 {
                     Toast.makeText(are_you_owner_or_admin.this, "role not saved", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+    void getrolefromdb()
+    {   FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        rootRef = FirebaseDatabase.getInstance().getReference(firebaseAuth.getUid()).child("role");
+        rootRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                retrole = Integer.valueOf(dataSnapshot.getValue().toString());
+                Toast.makeText(are_you_owner_or_admin.this, "You are in on data change", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(are_you_owner_or_admin.this, "in cancel :"+databaseError.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
