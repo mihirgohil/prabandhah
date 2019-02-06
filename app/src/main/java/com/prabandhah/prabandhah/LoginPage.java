@@ -1,6 +1,7 @@
 package com.prabandhah.prabandhah;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginPage extends AppCompatActivity {
     Button login;
@@ -99,8 +105,32 @@ public class LoginPage extends AppCompatActivity {
         FirebaseUser fbu =fba.getInstance().getCurrentUser();
         Boolean mailflag = fbu.isEmailVerified();
         if (mailflag)
-        {   finish();
-            startActivity(new Intent(LoginPage.this,HomePage.class));
+        {   SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+            final SharedPreferences.Editor editor = pref.edit();
+            DatabaseReference dataref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            dataref.keepSynced(true);
+            dataref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String ro = dataSnapshot.child("role").getValue().toString();
+                    Toast.makeText(LoginPage.this, "at Login role:" + ro, Toast.LENGTH_SHORT).show();
+                    if (ro.equals("1") || ro.equals("2") || ro.equals("3") || ro.equals("4")) {
+                        int retrole;
+                        Toast.makeText(LoginPage.this, "at retrole", Toast.LENGTH_SHORT).show();
+                        retrole = Integer.parseInt(ro);
+                        editor.putInt("role", retrole);
+                        editor.commit();
+                        finish();
+                        Intent mainIntent = new Intent(LoginPage.this,Ui_home.class);
+                        LoginPage.this.startActivity(mainIntent);
+                        LoginPage.this.finish();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginPage.this, "in cancel :"+databaseError.toString(), Toast.LENGTH_LONG).show();
+                }
+            });
         }
         else if(mailflag == false)
         {   finish();

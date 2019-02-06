@@ -45,6 +45,7 @@
             android:layout_marginTop="@dimen/_20sdp"
             app:contentPadding="@dimen/_5sdp">
             <TextView
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name"
@@ -58,6 +59,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             app:contentPadding="@dimen/_5sdp">
             <TextView
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
@@ -71,6 +73,7 @@
             app:contentPadding="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_10sdp">
             <TextView
+                android:id="@+id/companyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/company_name"
@@ -84,6 +87,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             app:contentPadding="@dimen/_5sdp">
             <TextView
+                android:id="@+id/Post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Post"

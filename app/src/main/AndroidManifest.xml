@@ -69,7 +69,9 @@
         <activity android:name=".Ui_addTeamToEvent" />
         <activity android:name=".Ui_AssignTask_To_addedTeam" />
         <activity android:name=".verfiy_your_mail" />
-        <activity android:name=".Create_UserProfile"></activity>
+        <activity android:name=".Create_UserProfile" />
+        <activity android:name=".Create_companyProfile" />
+        <activity android:name=".Join_your_company"></activity>
     </application>
 
 </manifest>

@@ -28,11 +28,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.prabandhah.prabandhah.dataclasses.NewUserProfilef;
+import com.prabandhah.prabandhah.dataclasses.Role;
 
 public class are_you_owner_or_admin extends AppCompatActivity {
     RadioGroup rg1;
     Button b1;
     int role,retrole;
+    String ro;
     RadioButton rb1,rb2;
     DatabaseReference rootRef,dataref;
     @Override
@@ -49,21 +51,57 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                 rb1 = findViewById(R.id.Rb1);
                 rb2=findViewById(R.id.Rb2);
                 if(rb1.isChecked())
-                {   admin();
-                    editor.putInt("role", 1);
-                    editor.commit();
-                    finish();
-                    startActivity(new Intent(are_you_owner_or_admin.this,Ui_home.class));
+                {   role = 1 ;
+                    sendrole();
+                    final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                    dataref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    dataref.keepSynced(true);
+                    dataref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ro = dataSnapshot.child("role").getValue().toString();
+                            Toast.makeText(are_you_owner_or_admin.this, "at editor" + ro, Toast.LENGTH_SHORT).show();
+                            if (ro.equals("1")) {
+                                // role = Integer.getInteger(ro);
+                                retrole = Integer.parseInt(ro);
+                                editor.putInt("role", retrole);
+                                editor.commit();
+                                finish();
+                                startActivity(new Intent(are_you_owner_or_admin.this, Create_companyProfile.class));
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(are_you_owner_or_admin.this, "in cancel :"+databaseError.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
                 else if (rb2.isChecked())
-                {   role = 2 ;
-                    emplyee();
-                    getrolefromdb();
-                    Toast.makeText(are_you_owner_or_admin.this,String.valueOf(retrole), Toast.LENGTH_SHORT).show();
-                    editor.putInt("role", retrole);
-                    editor.commit();
-                    finish();
-                    startActivity(new Intent(are_you_owner_or_admin.this,Ui_home.class));
+                {   role = 4 ;
+                    sendrole();
+                    final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                    dataref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    dataref.keepSynced(true);
+                    dataref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ro = dataSnapshot.child("role").getValue().toString();
+                            Toast.makeText(are_you_owner_or_admin.this, "at editor" + ro, Toast.LENGTH_SHORT).show();
+                            if (ro.equals("4")) {
+                               // role = Integer.getInteger(ro);
+                                retrole = Integer.parseInt(ro);
+                                editor.putInt("role", retrole);
+                                editor.commit();
+                                finish();
+                                startActivity(new Intent(are_you_owner_or_admin.this, Join_your_company.class));
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(are_you_owner_or_admin.this, "in cancel :"+databaseError.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
                 }
             }
         });
@@ -74,9 +112,10 @@ public class are_you_owner_or_admin extends AppCompatActivity {
 
 
     }
-    void admin()
-    {   String ad= "admin";
-        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("role").setValue("1").addOnCompleteListener(new OnCompleteListener<Void>() {
+
+    void sendrole()
+    {   NewUserProfilef userProfile = new NewUserProfilef(String.valueOf(role));
+        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("role").setValue(String.valueOf(role)).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful())
@@ -90,35 +129,5 @@ public class are_you_owner_or_admin extends AppCompatActivity {
             }
         });
     }
-    void emplyee()
-    {   NewUserProfilef userProfile = new NewUserProfilef(role);
-        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("role").setValue(role).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(are_you_owner_or_admin.this, "role inserted", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(are_you_owner_or_admin.this, "role not saved", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-    void getrolefromdb()
-    {   FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        rootRef = FirebaseDatabase.getInstance().getReference(firebaseAuth.getUid()).child("role");
-        rootRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                retrole = Integer.valueOf(dataSnapshot.getValue().toString());
-                Toast.makeText(are_you_owner_or_admin.this, "You are in on data change", Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(are_you_owner_or_admin.this, "in cancel :"+databaseError.toString(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+
 }

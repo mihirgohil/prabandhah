@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.prabandhah.prabandhah.tabs.Team;
 
 //sample for beta testing
@@ -234,6 +235,11 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
                 startActivity(intent);
                 finish();
                 return true;
+            case R.id.Logout:
+                FirebaseAuth firebaseAuth =FirebaseAuth.getInstance();
+                firebaseAuth.signOut();
+                finish();
+                startActivity(new Intent(Ui_home.this,LoginPage.class));
             default:
                 return super.onOptionsItemSelected(item);
         }

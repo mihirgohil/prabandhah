@@ -44,6 +44,7 @@
             app:cardBackgroundColor="#000"
             android:layout_marginTop="@dimen/_20sdp">
             <EditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name"
@@ -57,6 +58,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             >
             <EditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
@@ -70,6 +72,7 @@
 
             android:layout_marginTop="@dimen/_10sdp">
             <EditText
+                android:id="@+id/companyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/company_name"
@@ -82,6 +85,7 @@
             app:cardBackgroundColor="#000"
             android:layout_marginTop="@dimen/_10sdp">
             <EditText
+                android:id="@+id/Post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Post"

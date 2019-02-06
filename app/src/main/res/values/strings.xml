@@ -86,5 +86,7 @@
     <string name="add_new_team">Add new Team</string>
     <string name="assign_task">Assign Task</string>
     <string name="verification_mail_has_been_sent_on_your_mail_id">Verification mail has been sent on your mail id!</string>
+    <string name="company_email">Company Email</string>
+    <string name="company_name1">Company Name</string>
 
 </resources>
