@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.ProviderQueryResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -70,7 +71,7 @@ public class LoginPage extends AppCompatActivity {
                 } else if (password.getText().toString().trim().equalsIgnoreCase("")) {
                     password.setError("Please Enter password");
                 } else {
-                    validate(mail.getText().toString(),password.getText().toString());
+                    checkmailexist(mail.getText().toString(),password.getText().toString());
                 }
 
             }
@@ -83,7 +84,7 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
-    private void validate(String email,String password)
+    private void validate(final String email, final String password)
     {
         fba.signInWithEmailAndPassword(email , password ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -93,7 +94,7 @@ public class LoginPage extends AppCompatActivity {
                     email_verifed();
                 }
                 else{
-                    Toast.makeText(LoginPage.this, "No account Exist on This Mail id!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPage.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -144,5 +145,21 @@ public class LoginPage extends AppCompatActivity {
             Toast.makeText(this, "Error on Email verfication", Toast.LENGTH_SHORT).show();
         }
     }
+    void checkmailexist(final String Email, final String password){
+        fba.fetchProvidersForEmail(Email).addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
+            @Override
+            public void onComplete(@NonNull Task<ProviderQueryResult> task) {
+                boolean emailpresent = !task.getResult().getProviders().isEmpty();
 
+                if(!emailpresent){
+                    //not present
+                    Toast.makeText(LoginPage.this, "No account Exist on This Mail id!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                   validate(Email,password);
+                }
+            }
+        });
+    }
 }

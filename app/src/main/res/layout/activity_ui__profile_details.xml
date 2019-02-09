@@ -25,7 +25,9 @@
             android:src="@drawable/ic_editbtn" />
 
     </LinearLayout>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_margin="@dimen/_15sdp"
@@ -38,12 +40,21 @@
             android:layout_marginTop="@dimen/_20sdp"
             app:civ_circle_background_color="#fff"
             android:src="@drawable/ic_person_black_24dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:textColor="#31efdf"
+            android:layout_marginTop="@dimen/_15sdp"
+            />
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#000"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             app:contentPadding="@dimen/_5sdp">
+
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
@@ -52,11 +63,19 @@
                 android:textColor="#fff"
                 android:textSize="@dimen/_15sdp"/>
         </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:textColor="#31efdf"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#000"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             app:contentPadding="@dimen/_5sdp">
             <TextView
                 android:id="@+id/email"
@@ -66,12 +85,20 @@
                 android:textColor="#fff"
                 android:textSize="@dimen/_15sdp"/>
         </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/company_name"
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:textColor="#31efdf"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#000"
             app:contentPadding="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp">
+            android:layout_marginTop="@dimen/_5sdp">
             <TextView
                 android:id="@+id/companyName"
                 android:layout_width="match_parent"
@@ -80,21 +107,36 @@
                 android:textColor="#fff"
                 android:textSize="@dimen/_15sdp"/>
         </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/post"
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:textColor="#31efdf"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#000"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             app:contentPadding="@dimen/_5sdp">
             <TextView
                 android:id="@+id/Post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Post"
+                android:text="@string/post"
                 android:textColor="#fff"
                 android:textSize="@dimen/_15sdp"/>
         </android.support.v7.widget.CardView>
-
+        <Button
+            android:id="@+id/joinbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/rac_btn"
+            android:text="@string/join_Company"
+            android:visibility="gone"/>
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

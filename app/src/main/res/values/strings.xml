@@ -88,5 +88,6 @@
     <string name="verification_mail_has_been_sent_on_your_mail_id">Verification mail has been sent on your mail id!</string>
     <string name="company_email">Company Email</string>
     <string name="company_name1">Company Name</string>
+    <string name="post">Post</string>
 
 </resources>

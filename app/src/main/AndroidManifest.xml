@@ -23,7 +23,6 @@
         <activity android:name=".are_you_owner_or_admin" />
         <activity android:name=".Ui_home" />
         <activity android:name=".Ui_notification" />
-        <activity android:name=".Profile" />
         <activity android:name=".Ui_employeeList" />
         <activity android:name=".Ui_eventList" />
         <activity android:name=".Ui_taskList" />

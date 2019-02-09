@@ -12,10 +12,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.prabandhah.prabandhah.dataclasses.NewUserProfilef;
+import com.prabandhah.prabandhah.dataclasses.Profile;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -24,7 +22,7 @@ public class Create_UserProfile extends AppCompatActivity {
     String Email;
     CircleImageView ProfilePic;
     EditText name;
-    String company_id="null",team_id = "null";
+    String CompanyId=null,team_id = null;
     int role=0;
     FirebaseAuth fba;
     @Override
@@ -53,7 +51,7 @@ public class Create_UserProfile extends AppCompatActivity {
         });
     }
     void senduserdata(final String Email)
-    {   NewUserProfilef userProfile = new NewUserProfilef(Email,name.getText().toString(),String.valueOf(role),company_id,team_id);
+    {   Profile userProfile = new Profile(Email,name.getText().toString(),String.valueOf(role),CompanyId,team_id);
         FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(userProfile).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

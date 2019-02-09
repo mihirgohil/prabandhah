@@ -13,7 +13,14 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_100sdp"
         android:padding="@dimen/_20sdp">
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            android:gravity="center"
+            android:textSize="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="#fff"/>
         <!--Email-->
         <EditText
             android:id="@+id/email"

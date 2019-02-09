@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/login_img"
     tools:context="com.prabandhah.prabandhah.UI_Profile_details">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,73 +25,100 @@
             android:layout_marginLeft="@dimen/_250sdp"
             android:src="@drawable/ic_editbtn" />
     </LinearLayout>
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:src="@drawable/companyprofile"
-        app:civ_circle_background_color="#fff"/>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_margin="@dimen/_15sdp"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="#000"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:contentPadding="@dimen/_5sdp">
-            <TextView
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/companyprofile"
+                app:civ_circle_background_color="#fff"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_margin="@dimen/_15sdp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Comapany Name"
-                android:textColor="#fff"
-                android:textSize="@dimen/_15sdp"/>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#000"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:contentPadding="@dimen/_5sdp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/email"
-                android:textColor="#fff"
-                android:textSize="@dimen/_15sdp"/>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#000"
-            app:contentPadding="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/owner_name"
-                android:textColor="#fff"
-                android:textSize="@dimen/_15sdp"/>
-        </android.support.v7.widget.CardView>
+                android:layout_height="match_parent">
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#000"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:contentPadding="@dimen/_5sdp">
+                    <TextView
+                        android:id="@+id/cmpname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Comapany Name"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15sdp"/>
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#000"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:contentPadding="@dimen/_5sdp">
+                    <TextView
+                        android:id="@+id/cmpemail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15sdp"/>
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#000"
+                    app:contentPadding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp">
+                    <TextView
+                        android:id="@+id/cmpownername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/owner_name"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15sdp"/>
+                </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#000"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:contentPadding="@dimen/_5sdp">
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#000"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:contentPadding="@dimen/_5sdp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Address"
-                android:lines="5"
-                android:textColor="#fff"
-                android:textSize="@dimen/_15sdp" />
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/cmpaddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Address"
+                        android:inputType="textMultiLine"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15sdp" />
+                </android.support.v7.widget.CardView>
+                <Button
+                    android:id="@+id/joinbtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_24sdp"
+                    android:background="@drawable/rac_btn"
+                    android:text="@string/join_Company"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>

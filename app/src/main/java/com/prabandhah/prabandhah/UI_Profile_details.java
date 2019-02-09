@@ -8,7 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +19,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.prabandhah.prabandhah.dataclasses.NewUserProfilef;
-import com.prabandhah.prabandhah.dataclasses.Role;
+import com.prabandhah.prabandhah.dataclasses.Profile;
 
 public class UI_Profile_details extends AppCompatActivity {
     ImageView bckbtn,editbtn;
     DatabaseReference dataref;
+    Button joincmp;
     TextView name,post,companyname,email;
     int role;
     @Override
@@ -34,6 +34,7 @@ public class UI_Profile_details extends AppCompatActivity {
         Intent intent = getIntent();
         bckbtn = findViewById(R.id.pro_png_backbtn);
         editbtn = findViewById(R.id.editBtn);
+        joincmp = findViewById(R.id.joinbtn);
         name= findViewById(R.id.name);
         post = findViewById(R.id.Post);
         companyname = findViewById(R.id.companyName);
@@ -70,19 +71,48 @@ public class UI_Profile_details extends AppCompatActivity {
     }
     void getprofile()
     {
-        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        //rootRef = FirebaseDatabase.getInstance().getReference();
 
+        final DatabaseReference cmpRef = FirebaseDatabase.getInstance().getReference("CompanyMaster");
+        final DatabaseReference role = FirebaseDatabase.getInstance().getReference("role");
         dataref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         dataref.keepSynced(true);
         dataref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                NewUserProfilef newUserProfilef= dataSnapshot.getValue(NewUserProfilef.class);
+                final Profile newUserProfilef= dataSnapshot.getValue(Profile.class);
                 name.setText(newUserProfilef.getUser_name());
                 email.setText(newUserProfilef.getUser_mail_id());
                 post.setText(newUserProfilef.getRole());
-                companyname.setText(newUserProfilef.getCompany_id());
+                final String cid = dataSnapshot.child("company_id").getValue().toString();
+                if (cid.equals("")) {
+                    String jon="join your Company";
+                    companyname.setText(jon);
+                    joincmp.setVisibility(View.VISIBLE);
+                }
+                else {
+                    cmpRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            companyname.setText(dataSnapshot.child(cid).child("company_name").getValue().toString());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(UI_Profile_details.this, "in cancel cmp :" + databaseError.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+                role.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        post.setText(dataSnapshot.child(newUserProfilef.getRole()).getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(UI_Profile_details.this, "in cancel role :"+databaseError.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
