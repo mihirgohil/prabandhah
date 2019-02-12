@@ -58,8 +58,7 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                                 retrole = Integer.parseInt(ro);
                                 editor.putInt("role", retrole);
                                 editor.commit();
-                                finish();
-                                startActivity(new Intent(are_you_owner_or_admin.this, Create_companyProfile.class));
+                                startActivity(new Intent(are_you_owner_or_admin.this, Create_companyProfile1.class));
                             }
                         }
                         @Override
@@ -84,7 +83,6 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                                 retrole = Integer.parseInt(ro);
                                 editor.putInt("role", retrole);
                                 editor.commit();
-                                finish();
                                 startActivity(new Intent(are_you_owner_or_admin.this, Join_your_company.class));
                             }
                         }

@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,6 +40,8 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_home);
         textView =findViewById(R.id.text);
+        //search view
+
         //getting role
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
@@ -51,7 +54,6 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         //Initializing the tablayout
         tabLayout = findViewById(R.id.tabLayoutF);
-
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Event"));
         tabLayout.addTab(tabLayout.newTab().setText("Team"));
@@ -197,7 +199,8 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
                 finish();
                 return true;
             case R.id.menu_toolbarsearch:
-                Toast.makeText(this, "Search clicked", Toast.LENGTH_SHORT).show();
+                SearchView searchView = (SearchView)item.getActionView();
+
                 return true;
             //admin options
             case R.id.adm_profile:
@@ -248,8 +251,8 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
                             public void onClick(DialogInterface dialog, int which) {
                                 FirebaseAuth firebaseAuth =FirebaseAuth.getInstance();
                                 firebaseAuth.signOut();
-                                finish();
                                 startActivity(new Intent(Ui_home.this,LoginPage.class));
+                                finish();
                             }
 
                         })

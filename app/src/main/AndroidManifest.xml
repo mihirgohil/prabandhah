@@ -70,7 +70,8 @@
         <activity android:name=".verfiy_your_mail" />
         <activity android:name=".Create_UserProfile" />
         <activity android:name=".Create_companyProfile" />
-        <activity android:name=".Join_your_company"></activity>
+        <activity android:name=".Join_your_company" />
+        <activity android:name=".Create_companyProfile1"></activity>
     </application>
 
 </manifest>

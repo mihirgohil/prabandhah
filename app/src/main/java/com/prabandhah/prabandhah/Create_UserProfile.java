@@ -22,7 +22,7 @@ public class Create_UserProfile extends AppCompatActivity {
     String Email;
     CircleImageView ProfilePic;
     EditText name;
-    String CompanyId=null,team_id = null;
+    String CompanyId="",team_id = "";
     int role=0;
     FirebaseAuth fba;
     @Override

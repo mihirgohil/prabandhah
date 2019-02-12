@@ -40,6 +40,8 @@ public class LoginPage extends AppCompatActivity {
         signin1 = findViewById(R.id.sigin1);
         signin = findViewById(R.id.signin);
         fba = FirebaseAuth.getInstance();
+
+
         //signin
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,7 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(new Intent(LoginPage.this,Sign_up.class));
             }
         });
+
 
         //login btn click
         login.setOnClickListener(new View.OnClickListener() {
@@ -76,14 +79,18 @@ public class LoginPage extends AppCompatActivity {
 
             }
         });
+
+
         forgetpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginPage.this,ForgetPassNewPassword.class));
-
             }
         });
+
     }
+
+
     private void validate(final String email, final String password)
     {
         fba.signInWithEmailAndPassword(email , password ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -99,7 +106,6 @@ public class LoginPage extends AppCompatActivity {
 
             }
         });
-
     }
     private void email_verifed()
     {
@@ -145,6 +151,8 @@ public class LoginPage extends AppCompatActivity {
             Toast.makeText(this, "Error on Email verfication", Toast.LENGTH_SHORT).show();
         }
     }
+
+
     void checkmailexist(final String Email, final String password){
         fba.fetchProvidersForEmail(Email).addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
             @Override

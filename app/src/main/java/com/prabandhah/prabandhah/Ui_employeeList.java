@@ -124,7 +124,9 @@ public class Ui_employeeList extends AppCompatActivity implements TabLayout.OnTa
                     String cmpcode = dataSnapshot.child("company_id").getValue().toString();
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
-                    String Sharesub="Your Company Code:"+"\n"+cmpcode;
+                    String ShareHead="Your Company Code:";
+                    String Sharesub=cmpcode;
+                    intent.putExtra(Intent.EXTRA_SUBJECT,ShareHead);
                     intent.putExtra(Intent.EXTRA_TEXT,Sharesub);
                     startActivity(Intent.createChooser(intent,"Invite Using"));
                 }

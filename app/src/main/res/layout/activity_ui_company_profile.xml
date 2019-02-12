@@ -46,6 +46,14 @@
                 android:layout_margin="@dimen/_15sdp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comapany Name"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:textColor="#31efdf"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    />
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -56,10 +64,17 @@
                         android:id="@+id/cmpname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Comapany Name"
                         android:textColor="#fff"
                         android:textSize="@dimen/_15sdp"/>
                 </android.support.v7.widget.CardView>
+                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:textColor="#31efdf"
+                android:layout_marginTop="@dimen/_15sdp"
+                />
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,10 +85,17 @@
                         android:id="@+id/cmpemail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/email"
                         android:textColor="#fff"
                         android:textSize="@dimen/_15sdp"/>
                 </android.support.v7.widget.CardView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/owner_name"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:textColor="#31efdf"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    />
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -84,11 +106,17 @@
                         android:id="@+id/cmpownername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/owner_name"
                         android:textColor="#fff"
                         android:textSize="@dimen/_15sdp"/>
                 </android.support.v7.widget.CardView>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Address"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:textColor="#31efdf"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    />
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,7 +128,6 @@
                         android:id="@+id/cmpaddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Address"
                         android:inputType="textMultiLine"
                         android:textColor="#fff"
                         android:textSize="@dimen/_15sdp" />
