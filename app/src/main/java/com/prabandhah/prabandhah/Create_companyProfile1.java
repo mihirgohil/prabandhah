@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.prabandhah.prabandhah.dataclasses.Company;
+import com.prabandhah.prabandhah.dataclasses.Profile;
 
 public class Create_companyProfile1 extends AppCompatActivity {
     Button done;
@@ -40,12 +41,15 @@ public class Create_companyProfile1 extends AppCompatActivity {
                 cmpid.setValue(cmp);
                 //passtouser(cmpidstr);
                 databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
-                databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("company_id").setValue(cmpidstr).addOnCompleteListener(new OnCompleteListener<Void>() {
+                databaseReference.keepSynced(true);
+                Profile profile = new Profile(cmpidstr);
+                databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("company_id").setValue(profile.getCompany_id()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
                         {   finishAffinity();
                             startActivity(new Intent(getApplicationContext(),Ui_home.class));
+
                         }
                         else
                         {

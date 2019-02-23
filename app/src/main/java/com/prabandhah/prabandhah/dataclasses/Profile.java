@@ -9,17 +9,19 @@ public class Profile {
     public String user_name;
     public String role;
     public String company_id;
-    public String team_id;
 
     public Profile() {
     }
 
-    public Profile(String user_mail_id, String user_name, String role, String company_id, String team_id) {
+    public Profile(String company_id) {
+        this.company_id = company_id;
+    }
+
+    public Profile(String user_mail_id, String user_name, String role, String company_id) {
         this.user_mail_id = user_mail_id;
         this.user_name = user_name;
         this.role = role;
         this.company_id = company_id;
-        this.team_id = team_id;
     }
 
     public String getUser_mail_id() {
@@ -54,11 +56,5 @@ public class Profile {
         this.company_id = company_id;
     }
 
-    public String getTeam_id() {
-        return team_id;
-    }
 
-    public void setTeam_id(String team_id) {
-        this.team_id = team_id;
-    }
 }

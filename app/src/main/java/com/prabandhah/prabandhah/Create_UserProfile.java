@@ -22,7 +22,7 @@ public class Create_UserProfile extends AppCompatActivity {
     String Email;
     CircleImageView ProfilePic;
     EditText name;
-    String CompanyId="",team_id = "";
+    String CompanyId="";
     int role=0;
     FirebaseAuth fba;
     @Override
@@ -51,7 +51,7 @@ public class Create_UserProfile extends AppCompatActivity {
         });
     }
     void senduserdata(final String Email)
-    {   Profile userProfile = new Profile(Email,name.getText().toString(),String.valueOf(role),CompanyId,team_id);
+    {   Profile userProfile = new Profile(Email,name.getText().toString(),String.valueOf(role),CompanyId);
         FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(userProfile).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

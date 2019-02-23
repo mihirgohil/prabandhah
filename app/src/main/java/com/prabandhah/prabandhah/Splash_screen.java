@@ -1,7 +1,10 @@
 package com.prabandhah.prabandhah;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -27,11 +30,13 @@ public class Splash_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
                 /* Create an Intent that will start the Login-Activity. */
                 mainIntent = new Intent(Splash_screen.this,LoginPage.class);
+
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
                 final SharedPreferences.Editor editor = pref.edit();
                 FirebaseAuth fba = FirebaseAuth.getInstance();

@@ -57,7 +57,7 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Event"));
         tabLayout.addTab(tabLayout.newTab().setText("Team"));
-        tabLayout.addTab(tabLayout.newTab().setText("Chat"));
+      //  tabLayout.addTab(tabLayout.newTab().setText("Chat"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //Initializing viewPager
@@ -163,28 +163,23 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         MenuInflater inflater = getMenuInflater();
         if(role == 1) {
             inflater.inflate(R.menu.optn_for_admin, menu);
-            inflater.inflate(R.menu.notification,menu);
-            inflater.inflate(R.menu.search,menu);
+
         }
         else if(role == 2)
         {
             inflater.inflate(R.menu.optn_for_eventmanger, menu);
-            inflater.inflate(R.menu.notification,menu);
-            inflater.inflate(R.menu.search,menu);
         }
         else if(role == 3)
         {
             inflater.inflate(R.menu.optn_for_eventmanger, menu);
-            inflater.inflate(R.menu.notification,menu);
-            inflater.inflate(R.menu.search,menu);
         }
 
         else if(role == 4)
         {
             inflater.inflate(R.menu.optn_for_emp, menu);
-            inflater.inflate(R.menu.notification,menu);
-            inflater.inflate(R.menu.search,menu);
         }
+        inflater.inflate(R.menu.notification,menu);
+        //inflater.inflate(R.menu.search,menu);
         return super.onCreateOptionsMenu(menu);
     }
    // menu item click
@@ -280,4 +275,6 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         }
 
     }
+
+
 }
