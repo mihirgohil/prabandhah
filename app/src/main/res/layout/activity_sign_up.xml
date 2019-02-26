@@ -69,6 +69,15 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:background="@drawable/rac_btn"
             android:text="Next" />
+       <!--<pl.droidsonroids.gif.GifImageView
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/progressbar">
+
+        </pl.droidsonroids.gif.GifImageView>-->
+
 
 
 

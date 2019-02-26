@@ -1,5 +1,6 @@
 package com.prabandhah.prabandhah;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -32,11 +33,12 @@ public class LoginPage extends AppCompatActivity {
     EditText mail,password;
     FirebaseAuth fba;
     TextView signin,signin1,forgetpass;
+    ProgressDialog progressBar = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-
+        progressBar = new ProgressDialog(this);
         login = findViewById(R.id.btn_login);
         forgetpass = findViewById(R.id.forget_pass_page);
         mail = findViewById(R.id.txt_email);
@@ -47,11 +49,15 @@ public class LoginPage extends AppCompatActivity {
 
 
         //signin
+
+
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
                 startActivity(new Intent(LoginPage.this,Sign_up.class));
+
+
             }
         });
         signin1.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +65,10 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 startActivity(new Intent(LoginPage.this,Sign_up.class));
+
             }
         });
+
 
 
         //login btn click

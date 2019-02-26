@@ -33,7 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rac_btn"
-            android:text="@string/next"/>
+            android:text="@string/next"
+
+            />
 
     </LinearLayout>
 
