@@ -69,7 +69,7 @@ public class EmpList extends Fragment {
                              }
                          }
                          counter = list.size();
-                         adepterForRecylerView = new AdepterForRecylerView(getActivity().getApplicationContext(),list,"EmpList");
+                         adepterForRecylerView = new AdepterForRecylerView(getContext(),list,"EmpList");
                          recyclerView.setAdapter(adepterForRecylerView);
                          Toast.makeText(getContext(), "c"+String.valueOf(counter), Toast.LENGTH_SHORT).show();
                      }

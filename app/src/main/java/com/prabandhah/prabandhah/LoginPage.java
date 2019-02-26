@@ -126,6 +126,7 @@ public class LoginPage extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String ro = dataSnapshot.child("role").getValue().toString();
+                    String cmp = dataSnapshot.child("company_id").getValue().toString();
                     Toast.makeText(LoginPage.this, "at Login role:" + ro, Toast.LENGTH_SHORT).show();
                     if (ro.equals("1") || ro.equals("2") || ro.equals("3") || ro.equals("4")) {
                         int retrole;
@@ -134,9 +135,16 @@ public class LoginPage extends AppCompatActivity {
                         editor.putInt("role", retrole);
                         editor.commit();
                         finish();
+                        if(cmp.equals("")){
+                            Intent mainIntent = new Intent(LoginPage.this,Join_your_company.class);
+                            LoginPage.this.startActivity(mainIntent);
+                            LoginPage.this.finish();
+                        }
+                        else {
                         Intent mainIntent = new Intent(LoginPage.this,Ui_home.class);
                         LoginPage.this.startActivity(mainIntent);
                         LoginPage.this.finish();
+                        }
                     }
                 }
                 @Override

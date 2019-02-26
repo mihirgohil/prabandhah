@@ -9,6 +9,7 @@ public class Profile {
     public String user_name;
     public String role;
     public String company_id;
+    public String user_id;
 
     public Profile() {
     }
@@ -17,11 +18,16 @@ public class Profile {
         this.company_id = company_id;
     }
 
-    public Profile(String user_mail_id, String user_name, String role, String company_id) {
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public Profile(String user_mail_id, String user_name, String role, String company_id , String user_id) {
         this.user_mail_id = user_mail_id;
         this.user_name = user_name;
         this.role = role;
         this.company_id = company_id;
+        this.user_id = user_id;
     }
 
     public String getUser_mail_id() {

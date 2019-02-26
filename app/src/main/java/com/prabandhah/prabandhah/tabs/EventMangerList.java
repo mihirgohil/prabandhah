@@ -66,7 +66,7 @@ public class EventMangerList extends Fragment {
                             }
                         }
                         counter = list.size();
-                        adepterForRecylerView = new AdepterForRecylerView(getActivity().getApplicationContext(), list,"EventManagerList");
+                        adepterForRecylerView = new AdepterForRecylerView(getContext(), list,"EventManagerList");
                         recyclerView.setAdapter(adepterForRecylerView);
                         Toast.makeText(getContext(), "c" + String.valueOf(counter), Toast.LENGTH_SHORT).show();
                     }
