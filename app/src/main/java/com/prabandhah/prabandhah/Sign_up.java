@@ -38,7 +38,7 @@ public class Sign_up extends AppCompatActivity {
         retypepass = findViewById(R.id.retype);
 
 
-
+//progressbar
         //sign in
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
