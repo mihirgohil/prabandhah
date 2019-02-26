@@ -44,9 +44,9 @@ public class Sign_up extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkdatafromat();
-                progressBar.setCancelable(true);
+                progressBar.setCancelable(false);
                 progressBar.setTitle("Welcome");
-                progressBar.setMessage("Please,wait, we are registering your details...");
+                progressBar.setMessage("Please wait, we are registering your details...");
 
                 progressBar.setCanceledOnTouchOutside(true);
                 progressBar.show();

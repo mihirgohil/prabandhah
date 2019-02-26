@@ -55,6 +55,7 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+
                 startActivity(new Intent(LoginPage.this,Sign_up.class));
 
 
@@ -64,6 +65,7 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+
                 startActivity(new Intent(LoginPage.this,Sign_up.class));
 
             }
@@ -75,6 +77,11 @@ public class LoginPage extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setCancelable(true);
+                progressBar.setTitle("Welcome");
+                progressBar.setMessage("Please wait, while we are registering your details");
+                progressBar.setCanceledOnTouchOutside(false);
+                progressBar.show();
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
                 if (mail.getText().toString().trim().equalsIgnoreCase("")) {
@@ -96,6 +103,7 @@ public class LoginPage extends AppCompatActivity {
         forgetpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(LoginPage.this,ForgetPassNewPassword.class));
             }
         });
@@ -107,11 +115,14 @@ public class LoginPage extends AppCompatActivity {
 
     private void validate(final String email, final String password)
     {
+
         fba.signInWithEmailAndPassword(email , password ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if(task.isSuccessful())
                 {
+
                     email_verifed();
                 }
                 else{
@@ -144,7 +155,7 @@ public class LoginPage extends AppCompatActivity {
                         editor.commit();
                         finish();
                         if(cmp.equals("")){
-                            Intent mainIntent = new Intent(LoginPage.this,Join_your_company.class);
+                            Intent mainIntent = new Intent(LoginPage.this,Ui_home.class);
                             LoginPage.this.startActivity(mainIntent);
                             LoginPage.this.finish();
                         }
