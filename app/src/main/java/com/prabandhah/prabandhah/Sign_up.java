@@ -93,8 +93,10 @@ public class Sign_up extends AppCompatActivity {
                 if (!emailpresent) {
                     //not present
                     CreateUserNewUserFinal(Email, password);
+
                 } else {
                     Toast.makeText(Sign_up.this, "email id exist", Toast.LENGTH_SHORT).show();
+                    progressBar.hide();
                 }
             }
         });
@@ -111,6 +113,7 @@ public class Sign_up extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
+                                    progressBar.hide();
                                     finish();
                                     Intent intent = new Intent(getBaseContext(), verfiy_your_mail.class);
                                     intent.putExtra("Email", Email);
