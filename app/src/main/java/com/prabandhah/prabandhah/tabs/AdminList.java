@@ -63,7 +63,7 @@ public class AdminList extends Fragment {
                             }
                         }
                         counter = list.size();
-                        adepterForRecylerView = new AdepterForRecylerView(getActivity().getApplicationContext(),list,"AdminList");
+                        adepterForRecylerView = new AdepterForRecylerView(getContext(),list,"AdminList");
                         recyclerView.setAdapter(adepterForRecylerView);
                         Toast.makeText(getContext(), "c"+String.valueOf(counter), Toast.LENGTH_SHORT).show();
                     }

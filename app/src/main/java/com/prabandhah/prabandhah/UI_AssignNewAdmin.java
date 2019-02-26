@@ -53,6 +53,7 @@ public class UI_AssignNewAdmin extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                adepterForRecylerView.selectedlistadmin();
                 Intent intent = new Intent(getApplicationContext(), Ui_employeeList.class);
                 finish();
                 startActivity(intent);
