@@ -48,7 +48,7 @@ public class Sign_up extends AppCompatActivity {
                 progressBar.setTitle("Welcome");
                 progressBar.setMessage("Please wait, we are registering your details...");
 
-                progressBar.setCanceledOnTouchOutside(true);
+                progressBar.setCanceledOnTouchOutside(false);
                 progressBar.show();
 
             }

@@ -90,5 +90,6 @@
     <string name="company_name1">Company Name</string>
     <string name="post">Post</string>
     <string name="sign_up1">Sign Up!</string>
+    <string name="admin_list">Admins of Team(includes event mangers)</string>
 
 </resources>

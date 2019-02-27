@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.PluralsRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +39,7 @@ import java.util.List;
 public class AdepterForRecylerView extends RecyclerView.Adapter<AdepterForRecylerView.Viewhodler>{
     Context context;
     ArrayList <Profile> profiles;
+    ArrayList<Profile> selectedProfile = new ArrayList<Profile>();
     ArrayList<String> selected = new ArrayList<String>();
     String ActivityName;
     String role;
@@ -102,8 +104,7 @@ public class AdepterForRecylerView extends RecyclerView.Adapter<AdepterForRecyle
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             String userid;
-                                            userid = profiles.get(getAdapterPosition()).getUser_id();
-                                            DatabaseReference dba = FirebaseDatabase.getInstance().getReference("users").child(userid).child("user_id");
+                                            DatabaseReference dba = FirebaseDatabase.getInstance().getReference("users").child(profiles.get(getAdapterPosition()).getUser_id()).child("company_id");
                                             dba.setValue("");
                                             Toast.makeText(context, "remove user from team remaining", Toast.LENGTH_SHORT).show();
                                         }
@@ -112,7 +113,7 @@ public class AdepterForRecylerView extends RecyclerView.Adapter<AdepterForRecyle
                                     .setNegativeButton("No", null)
                                     .show();
                         }
-                        if (ActivityName.equals("EventMangerList")) {
+                        if (ActivityName.equals("EventManagerList")) {
                             String username = profiles.get(getAdapterPosition()).getUser_name();
                             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog));
                             builder.setTitle("Remove EventManger!")
@@ -135,16 +136,14 @@ public class AdepterForRecylerView extends RecyclerView.Adapter<AdepterForRecyle
                             String username = profiles.get(getAdapterPosition()).getUser_name();
                             String uid = profiles.get(getAdapterPosition()).getUser_id();
                             String cuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            //if(!uid.equals(cuser)){
+                            if(!uid.equals(cuser)){
                             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog));
                             builder.setTitle("Remove Admin!")
-                                    .setMessage("Are you sure you want to Remove " + uid + " From Admin Post?" + cuser)
+                                    .setMessage("Are you sure you want to Remove " + username + " From Admin Post?" )
                                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            String userid;
-                                            userid = profiles.get(getAdapterPosition()).getUser_id();
-                                            DatabaseReference dba = FirebaseDatabase.getInstance().getReference("users").child(userid).child("role");
+                                            DatabaseReference dba = FirebaseDatabase.getInstance().getReference("users").child(profiles.get(getAdapterPosition()).getUser_id()).child("role");
                                             String rol = "4";
                                             dba.setValue(rol);
                                         }
@@ -152,6 +151,7 @@ public class AdepterForRecylerView extends RecyclerView.Adapter<AdepterForRecyle
                                     })
                                     .setNegativeButton("No", null)
                                     .show();
+                            }
                         }
                     }
 
@@ -183,6 +183,16 @@ public class AdepterForRecylerView extends RecyclerView.Adapter<AdepterForRecyle
                             selected.add(tmp);
                         }
                     }
+                    if (ActivityName.equals("Ui_createTeam")) {
+                        String tmp = profiles.get(getAdapterPosition()).getUser_id();
+                        if (checkBox.isChecked()) {
+                            checkBox.setChecked(false);
+                            selected.remove(tmp);
+                        } else if (!checkBox.isChecked()) {
+                            checkBox.setChecked(true);
+                            selected.add(tmp);
+                        }
+                    }
 
                 }
             });
@@ -201,6 +211,14 @@ public class AdepterForRecylerView extends RecyclerView.Adapter<AdepterForRecyle
             DatabaseReference dba = FirebaseDatabase.getInstance().getReference("users").child(selected.get(i)).child("role");
             dba.setValue("2");
         }
+    }
+    public ArrayList<String> selectedListForTeam(){
+        StringBuffer stringBuffer = new StringBuffer();
+        for(int i=0;i<selected.size();i++){
+            stringBuffer.append(selected.get(i));
+        }
+        Toast.makeText(context, "Selected member from adpter"+stringBuffer.toString(), Toast.LENGTH_SHORT).show();
+        return selected;
     }
 
 }

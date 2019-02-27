@@ -30,6 +30,7 @@ public class Ui_createTeam extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference reference;
     ArrayList<Profile> list;
+    ArrayList<String> selectedlist;
     AdepterForRecylerView adepterForRecylerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class Ui_createTeam extends AppCompatActivity {
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent=new Intent(getApplicationContext(),Ui_home.class);
                 startActivity(intent);
                 finish();
@@ -51,10 +53,19 @@ public class Ui_createTeam extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent=new Intent(getApplicationContext(),Ui_createTeamProfile.class);
-                startActivity(intent);
-                finish();
+                selectedlist = adepterForRecylerView.selectedListForTeam();
+                if(selectedlist.isEmpty()){
+                    Toast.makeText(Ui_createTeam.this, "Select Atleast one Employee", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(Ui_createTeam.this, "selected members" + selectedlist.toString(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), Ui_createTeamProfile.class);
+                   Bundle bundle=new Bundle();
+                   bundle.putSerializable("list",selectedlist);
+                   intent.putExtras(bundle);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
         recyclerView = findViewById(R.id.recycler);
