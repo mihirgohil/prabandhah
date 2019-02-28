@@ -70,7 +70,6 @@ public class Ui_createTeamProfile extends AppCompatActivity {
                 final String teamid=dba.getKey();
                 Teams team = new Teams(teamid,nameteam.getText().toString());
                 dba.setValue(team);
-               //DatabaseReference dbaadmin= FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamid).child("admin_list");
                 //forloopforaddings the admins
                for(int i=0;i<adminlist.size();i++){
                     dba.child("employee_list").child(adminlist.get(i).getUser_id()).child("admin_permission").setValue("true");
