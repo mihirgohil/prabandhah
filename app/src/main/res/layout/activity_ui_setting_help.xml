@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.prabandhah.prabandhah.Ui_setting_help">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/appbarcolor"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/custPopupstyle"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ask your Question..?"
+        android:textSize="@dimen/_20sdp"
+        android:layout_margin="@dimen/_20sdp"
+        android:textColor="#0324fa"/>
+
+    <LinearLayout
+        android:id="@+id/layout_call_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Call"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"/>
+        <Button
+            android:id="@+id/btn_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_sub_email"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_10sdp">
+
+        <EditText
+            android:id="@+id/edit_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Subject"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Compose Email"
+            android:textColor="#000000"/>
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_50sdp"
+            android:text="Send"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="#1310e4"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
+

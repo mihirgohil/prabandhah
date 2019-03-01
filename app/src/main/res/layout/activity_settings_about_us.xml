@@ -20,6 +20,7 @@
             android:id="@+id/Setting_bckbtn"
             android:contentDescription="TODO"
             android:src="@drawable/ic_arrow_back_black_24dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,12 +35,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/aboutus"
-            android:text="@string/About_us"
-            />
+
 
 
     </LinearLayout>

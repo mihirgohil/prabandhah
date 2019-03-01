@@ -1,6 +1,7 @@
 package com.prabandhah.prabandhah.pagerAndAdepter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.prabandhah.prabandhah.R;
+import com.prabandhah.prabandhah.Ui_team_in_DetaiView;
 import com.prabandhah.prabandhah.dataclasses.Teams;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class AdapterForTeam extends RecyclerView.Adapter<AdapterForTeam.Viewhodl
     @NonNull
     @Override
     public Viewhodler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AdapterForTeam.Viewhodler(LayoutInflater.from(context).inflate(R.layout.reclyerforteamlist,parent,false));
+        return new Viewhodler(LayoutInflater.from(context).inflate(R.layout.reclyerforteamlist,parent,false));
     }
 
     @Override
@@ -33,7 +35,7 @@ public class AdapterForTeam extends RecyclerView.Adapter<AdapterForTeam.Viewhodl
 
     @Override
     public int getItemCount() {
-        return 0;
+        return teams.size();
     }
 
     public class Viewhodler extends RecyclerView.ViewHolder{
@@ -41,6 +43,14 @@ public class AdapterForTeam extends RecyclerView.Adapter<AdapterForTeam.Viewhodl
         public Viewhodler(View itemView) {
             super(itemView);
             nameofteam = itemView.findViewById(R.id.name);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent= new Intent(context,Ui_team_in_DetaiView.class);
+                    intent.putExtra("teamid",teams.get(getAdapterPosition()).getTeam_id());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

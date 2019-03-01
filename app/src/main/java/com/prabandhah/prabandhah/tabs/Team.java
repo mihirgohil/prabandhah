@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,44 +46,52 @@ public class Team extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference dba;
     String companyid;
-    ArrayList<Teams> teamlist;
+
     AdapterForTeam adapterForTeam;
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
-        team = view.findViewById(R.id.teamListSample);
-        team.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), Ui_team_in_DetaiView.class));
-            }
-        });
-        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        recyclerView = view.findViewById(R.id.teamlist_recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+     FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Profile profile=dataSnapshot.getValue(Profile.class);
                 companyid = profile.getCompany_id();
-                Toast.makeText(getContext(), "in snap"+companyid, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "in snap"+companyid, Toast.LENGTH_SHORT).show();
                 dba = FirebaseDatabase.getInstance().getReference("Teams").child(companyid);
+                //Toast.makeText(getContext(), "cmpid"+companyid, Toast.LENGTH_SHORT).show();
                 //getting team list
                 dba.addValueEventListener(new ValueEventListener() {
+                    ArrayList<Teams> teamlist = new ArrayList<Teams>();
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                             Teams tm = dataSnapshot1.getValue(Teams.class);
                             teamlist.add(tm);
                         }
+                        adapterForTeam = new AdapterForTeam(getContext(),teamlist);
+                        recyclerView.setAdapter(adapterForTeam);
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
-                adapterForTeam = new AdapterForTeam(getContext(),teamlist);
-                recyclerView.setAdapter(adapterForTeam);
+<<<<<<< Updated upstream
+
+
+=======
+                if(teamlist == null){
+
+                }
+                else{
+                    adapterForTeam = new AdapterForTeam(getContext(),teamlist);
+                    recyclerView.setAdapter(adapterForTeam);
+                }
+>>>>>>> Stashed changes
+
             }
             // hey
 

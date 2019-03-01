@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    tools:context="com.prabandhah.prabandhah.Ui_setting_report_bug">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_130sdp"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+
+        >
+        <EditText
+            android:id="@+id/bug_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Subject"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/bug_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Details of Bug"
+            android:textColor="#000000"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <Button
+                android:id="@+id/btn_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#3e9bbf"
+                android:text="Send"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/_18sdp"
+                android:layout_margin="@dimen/_70sdp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
