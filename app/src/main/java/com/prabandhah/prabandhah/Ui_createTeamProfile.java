@@ -72,11 +72,11 @@ public class Ui_createTeamProfile extends AppCompatActivity {
                 dba.setValue(team);
                 //forloopforaddings the admins
                for(int i=0;i<adminlist.size();i++){
-                    dba.child("employee_list").child(adminlist.get(i).getUser_id()).child("admin_permission").setValue("true");
+                    dba.child("Admin_list").child(adminlist.get(i).getUser_id()).child("admin_permission").setValue("true");
                 }
                 //forloopforaddings the employee
                 for(int i=0;i<list.size();i++){
-                    dba.child("employee_list").child(adminlist.get(i).getUser_id()).child("admin_permission").setValue("false");
+                    dba.child("employee_list").child(list.get(i).getUser_id()).child("admin_permission").setValue("false");
                 }
                 Intent intent=new Intent(getApplicationContext(),Ui_home.class);
                 startActivity(intent);

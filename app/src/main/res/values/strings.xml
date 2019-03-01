@@ -91,6 +91,7 @@
     <string name="post">Post</string>
     <string name="sign_up1">Sign Up!</string>
     <string name="admin_list">Admins of Team(includes event mangers)</string>
-    <string name="About_us">"Our project name is Event Workload Distribution and Tracking for Manager. Our main motto is distributing task. This is the online application who serves the functionality of Event Manager. You can create multiple events, teams, taska, etc "</string>
+    <string name="team_name">Team Name</string>
+    <string name="About_us">Our project name is Event Workload Distribution and Tracking for Manager.\nOur main motto is to distributing task. \nThis is the online application which serves the functionality of Event Manager.\n You can create multiple events, teams, tasks, etc</string>
 
 </resources>

@@ -171,7 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_10sdp"
-            android:hint="@string/Address"/>
+            android:hint="Venue Address"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

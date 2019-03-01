@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class Ui_setting extends AppCompatActivity {
     ImageView bckbtn;
-    TextView accountSetting,chatSetting,notificationSetting,aboutus;
+    TextView accountSetting,chatSetting,notificationSetting,aboutus,help;
     int role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class Ui_setting extends AppCompatActivity {
         accountSetting = findViewById(R.id.accountSetting);
         chatSetting = findViewById(R.id.chatSetting);
         notificationSetting = findViewById(R.id.notificationSetting);
+        help = findViewById(R.id.help);
         aboutus = findViewById(R.id.aboutus);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
@@ -65,6 +66,15 @@ public class Ui_setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Ui_settings_about_us.class);
+
+                startActivity(intent);
+                finish();
+            }
+        });
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Ui_setting_help.class);
 
                 startActivity(intent);
                 finish();

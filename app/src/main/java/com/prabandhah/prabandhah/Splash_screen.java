@@ -68,6 +68,9 @@ public class Splash_screen extends AppCompatActivity {
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
                             Toast.makeText(Splash_screen.this, "in cancel :"+databaseError.toString(), Toast.LENGTH_LONG).show();
+                            mainIntent = new Intent(Splash_screen.this,LoginPage.class);
+                            Splash_screen.this.startActivity(mainIntent);
+                            Splash_screen.this.finish();
                         }
                     });
 
