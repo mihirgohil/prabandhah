@@ -27,7 +27,7 @@ public class Ui_Setting_Report_bug extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                alertDialogBuilder.setTitle("Report");
                 alertDialogBuilder.setMessage("Your Report has been sent");
 
 
