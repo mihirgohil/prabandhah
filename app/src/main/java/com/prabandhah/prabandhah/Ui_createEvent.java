@@ -150,7 +150,7 @@ public class Ui_createEvent extends AppCompatActivity implements
                        DatabaseReference dba = FirebaseDatabase.getInstance().getReference("EventMaster").child(company_id).push();
                        String eventid;
                        eventid = dba.getKey();
-                       //getteing all the details
+                       //getteing all the details & validation
                        if (typeList.getSelectedItem().toString().equals("Other")) {
                            eventtype = custom.getText().toString();
                        } else {
@@ -174,14 +174,31 @@ public class Ui_createEvent extends AppCompatActivity implements
                                    noofguest.setError("Enter no of Guest");
                                }
                                else{
-                                   EventClass event = new EventClass(eventid, nameofevent.getText().toString(), eventtype, noofguest.getText().toString(), budget.getText().toString(), address.getText().toString(), descriprion.getText().toString(), "baki");
+                                   if(budget.getText().toString().isEmpty())
+                                   {
+                                       budget.setError("Enter Budget");
+                                   }
+                                   else{
+                                     if(address.getText().toString().isEmpty()){
+                                         address.setError("Enter Address");
+                                     }
+                                     else
+                                     {
+                                         if(descriprion.getText().toString().isEmpty()){
+                                             descriprion.setError("Enter Desciption");
+                                         }
+                                         else{
+                                             EventClass event = new EventClass(eventid, nameofevent.getText().toString(), eventtype, noofguest.getText().toString(), budget.getText().toString(), address.getText().toString(), descriprion.getText().toString(), "baki");
 
-                                   dba = FirebaseDatabase.getInstance().getReference("EventMaster").child(company_id).child(eventid);
-                                   //passing event
-                                   dba.setValue(event);
-                                   Intent intent=new Intent(getApplicationContext(),Ui_home.class);
-                                   startActivity(intent);
-                                   finish();
+                                             dba = FirebaseDatabase.getInstance().getReference("EventMaster").child(company_id).child(eventid);
+                                             //passing event
+                                             dba.setValue(event);
+                                             Intent intent=new Intent(getApplicationContext(),Ui_home.class);
+                                             startActivity(intent);
+                                             finish();
+                                         }
+                                     }
+                                   }
                                }
 
                            }
