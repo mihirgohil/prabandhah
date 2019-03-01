@@ -84,6 +84,7 @@ public class Team extends Fragment {
                 adapterForTeam = new AdapterForTeam(getContext(),teamlist);
                 recyclerView.setAdapter(adapterForTeam);
             }
+            // hey
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
