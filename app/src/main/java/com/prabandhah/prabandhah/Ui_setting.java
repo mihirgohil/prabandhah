@@ -10,7 +10,11 @@ import android.widget.TextView;
 
 public class Ui_setting extends AppCompatActivity {
     ImageView bckbtn;
+<<<<<<< Updated upstream
     TextView accountSetting,chatSetting,notificationSetting,aboutus,help;
+=======
+    TextView accountSetting,chatSetting,notificationSetting,aboutus,reportbug;
+>>>>>>> Stashed changes
     int role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,7 @@ public class Ui_setting extends AppCompatActivity {
         notificationSetting = findViewById(R.id.notificationSetting);
         help = findViewById(R.id.help);
         aboutus = findViewById(R.id.aboutus);
+        reportbug = findViewById(R.id.reportbug);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
         role = pref.getInt("role",0);
@@ -57,6 +62,15 @@ public class Ui_setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Ui_settings_notification_setting.class);
+
+                startActivity(intent);
+                finish();
+            }
+        });
+        reportbug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Ui_Setting_Report_bug.class);
 
                 startActivity(intent);
                 finish();

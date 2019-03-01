@@ -79,8 +79,18 @@ public class Team extends Fragment {
 
                     }
                 });
+<<<<<<< Updated upstream
 
 
+=======
+                if(teamlist == null){
+
+                }
+                else{
+                    adapterForTeam = new AdapterForTeam(getContext(),teamlist);
+                    recyclerView.setAdapter(adapterForTeam);
+                }
+>>>>>>> Stashed changes
 
             }
 
