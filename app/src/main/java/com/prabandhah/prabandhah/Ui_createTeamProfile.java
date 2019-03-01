@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.prabandhah.prabandhah.dataclasses.Profile;
 import com.prabandhah.prabandhah.dataclasses.Teams;
+import com.prabandhah.prabandhah.pagerAndAdepter.AdapterForTeammemebers;
 import com.prabandhah.prabandhah.pagerAndAdepter.AdepterForRecylerView;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class Ui_createTeamProfile extends AppCompatActivity {
     ArrayList<Profile> list;
     ArrayList<Profile> adminlist = new ArrayList<Profile>();
     ArrayList<String> selectedlist;
+    AdapterForTeammemebers adapterForTeammemebers;
     AdepterForRecylerView adepterForRecylerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +120,7 @@ public class Ui_createTeamProfile extends AppCompatActivity {
                            str.append(list.get(i).user_id);
                        }
                         Toast.makeText(Ui_createTeamProfile.this, "Selected List"+str.toString(), Toast.LENGTH_SHORT).show();
-                        adepterForRecylerView = new AdepterForRecylerView(Ui_createTeamProfile.this,list,Ui_createTeamProfile.class.getSimpleName());
+                        adapterForTeammemebers = new AdapterForTeammemebers(Ui_createTeamProfile.this,list,Ui_createTeamProfile.class.getSimpleName());
                         recyclerView.setAdapter(adepterForRecylerView);
                         adepterForRecylerView = new AdepterForRecylerView(Ui_createTeamProfile.this,adminlist,Ui_createTeamProfile.class.getSimpleName());
                         recyclerView1.setAdapter(adepterForRecylerView);

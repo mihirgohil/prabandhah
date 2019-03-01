@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.prabandhah.prabandhah.dataclasses.EventClass;
 import com.prabandhah.prabandhah.dataclasses.Profile;
+import com.prabandhah.prabandhah.pagerAndAdepter.AdapterForTeammemebers;
+import com.prabandhah.prabandhah.pagerAndAdepter.AdepterForRecylerView;
 import com.prabandhah.prabandhah.tabs.Event;
 
 import java.text.SimpleDateFormat;
@@ -41,14 +45,18 @@ public class Ui_createEvent extends AppCompatActivity implements
     DatePickerDialog.OnDateSetListener,TimePickerDialog.OnTimeSetListener{
     ImageView bckbtn;
     TextView startdatebtn,enddatebtn;
+    DatabaseReference reference;
     EditText nameofevent,noofguest,budget,address,descriprion,custom;
     Spinner typeList;
+    AdapterForTeammemebers adepterForRecylerView;
     FloatingActionButton fab;
     int day,day1,month,month1,year,year1,hour,hour1,minute,minute1;
     int day2,month2,year2,hour2,minute2;
     int dayfinal,monthfinal,hourfinal,yearfinal,minutefinal;
     int dayfinal1,monthfinal1,hourfinal1,yearfinal1,minutefinal1;
     int role,flag;
+    ArrayList<Profile> list;
+    RecyclerView recyclerView;
     String  eventtype="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +68,8 @@ public class Ui_createEvent extends AppCompatActivity implements
         bckbtn = findViewById(R.id.createEvent_png_backbtn);
         fab = findViewById(R.id.fabtn_create_event);
         startdatebtn = findViewById(R.id.strdatebtn);
+        recyclerView = findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Ui_createEvent.this));
         enddatebtn = findViewById(R.id.enddatebtn);
         nameofevent = findViewById(R.id.nameofevent);
         noofguest = findViewById(R.id.noofguest);
@@ -93,6 +103,44 @@ public class Ui_createEvent extends AppCompatActivity implements
         dataadpt.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         typeList.setAdapter(dataadpt);
         setCurrentDateOnView();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final Profile profile = dataSnapshot.getValue(Profile.class);
+                reference = FirebaseDatabase.getInstance().getReference("users");
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        list = new ArrayList<Profile>();
+                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                            Profile p = dataSnapshot1.getValue(Profile.class);
+                            if(profile.getCompany_id().equals(p.getCompany_id()))
+                            {
+                                if(p.getRole().equals("2") )
+                                {
+                                    list.add(p);
+                                }
+                            }
+                        }
+                        adepterForRecylerView = new AdapterForTeammemebers(Ui_createEvent.this,list,Ui_createEvent.class.getSimpleName());
+                        recyclerView.setAdapter(adepterForRecylerView);
+//                         Toast.makeText(getContext(), "c"+String.valueOf(counter), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        //    Toast.makeText(getContext(), "error"+databaseError, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         startdatebtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -188,8 +236,8 @@ public class Ui_createEvent extends AppCompatActivity implements
                                              descriprion.setError("Enter Desciption");
                                          }
                                          else{
-                                             EventClass event = new EventClass(eventid, nameofevent.getText().toString(), eventtype, noofguest.getText().toString(), budget.getText().toString(), address.getText().toString(), descriprion.getText().toString(), "baki");
 
+                                             EventClass event = new EventClass(eventid, nameofevent.getText().toString(), eventtype, noofguest.getText().toString(), budget.getText().toString(), address.getText().toString(), descriprion.getText().toString(), "baki");
                                              dba = FirebaseDatabase.getInstance().getReference("EventMaster").child(company_id).child(eventid);
                                              //passing event
                                              dba.setValue(event);

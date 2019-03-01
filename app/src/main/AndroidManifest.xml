@@ -74,6 +74,7 @@
         <activity android:name=".Create_companyProfile" />
         <activity android:name=".Join_your_company" />
         <activity android:name=".Create_companyProfile1" />
+        <activity android:name=".Ui_Setting_Report_bug"/>
     </application>
 
 </manifest>
