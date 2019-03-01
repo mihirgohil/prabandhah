@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,6 +21,16 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import android.text.format.DateFormat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.prabandhah.prabandhah.dataclasses.EventClass;
+import com.prabandhah.prabandhah.dataclasses.Profile;
+import com.prabandhah.prabandhah.tabs.Event;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +41,7 @@ public class Ui_createEvent extends AppCompatActivity implements
     DatePickerDialog.OnDateSetListener,TimePickerDialog.OnTimeSetListener{
     ImageView bckbtn;
     TextView startdatebtn,enddatebtn;
+    EditText nameofevent,noofguest,budget,address,descriprion,custom;
     Spinner typeList;
     FloatingActionButton fab;
     int day,day1,month,month1,year,year1,hour,hour1,minute,minute1;
@@ -36,6 +49,7 @@ public class Ui_createEvent extends AppCompatActivity implements
     int dayfinal,monthfinal,hourfinal,yearfinal,minutefinal;
     int dayfinal1,monthfinal1,hourfinal1,yearfinal1,minutefinal1;
     int role,flag;
+    String  eventtype="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +61,12 @@ public class Ui_createEvent extends AppCompatActivity implements
         fab = findViewById(R.id.fabtn_create_event);
         startdatebtn = findViewById(R.id.strdatebtn);
         enddatebtn = findViewById(R.id.enddatebtn);
+        nameofevent = findViewById(R.id.nameofevent);
+        noofguest = findViewById(R.id.noofguest);
+        custom = findViewById(R.id.eventtypecustom);
+        budget = findViewById(R.id.budget);
+        address = findViewById(R.id.venueaddresss);
+        descriprion = findViewById(R.id.description);
         typeList = findViewById(R.id.createEvent_png_eventtypeList);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,15 +79,21 @@ public class Ui_createEvent extends AppCompatActivity implements
         });
         final List<String> eventtypes= new ArrayList<>();
         eventtypes.add(0,"select type");
-        eventtypes.add("bday");
-        eventtypes.add("dj party");
-        eventtypes.add("seminar");
-        ArrayAdapter<String> dataadpt;
+        eventtypes.add("Birth day");
+        eventtypes.add("Dj party");
+        eventtypes.add("Seminar");
+        eventtypes.add("Conferences");
+        eventtypes.add("Sports Event");
+        eventtypes.add("Product Launch Events");
+        eventtypes.add("Marriage");
+        eventtypes.add("Engagement");
+        eventtypes.add("Other");
+        final ArrayAdapter<String> dataadpt;
         dataadpt = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,eventtypes);
-       dataadpt.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-       typeList.setAdapter(dataadpt);
+        dataadpt.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        typeList.setAdapter(dataadpt);
         setCurrentDateOnView();
-       startdatebtn.setOnClickListener(new View.OnClickListener() {
+        startdatebtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                Calendar calendar = Calendar.getInstance();
@@ -91,13 +117,83 @@ public class Ui_createEvent extends AppCompatActivity implements
                flag = 2;
            }
        });
+       typeList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               if(typeList.getSelectedItem().toString().equals("Other"))
+               {
+                   Toast.makeText(Ui_createEvent.this, "in custom", Toast.LENGTH_SHORT).show();
+                   //   typeList.setVisibility(View.INVISIBLE);
+                   custom.setVisibility(View.VISIBLE);
+               }
+               else
+               {
+                   custom.setVisibility(View.INVISIBLE);
+               }
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+
+           }
+       });
+
        fab.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent intent=new Intent(getApplicationContext(),UI_addEventManagerInEvent.class);
+               FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                       Profile p = dataSnapshot.getValue(Profile.class);
+                       String company_id = p.company_id;
+                       //pushing event
+                       DatabaseReference dba = FirebaseDatabase.getInstance().getReference("EventMaster").child(company_id).push();
+                       String eventid;
+                       eventid = dba.getKey();
+                       //getteing all the details
+                       if (typeList.getSelectedItem().toString().equals("Other")) {
+                           eventtype = custom.getText().toString();
+                       } else {
+                           eventtype = typeList.getSelectedItem().toString();
 
-               startActivity(intent);
-               finish();
+                       }
+                       if(nameofevent.getText().toString().isEmpty()){
+                            nameofevent.setError("Enter name");
+                       }
+                       else{
+                           if(typeList.getSelectedItem().toString().equals("Other")) {
+                               if (custom.getText().toString().isEmpty()){
+                                   custom.setError("Enter type");
+                               }
+                           }
+                           else if(typeList.getSelectedItem().toString().equals("select type")){
+                               Toast.makeText(Ui_createEvent.this, "Select event type", Toast.LENGTH_SHORT).show();
+                           }
+                           else {
+                               if(noofguest.getText().toString().isEmpty()){
+                                   noofguest.setError("Enter no of Guest");
+                               }
+                               else{
+                                   EventClass event = new EventClass(eventid, nameofevent.getText().toString(), eventtype, noofguest.getText().toString(), budget.getText().toString(), address.getText().toString(), descriprion.getText().toString(), "baki");
+
+                                   dba = FirebaseDatabase.getInstance().getReference("EventMaster").child(company_id).child(eventid);
+                                   //passing event
+                                   dba.setValue(event);
+                                   Intent intent=new Intent(getApplicationContext(),Ui_home.class);
+                                   startActivity(intent);
+                                   finish();
+                               }
+
+                           }
+                       }
+
+                   }
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                   }
+               });
+
            }
        });
     }

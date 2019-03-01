@@ -93,5 +93,7 @@
     <string name="admin_list">Admins of Team(includes event mangers)</string>
     <string name="team_name">Team Name</string>
     <string name="About_us">Our project name is Event Workload Distribution and Tracking for Manager.\nOur main motto is to distributing task. \nThis is the online application which serves the functionality of Event Manager.\n You can create multiple events, teams, tasks, etc</string>
+    <string name="description_of_event">Description of event</string>
+    <string name="enter_event_type">Enter Event type</string>
 
 </resources>
