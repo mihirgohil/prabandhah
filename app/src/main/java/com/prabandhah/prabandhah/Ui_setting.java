@@ -10,11 +10,8 @@ import android.widget.TextView;
 
 public class Ui_setting extends AppCompatActivity {
     ImageView bckbtn;
-<<<<<<< Updated upstream
-    TextView accountSetting,chatSetting,notificationSetting,aboutus,help;
-=======
-    TextView accountSetting,chatSetting,notificationSetting,aboutus,reportbug;
->>>>>>> Stashed changes
+
+    TextView accountSetting,chatSetting,notificationSetting,aboutus,help,reportbug;
     int role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +68,6 @@ public class Ui_setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Ui_Setting_Report_bug.class);
-
                 startActivity(intent);
                 finish();
             }

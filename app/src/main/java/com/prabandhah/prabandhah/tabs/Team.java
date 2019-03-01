@@ -73,24 +73,24 @@ public class Team extends Fragment {
                         }
                         adapterForTeam = new AdapterForTeam(getContext(),teamlist);
                         recyclerView.setAdapter(adapterForTeam);
-                    }
+                        if(teamlist == null){
+
+                        }
+                        else{
+                            adapterForTeam = new AdapterForTeam(getContext(),teamlist);
+                            recyclerView.setAdapter(adapterForTeam);
+
+                        }}
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
-<<<<<<< Updated upstream
 
 
-=======
-                if(teamlist == null){
 
-                }
-                else{
-                    adapterForTeam = new AdapterForTeam(getContext(),teamlist);
-                    recyclerView.setAdapter(adapterForTeam);
-                }
->>>>>>> Stashed changes
+
+
 
             }
             // hey
