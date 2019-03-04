@@ -84,7 +84,7 @@ public class Ui_createTeam extends AppCompatActivity {
                             Profile p = dataSnapshot1.getValue(Profile.class);
                             if(profile.getCompany_id().equals(p.getCompany_id()))
                             {
-                                if(p.getRole().equals("4") )
+                                if(p.getRole().equals("4") || p.getRole().equals("3"))
                                 {
                                     list.add(p);
                                 }

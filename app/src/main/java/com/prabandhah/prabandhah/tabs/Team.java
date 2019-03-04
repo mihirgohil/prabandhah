@@ -71,8 +71,6 @@ public class Team extends Fragment {
                             Teams tm = dataSnapshot1.getValue(Teams.class);
                             teamlist.add(tm);
                         }
-                        adapterForTeam = new AdapterForTeam(getContext(),teamlist);
-                        recyclerView.setAdapter(adapterForTeam);
                         if(teamlist == null){
 
                         }
