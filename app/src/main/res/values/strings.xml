@@ -104,5 +104,10 @@
     <string name="event_manager_name">Event Manager Name</string>
     <string name="time">Time:</string>
     <string name="time1">Time:</string>
+    <string name="datetime">Date and Time</string>
+    <string-array name="forrecylevieweventstatus">
+        <item>"Assigned"</item>
+        <item>"Completed"</item>
+    </string-array>
 
 </resources>

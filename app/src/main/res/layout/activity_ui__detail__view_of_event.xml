@@ -94,12 +94,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/select_datetime"
-            android:textSize="@dimen/_8sdp"
+            android:text="@string/datetime"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginLeft="@dimen/_2sdp"
             android:textColor="@color/lablegreen"/>
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_2sdp">
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="#000"
                 app:cardCornerRadius="@dimen/_8sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_6sdp"
                 app:contentPadding="0.5sp">
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -137,8 +137,12 @@
                             android:layout_marginLeft="@dimen/_30sdp"
                             />
                         <TextView
+                            android:text="@string/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                        <TextView
                             android:id="@+id/strtime"
-                            android:layout_marginLeft="@dimen/_50sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
@@ -162,7 +166,7 @@
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="#000"
                 app:cardCornerRadius="@dimen/_8sdp"
-                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_11sdp"
                 app:contentPadding="0.5sp">
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -175,23 +179,46 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
-                    <TextView
-                        android:layout_marginLeft="@dimen/_30sdp"
-                        android:id="@+id/enddate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                    <TextView
-                        android:id="@+id/endtime"
-                        android:layout_marginLeft="@dimen/_80sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/enddate"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="@dimen/_30sdp"
+                            />
+                        <TextView
+                            android:text="@string/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                        <TextView
+                            android:id="@+id/endtime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
                 </android.support.v7.widget.CardView>
             </android.support.v7.widget.CardView>
         </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_of_guest"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:textColor="@color/lablegreen"/>
         <TextView
             android:id="@+id/noofguest"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_10sdp"
@@ -201,8 +228,16 @@
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"/>
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buget"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:textColor="@color/lablegreen"/>
+        <TextView
             android:id="@+id/budget"
             android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_10sdp"
             android:hint="@string/buget"/>
@@ -211,7 +246,15 @@
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"/>
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Address"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:textColor="@color/lablegreen"/>
+        <TextView
             android:id="@+id/address"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_10sdp"
@@ -221,10 +264,19 @@
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"/>
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/desription_of_event"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:textColor="@color/lablegreen"/>
+        <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:lines="5"
             android:hint="@string/desription_of_event"/>
         <View
             android:layout_width="match_parent"
@@ -234,8 +286,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_10sdp"
-            android:textColor="@color/lablegreen"
-            android:hint="Event manger details"/>
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:text="@string/event_manager"
+            android:textColor="@color/lablegreen"/>
     </LinearLayout>
 
 </LinearLayout>

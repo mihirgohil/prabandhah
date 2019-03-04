@@ -54,7 +54,7 @@ public class Splash_screen extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         if(networkInfo != null && networkInfo.isConnectedOrConnecting()){
-            Toast.makeText(Splash_screen.this, "online", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(Splash_screen.this, "online", Toast.LENGTH_SHORT).show();
             userlogin();
         }
         else{
@@ -70,7 +70,7 @@ public class Splash_screen extends AppCompatActivity {
             builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(Splash_screen.this, "retry", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(Splash_screen.this, "retry", Toast.LENGTH_SHORT).show();
                     checkconnection();
                 }
             });

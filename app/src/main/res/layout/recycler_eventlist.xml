@@ -5,11 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
      <android.support.v7.widget.CardView
-         android:layout_marginTop="@dimen/_5sdp"
+         android:layout_marginTop="@dimen/_1sdp"
          app:contentPadding="@dimen/_5sdp"
          android:layout_width="match_parent"
+         android:id="@+id/cardview"
          app:cardCornerRadius="@dimen/_5sdp"
-         app:cardBackgroundColor="#3F51B5"
          android:layout_height="match_parent">
          <LinearLayout
              android:layout_width="match_parent"
@@ -42,7 +42,6 @@
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="Name"
-                         android:textColor="#fff"
                          android:textSize="@dimen/_15sdp" />
                  </LinearLayout>
                  <LinearLayout
@@ -51,26 +50,22 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/end_date"
-                            android:textColor="#fff"/>
+                            android:text="@string/end_date" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/select_end_date"
-                            android:id="@+id/enddate"
-                            android:textColor="#fff"/>
+                            android:id="@+id/enddate" />
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_marginLeft="@dimen/_10sdp"
                          android:layout_height="wrap_content"
-                         android:text="@string/time1"
-                         android:textColor="#fff"/>
+                         android:text="@string/time1" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/select_end_date"
-                            android:id="@+id/endtime"
-                            android:textColor="#fff"/>
+                            android:id="@+id/endtime" />
                     </LinearLayout>
                  <LinearLayout
                      android:layout_width="match_parent"
@@ -78,21 +73,19 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:textColor="#fff"
                          android:text="@string/event_manager"/>
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:id="@+id/eventmanagername"
-                         android:text="@string/event_manager_name"
-                         android:textColor="#fff"/>
+                         android:id="@+id/eventmanagername" />
                  </LinearLayout>
-                 <Spinner
+                 <android.support.v7.widget.AppCompatSpinner
                      android:visibility="gone"
                      android:layout_width="match_parent"
+                     android:entries="@array/forrecylevieweventstatus"
                      android:id="@+id/statusspiner"
                      android:layout_height="wrap_content">
-                 </Spinner>
+                 </android.support.v7.widget.AppCompatSpinner>
                  <TextView
                      android:visibility="gone"
                      android:layout_width="match_parent"
@@ -103,6 +96,9 @@
              </LinearLayout>
          </LinearLayout>
      </android.support.v7.widget.CardView>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
 
 </LinearLayout>
