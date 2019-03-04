@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.prabandhah.prabandhah.dataclasses.Profile;
 import com.prabandhah.prabandhah.dataclasses.Teams;
+import com.prabandhah.prabandhah.pagerAndAdepter.AdapterForTeammemebers;
 import com.prabandhah.prabandhah.pagerAndAdepter.AdepterForRecylerView;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class Ui_createTeamProfile extends AppCompatActivity {
     ArrayList<Profile> list;
     ArrayList<Profile> adminlist = new ArrayList<Profile>();
     ArrayList<String> selectedlist;
+    AdapterForTeammemebers adapterForTeammemebers;
     AdepterForRecylerView adepterForRecylerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,23 +67,39 @@ public class Ui_createTeamProfile extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(nameteam.getText().toString().isEmpty()){
+                    nameteam.setError("Enter Name of Team");
+                }
+                else {
+                    int count = adapterForTeammemebers.getselectedcount();
+                    if(count == -1){
+                        Toast.makeText(Ui_createTeamProfile.this, "Select one Team head", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        final DatabaseReference dba = FirebaseDatabase.getInstance().getReference("Teams").child(companyid).push();
+                        final String teamid=dba.getKey();
+                        Teams team = new Teams(teamid,nameteam.getText().toString());
+                        dba.setValue(team);
+                        //forloopforaddings the admins
+                        for(int i=0;i<adminlist.size();i++){
+                            dba.child("Admin_list").child(adminlist.get(i).getUser_id()).child("admin_permission").setValue("true");
+                        }
+                        //forloopforaddings the employee
+                        for(int i=0;i<list.size();i++){
+                            dba.child("employee_list").child(list.get(i).getUser_id()).child("admin_permission").setValue("false");
+                        }
+                        Profile p=adapterForTeammemebers.getselectedprofile();
+                        dba.child("team_head").child(p.user_id).child("admin_permission").setValue("true");
+                        String rolestr = "3";
+                        FirebaseDatabase.getInstance().getReference("users").child(p.user_id).child("role").setValue(rolestr);
+                        Intent intent=new Intent(getApplicationContext(),Ui_home.class);
+                        startActivity(intent);
+                        finish();
+                    }
 
-                final DatabaseReference dba = FirebaseDatabase.getInstance().getReference("Teams").child(companyid).push();
-                final String teamid=dba.getKey();
-                Teams team = new Teams(teamid,nameteam.getText().toString());
-                dba.setValue(team);
-                //forloopforaddings the admins
-               for(int i=0;i<adminlist.size();i++){
-                    dba.child("Admin_list").child(adminlist.get(i).getUser_id()).child("admin_permission").setValue("true");
                 }
-                //forloopforaddings the employee
-                for(int i=0;i<list.size();i++){
-                    dba.child("employee_list").child(list.get(i).getUser_id()).child("admin_permission").setValue("false");
-                }
-                Intent intent=new Intent(getApplicationContext(),Ui_home.class);
-                startActivity(intent);
-                finish();
             }
+
         });
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -118,8 +136,8 @@ public class Ui_createTeamProfile extends AppCompatActivity {
                            str.append(list.get(i).user_id);
                        }
                         Toast.makeText(Ui_createTeamProfile.this, "Selected List"+str.toString(), Toast.LENGTH_SHORT).show();
-                        adepterForRecylerView = new AdepterForRecylerView(Ui_createTeamProfile.this,list,Ui_createTeamProfile.class.getSimpleName());
-                        recyclerView.setAdapter(adepterForRecylerView);
+                        adapterForTeammemebers = new AdapterForTeammemebers(Ui_createTeamProfile.this,list,Ui_createTeamProfile.class.getSimpleName());
+                        recyclerView.setAdapter(adapterForTeammemebers);
                         adepterForRecylerView = new AdepterForRecylerView(Ui_createTeamProfile.this,adminlist,Ui_createTeamProfile.class.getSimpleName());
                         recyclerView1.setAdapter(adepterForRecylerView);
                     }

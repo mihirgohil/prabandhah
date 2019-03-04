@@ -95,5 +95,14 @@
     <string name="About_us">Our project name is Event Workload Distribution and Tracking for Manager.\nOur main motto is to distributing task. \nThis is the online application which serves the functionality of Event Manager.\n You can create multiple events, teams, tasks, etc</string>
     <string name="description_of_event">Description of event</string>
     <string name="enter_event_type">Enter Event type</string>
+    <string name="team_headname">Teamhead Name:</string>
+    <string name="employee_list_select_teamhead">Employee(select teamhead)</string>
+    <string name="date">Date:</string>
+    <string name="end_date">End Date:</string>
+    <string name="start_date">Start Date:</string>
+    <string name="event_manager">Event Manager:</string>
+    <string name="event_manager_name">Event Manager Name</string>
+    <string name="time">Time:</string>
+    <string name="time1">Time:</string>
 
 </resources>

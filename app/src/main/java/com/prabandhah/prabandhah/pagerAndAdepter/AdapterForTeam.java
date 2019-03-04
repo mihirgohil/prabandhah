@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.prabandhah.prabandhah.R;
@@ -40,6 +41,7 @@ public class AdapterForTeam extends RecyclerView.Adapter<AdapterForTeam.Viewhodl
 
     public class Viewhodler extends RecyclerView.ViewHolder{
         TextView nameofteam;
+
         public Viewhodler(View itemView) {
             super(itemView);
             nameofteam = itemView.findViewById(R.id.name);

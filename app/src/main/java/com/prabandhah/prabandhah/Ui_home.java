@@ -87,23 +87,23 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
     {
         //floating action button visblity
         if(role == 1)
-        {   str = "admin ui";
+        {  // str = "admin ui";
             textView.setText(str);
             fab.show();
         }
         else if(role == 2)
         {
-            str = "Event manager ui";
+           // str = "Event manager ui";
             textView.setText(str);
         }
         else if(role == 3)
         {
-            str = "team head ui";
+           // str = "team head ui";
             textView.setText(str);
         }
         else if(role == 4)
         {
-            str = "employee ui";
+          //  str = "employee ui";
             textView.setText(str);
         }
 

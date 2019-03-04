@@ -71,16 +71,14 @@ public class Team extends Fragment {
                             Teams tm = dataSnapshot1.getValue(Teams.class);
                             teamlist.add(tm);
                         }
-                        adapterForTeam = new AdapterForTeam(getContext(),teamlist);
-                        recyclerView.setAdapter(adapterForTeam);
                         if(teamlist == null){
 
                         }
                         else{
                             adapterForTeam = new AdapterForTeam(getContext(),teamlist);
                             recyclerView.setAdapter(adapterForTeam);
-
-                        }}
+                        }
+                    }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -88,12 +86,7 @@ public class Team extends Fragment {
                 });
 
 
-
-
-
-
             }
-            // hey
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

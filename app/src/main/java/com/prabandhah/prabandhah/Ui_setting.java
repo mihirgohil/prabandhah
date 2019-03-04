@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 public class Ui_setting extends AppCompatActivity {
     ImageView bckbtn;
-
-    TextView accountSetting,chatSetting,notificationSetting,aboutus,help,reportbug;
+    TextView accountSetting,chatSetting,notificationSetting,aboutus,reportbug,help;
     int role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +66,8 @@ public class Ui_setting extends AppCompatActivity {
         reportbug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Ui_Setting_Report_bug.class);
+                Intent intent = new Intent(Ui_setting.this, Ui_Setting_Report_bug.class);
+
                 startActivity(intent);
                 finish();
             }

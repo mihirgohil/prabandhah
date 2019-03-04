@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class Ui_team_in_DetaiView extends AppCompatActivity {
     int role;
-    TextView textView;
+    TextView textView,teamheadname;
     FloatingActionButton fab;
     String teamid,companyid;
     AdapterForTeammemebers adepterForRecylerView;
@@ -44,6 +44,7 @@ public class Ui_team_in_DetaiView extends AppCompatActivity {
         role = pref.getInt("role",0);
         Intent intent=getIntent();
         textView=findViewById(R.id.teamname);
+        teamheadname = findViewById(R.id.teamheadname);
         teamid =intent.getStringExtra("teamid");
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -115,23 +116,42 @@ public class Ui_team_in_DetaiView extends AppCompatActivity {
                                 }
                                 //getting employee profile
                                 final ArrayList<Profile> employeeprofiles = new ArrayList<Profile>();
-                                FirebaseDatabase.getInstance().getReference("users").addValueEventListener(new ValueEventListener() {
+                                FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamid).child("team_head").addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        String teamheadid = null;
                                         for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
-                                        {   Profile profile= dataSnapshot1.getValue(Profile.class);
-                                            for(int i=0; i<employeelist.size() ; i++){
-                                                if(profile.user_id.equals("")){}
-                                                else
-                                                {if(profile.user_id.equals(employeelist.get(i))){
-                                                    employeeprofiles.add(profile);
-                                                }
-                                                }
-                                            }
-                                          //  Toast.makeText(Ui_team_in_DetaiView.this, " e profile"+profile.user_id, Toast.LENGTH_SHORT).show();
+                                        {
+                                            teamheadid = dataSnapshot1.getKey();
                                         }
-                                        adepterForRecylerView = new AdapterForTeammemebers(Ui_team_in_DetaiView.this,employeeprofiles,Ui_team_in_DetaiView.class.getSimpleName());
-                                        recyclerView.setAdapter(adepterForRecylerView);
+                                        final String finalTeamheadid = teamheadid;
+                                        FirebaseDatabase.getInstance().getReference("users").addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                                                {   Profile profile= dataSnapshot1.getValue(Profile.class);
+                                                    for(int i=0; i<employeelist.size() ; i++){
+                                                        if(profile.user_id.equals("")){}
+                                                        else
+                                                        {if(profile.user_id.equals(employeelist.get(i))){
+                                                            employeeprofiles.add(profile);
+                                                            if(finalTeamheadid.equals(profile.user_id)){
+                                                                teamheadname.setText(profile.user_name);
+                                                            }
+                                                        }
+                                                        }
+                                                    }
+                                                    //  Toast.makeText(Ui_team_in_DetaiView.this, " e profile"+profile.user_id, Toast.LENGTH_SHORT).show();
+                                                }
+                                                adepterForRecylerView = new AdapterForTeammemebers(Ui_team_in_DetaiView.this,employeeprofiles,Ui_team_in_DetaiView.class.getSimpleName());
+                                                recyclerView.setAdapter(adepterForRecylerView);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                                     }
 
                                     @Override
@@ -139,6 +159,7 @@ public class Ui_team_in_DetaiView extends AppCompatActivity {
 
                                     }
                                 });
+
                             }
 
                             @Override

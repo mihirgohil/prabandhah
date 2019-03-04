@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.prabandhah.prabandhah.Sign_up"
+    android:orientation="vertical"
+    android:background="@drawable/login_img">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_50sdp"
+
+        android:padding="@dimen/_20sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilePic"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_menu_camera"/>
+        <EditText
+            android:id="@+id/cmpname"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/edit_txt_bubble"
+            android:hint="@string/company_name1"
+            android:textSize="@dimen/_15sdp"
+            android:paddingLeft="@dimen/_7sdp"
+            />
+        <EditText
+            android:id="@+id/cmpemail"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/edit_txt_bubble"
+            android:hint="@string/company_email"
+            android:textSize="@dimen/_15sdp"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="@dimen/_7sdp"
+            />
+        <EditText
+            android:id="@+id/cmpaddress"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/edit_txt_bubble"
+            android:hint="@string/Address"
+            android:textSize="@dimen/_15sdp"
+            android:inputType="textMultiLine"
+            android:paddingLeft="@dimen/_7sdp"
+            />
+        <Button
+            android:id="@+id/donebtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/rac_btn"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:text="Next" />
+
+
+
+    </LinearLayout>
+   </ScrollView>
+
+</LinearLayout>

@@ -8,6 +8,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +33,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.prabandhah.prabandhah.dataclasses.EventClass;
 import com.prabandhah.prabandhah.dataclasses.Profile;
+import com.prabandhah.prabandhah.pagerAndAdepter.AdapterForTeammemebers;
+import com.prabandhah.prabandhah.pagerAndAdepter.AdepterForRecylerView;
 import com.prabandhah.prabandhah.tabs.Event;
 
 import java.text.SimpleDateFormat;
@@ -40,15 +45,19 @@ import java.util.List;
 public class Ui_createEvent extends AppCompatActivity implements
     DatePickerDialog.OnDateSetListener,TimePickerDialog.OnTimeSetListener{
     ImageView bckbtn;
-    TextView startdatebtn,enddatebtn;
+    TextView startdatebtn,enddatebtn,starttime,endtime;
+    DatabaseReference reference;
     EditText nameofevent,noofguest,budget,address,descriprion,custom;
     Spinner typeList;
+    AdapterForTeammemebers adepterForRecylerView;
     FloatingActionButton fab;
     int day,day1,month,month1,year,year1,hour,hour1,minute,minute1;
     int day2,month2,year2,hour2,minute2;
     int dayfinal,monthfinal,hourfinal,yearfinal,minutefinal;
     int dayfinal1,monthfinal1,hourfinal1,yearfinal1,minutefinal1;
     int role,flag;
+    ArrayList<Profile> list;
+    RecyclerView recyclerView;
     String  eventtype="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +69,10 @@ public class Ui_createEvent extends AppCompatActivity implements
         bckbtn = findViewById(R.id.createEvent_png_backbtn);
         fab = findViewById(R.id.fabtn_create_event);
         startdatebtn = findViewById(R.id.strdatebtn);
+        recyclerView = findViewById(R.id.recycler);
+        starttime = findViewById(R.id.starttime);
+        endtime = findViewById(R.id.endtime);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Ui_createEvent.this));
         enddatebtn = findViewById(R.id.enddatebtn);
         nameofevent = findViewById(R.id.nameofevent);
         noofguest = findViewById(R.id.noofguest);
@@ -93,6 +106,44 @@ public class Ui_createEvent extends AppCompatActivity implements
         dataadpt.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         typeList.setAdapter(dataadpt);
         setCurrentDateOnView();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final Profile profile = dataSnapshot.getValue(Profile.class);
+                reference = FirebaseDatabase.getInstance().getReference("users");
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        list = new ArrayList<Profile>();
+                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                            Profile p = dataSnapshot1.getValue(Profile.class);
+                            if(profile.getCompany_id().equals(p.getCompany_id()))
+                            {
+                                if(p.getRole().equals("2") )
+                                {
+                                    list.add(p);
+                                }
+                            }
+                        }
+                        adepterForRecylerView = new AdapterForTeammemebers(Ui_createEvent.this,list,Ui_createEvent.class.getSimpleName());
+                        recyclerView.setAdapter(adepterForRecylerView);
+//                         Toast.makeText(getContext(), "c"+String.valueOf(counter), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        //    Toast.makeText(getContext(), "error"+databaseError, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         startdatebtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -150,7 +201,7 @@ public class Ui_createEvent extends AppCompatActivity implements
                        DatabaseReference dba = FirebaseDatabase.getInstance().getReference("EventMaster").child(company_id).push();
                        String eventid;
                        eventid = dba.getKey();
-                       //getteing all the details
+                       //getteing all the details & validation
                        if (typeList.getSelectedItem().toString().equals("Other")) {
                            eventtype = custom.getText().toString();
                        } else {
@@ -173,17 +224,47 @@ public class Ui_createEvent extends AppCompatActivity implements
                                if(noofguest.getText().toString().isEmpty()){
                                    noofguest.setError("Enter no of Guest");
                                }
-                               else{
-                                   EventClass event = new EventClass(eventid, nameofevent.getText().toString(), eventtype, noofguest.getText().toString(), budget.getText().toString(), address.getText().toString(), descriprion.getText().toString(), "baki");
-
-                                   dba = FirebaseDatabase.getInstance().getReference("EventMaster").child(company_id).child(eventid);
-                                   //passing event
-                                   dba.setValue(event);
-                                   Intent intent=new Intent(getApplicationContext(),Ui_home.class);
-                                   startActivity(intent);
-                                   finish();
+                               else if(TextUtils.isDigitsOnly(budget.getText().toString())){
+                                   if(budget.getText().toString().isEmpty())
+                                   {
+                                       budget.setError("Enter Budget");
+                                   }
+                                   else if(TextUtils.isDigitsOnly(budget.getText().toString())){
+                                       if(address.getText().toString().isEmpty()){
+                                         address.setError("Enter Address");
+                                       }
+                                       else
+                                           {
+                                               if(descriprion.getText().toString().isEmpty()){
+                                             descriprion.setError("Enter Desciption");
+                                               }
+                                               else{
+                                                   Profile profile= adepterForRecylerView.getselectedprofile();
+                                                   final Calendar c = Calendar.getInstance();
+                                                   year2 = c.get(Calendar.YEAR);
+                                                   month2 = c.get(Calendar.MONTH);
+                                                   day2 = c.get(Calendar.DAY_OF_MONTH);
+                                                   StringBuffer creationdate=new StringBuffer().append(day2).append("-").append(month2 + 1).append("-")
+                                                           .append(year2);
+                                                   SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
+                                                   String creationtime =  mdformat.format(c.getTime());
+                                                   EventClass event = new EventClass(eventid, nameofevent.getText().toString(), eventtype, noofguest.getText().toString(), budget.getText().toString(), address.getText().toString(), descriprion.getText().toString(),profile.user_id,startdatebtn.getText().toString(),enddatebtn.getText().toString(),starttime.getText().toString(),endtime.getText().toString(),creationdate.toString(),creationtime,"assigned");
+                                                   dba = FirebaseDatabase.getInstance().getReference("EventMaster").child(company_id).child(eventid);
+                                                   //passing event
+                                                   dba.setValue(event);
+                                                   Intent intent=new Intent(getApplicationContext(),Ui_home.class);
+                                                   startActivity(intent);
+                                                   finish();
+                                               }
+                                     }
+                                   }
+                                   else {
+                                       budget.setError("enter no");
+                                   }
                                }
-
+                               else {
+                                   noofguest.setError("enter no");
+                               }
                            }
                        }
 
@@ -204,15 +285,20 @@ public class Ui_createEvent extends AppCompatActivity implements
         year2 = c.get(Calendar.YEAR);
         month2 = c.get(Calendar.MONTH);
         day2 = c.get(Calendar.DAY_OF_MONTH);
-        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
-        String strDate = "Time : " + mdformat.format(c.getTime());
+        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm");
+        String strDate = mdformat.format(c.getTime());
         // set current date into textview
         startdatebtn.setText(new StringBuilder()
                 // Month is 0 based, just add 1
-                .append("Date :").append(day2).append("-").append(month2 + 1).append("-")
-                .append(year2).append(" ").append(strDate));
+                .append(day2).append("-").append(month2 + 1).append("-")
+                .append(year2).append(" "));
+        starttime.setText(strDate);
 
-        enddatebtn.setText(startdatebtn.getText().toString());
+        enddatebtn.setText(new StringBuilder()
+                // Month is 0 based, just add 1
+                .append(day2+1).append("-").append(month2 + 1).append("-")
+                .append(year2).append(" "));
+        endtime.setText(strDate);
     }
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -247,16 +333,22 @@ public class Ui_createEvent extends AppCompatActivity implements
             minutefinal = minute;
             startdatebtn.setText(new StringBuilder()
                     // Month is 0 based, just add 1
-                    .append("Date :").append(dayfinal).append("-").append(monthfinal + 1).append("-")
-                    .append(yearfinal).append(" ").append("Time :").append(hourfinal).append(":").append(minutefinal));
+                    .append(dayfinal).append("-").append(monthfinal + 1).append("-")
+                    .append(yearfinal));
+            starttime.setVisibility(View.VISIBLE);
+            starttime.setText(new StringBuffer()
+                    .append(hourfinal).append(":").append(minutefinal));
         }
         else if(flag == 2) {
             hourfinal1 = hourOfDay;
             minutefinal1 = minute;
             enddatebtn.setText(new StringBuilder()
                     // Month is 0 based, just add 1
-                    .append("Date :").append(dayfinal1).append("-").append(monthfinal1 + 1).append("-")
-                    .append(yearfinal1).append(" ").append("Time :").append(hourfinal1).append(":").append(minutefinal1));
+                    .append(dayfinal1).append("-").append(monthfinal1 + 1).append("-")
+                    .append(yearfinal1));
+            endtime.setVisibility(View.VISIBLE);
+            endtime.setText(new StringBuffer()
+                    .append(hourfinal1).append(":").append(minutefinal1));
         }
 
     }

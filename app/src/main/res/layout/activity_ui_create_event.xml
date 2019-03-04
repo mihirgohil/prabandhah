@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.prabandhah.prabandhah.Ui_createEvent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/appbarcolor"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/custPopupstyle">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:id="@+id/createEvent_png_backbtn"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_event_title"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="#fff"
+            android:layout_marginLeft="@dimen/_26sdp"/>
+
+    </android.support.v7.widget.Toolbar>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,33 +36,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/appbarcolor"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:popupTheme="@style/custPopupstyle">
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:id="@+id/createEvent_png_backbtn"
-                    android:contentDescription="TODO"
-                    android:src="@drawable/ic_arrow_back_black_24dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/create_event_title"
-                    android:textSize="@dimen/_15sdp"
-                    android:textColor="#fff"
-                    android:layout_marginLeft="@dimen/_26sdp"/>
 
-            </android.support.v7.widget.Toolbar>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_3sdp"
+                android:layout_margin="@dimen/_5sdp"
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -132,14 +133,35 @@
                             app:cardCornerRadius="@dimen/_8sdp"
                             app:contentPadding="@dimen/_5sdp"
                             app:cardBackgroundColor="#fff">
-                            <TextView
-                                android:id="@+id/strdatebtn"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/select_start_dateandtime"
-                                />
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:orientation="horizontal">
+                              <TextView
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:text="@string/date"/>
+                               <TextView
+                                   android:id="@+id/strdatebtn"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:hint="@string/select_start_dateandtime"
+                                   />
+                               <TextView
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:text="@string/time"/>
+                               <TextView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:id="@+id/starttime"
+                                   android:text="time" />
+                           </LinearLayout>
+
                         </android.support.v7.widget.CardView>
                     </android.support.v7.widget.CardView>
+
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -164,36 +186,56 @@
                             app:cardCornerRadius="@dimen/_8sdp"
                             app:contentPadding="@dimen/_5sdp"
                             app:cardBackgroundColor="#fff">
-                            <TextView
-                                android:id="@+id/enddatebtn"
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/select_start_dateandtime"
-                                />
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/date"/>
+                                <TextView
+                                    android:id="@+id/enddatebtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/select_start_dateandtime"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/time"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/endtime"
+                                    android:text="time" />
+                            </LinearLayout>
                         </android.support.v7.widget.CardView>
                     </android.support.v7.widget.CardView>
+
                 </LinearLayout>
                 <android.support.v7.widget.CardView
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/_8sdp"
                     app:contentPadding="@dimen/_5sdp"
                     app:cardBackgroundColor="#fff">
                 <EditText
                     android:id="@+id/noofguest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:textSize="@dimen/_10sdp"
                     android:hint="@string/no_of_guest"/>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/_8sdp"
                     app:contentPadding="@dimen/_5sdp"
                     app:cardBackgroundColor="#fff">
                 <EditText
                     android:id="@+id/budget"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_10sdp"
@@ -202,7 +244,6 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/_8sdp"
                     app:contentPadding="@dimen/_5sdp"
                     app:cardBackgroundColor="#fff">
                 <EditText
@@ -215,7 +256,6 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/_8sdp"
                     app:contentPadding="@dimen/_5sdp"
                     app:cardBackgroundColor="#fff">
                 <EditText
@@ -226,6 +266,7 @@
                     android:hint="@string/description_of_event"/>
                 </android.support.v7.widget.CardView>
                 <TextView
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/select_event_manger"
