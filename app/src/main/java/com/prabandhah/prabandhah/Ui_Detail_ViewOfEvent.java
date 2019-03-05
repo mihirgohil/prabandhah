@@ -47,7 +47,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         typeofevent = findViewById(R.id.eventtype);
         startdate = findViewById(R.id.strdate);
         enddate = findViewById(R.id.enddate);
-        starttime = findViewById(R.id.starttime);
+        starttime = findViewById(R.id.strtime);
         endtime = findViewById(R.id.endtime);
         noofguest = findViewById(R.id.noofguest);
         budget = findViewById(R.id.budget);
@@ -64,7 +64,8 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
                         nameofevent.setText(event.eventname);
                         typeofevent.setText(event.eventype);
                         startdate.setText(event.startdate);
-                        //starttime.setText(event.starttime);
+                        Toast.makeText(Ui_Detail_ViewOfEvent.this, "starttime"+event.starttime, Toast.LENGTH_SHORT).show();
+                        starttime.setText(event.starttime);
                         enddate.setText(event.enddate);
                         endtime.setText(event.endtime);
                         noofguest.setText(event.noofguest);

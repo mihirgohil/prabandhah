@@ -71,11 +71,15 @@ public class Event extends Fragment{
                         eventlist = new ArrayList<EventClass>();
                         for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                             EventClass eventclass= dataSnapshot1.getValue(EventClass.class);
-                            eventlist.add(eventclass);
+                            if(eventclass.eventstatus.equals("assigned")){
+                                eventlist.add(eventclass);
+                            }
+
                         }
                         if(eventlist == null){}
                         else{
-                        adapterForEventlist = new AdapterForEventlist(getContext(),eventlist);
+
+                        adapterForEventlist = new AdapterForEventlist(getContext(),eventlist,"Event");
                         recyclerView.setAdapter(adapterForEventlist);}
                     }
 
