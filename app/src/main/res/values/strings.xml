@@ -105,6 +105,7 @@
     <string name="time">Time:</string>
     <string name="time1">Time:</string>
     <string name="datetime">Date and Time</string>
+    <string name="completed">Completed</string>
     <string-array name="forrecylevieweventstatus">
         <item>"Assigned"</item>
         <item>"Completed"</item>

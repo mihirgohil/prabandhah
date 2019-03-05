@@ -3,6 +3,7 @@
     package="com.prabandhah.prabandhah">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logocom"
@@ -10,7 +11,10 @@
         android:roundIcon="@drawable/logocom"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Ui_setting_help"></activity>
+        <activity android:name=".tabs.Delay_task"></activity>
+        <activity android:name=".tabs.Completed_task" />
+        <activity android:name=".tabs.Assigned_task" />
+        <activity android:name=".Ui_setting_help" />
         <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -74,7 +78,7 @@
         <activity android:name=".Create_companyProfile" />
         <activity android:name=".Join_your_company" />
         <activity android:name=".Create_companyProfile1" />
-        <activity android:name=".Ui_Setting_Report_bug"/>
+        <activity android:name=".Ui_Setting_Report_bug" />
     </application>
 
 </manifest>

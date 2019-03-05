@@ -32,6 +32,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
     TextView endtime;
     TextView noofguest;
     TextView budget;
+    TextView nameofeventManger;
     TextView address;
     TextView des;
     Toolbar toolbar;
@@ -50,13 +51,14 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         starttime = findViewById(R.id.strtime);
         endtime = findViewById(R.id.endtime);
         noofguest = findViewById(R.id.noofguest);
+        nameofeventManger = findViewById(R.id.nameofeventmanger);
         budget = findViewById(R.id.budget);
         address = findViewById(R.id.address);
         des = findViewById(R.id.description);
         FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Profile profile = dataSnapshot.getValue(Profile.class);
+                final Profile profile = dataSnapshot.getValue(Profile.class);
                 FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).child(eventid).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -72,7 +74,18 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
                         budget.setText(event.budget);
                         address.setText(event.address);
                         des.setText(event.description);
+                        FirebaseDatabase.getInstance().getReference("users").child(event.eventmanager).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Profile profile1= dataSnapshot.getValue(Profile.class);
+                                nameofeventManger.setText(profile1.user_name);
+                            }
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
 
                     @Override

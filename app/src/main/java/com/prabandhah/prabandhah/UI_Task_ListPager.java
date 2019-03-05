@@ -4,9 +4,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 
+import com.prabandhah.prabandhah.tabs.Assigned_task;
 import com.prabandhah.prabandhah.tabs.Assing_event;
 import com.prabandhah.prabandhah.tabs.Completed_event;
+import com.prabandhah.prabandhah.tabs.Completed_task;
 import com.prabandhah.prabandhah.tabs.Delay_event;
+import com.prabandhah.prabandhah.tabs.Delay_task;
 
 
 public class UI_Task_ListPager extends FragmentStatePagerAdapter {
@@ -24,14 +27,14 @@ public class UI_Task_ListPager extends FragmentStatePagerAdapter {
         //Returning the current tabs
         switch (position) {
             case 0:
-                Assing_event assing_event = new Assing_event();
-                return assing_event;
+                Assigned_task assigned_task = new Assigned_task();
+                return  assigned_task;
             case 1:
-                Completed_event completed_event = new Completed_event();
-                return completed_event;
+                Completed_task completed_task = new Completed_task();
+                return completed_task;
             case 2:
-                Delay_event delay_event = new Delay_event();
-                return delay_event;
+                Delay_task delay_task = new Delay_task();
+                return delay_task;
             default:
                 return null;
         }
