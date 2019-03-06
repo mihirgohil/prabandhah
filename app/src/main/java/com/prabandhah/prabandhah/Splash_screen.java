@@ -60,7 +60,7 @@ public class Splash_screen extends AppCompatActivity {
         else{
             AlertDialog.Builder builder = new AlertDialog.Builder(Splash_screen.this);
             builder.setTitle("Netword Error");
-            builder.setMessage("No Internet Connectitvity");
+            builder.setMessage("No Internet Connectivity");
             builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

@@ -61,7 +61,7 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
             /*for (int i = 0; i < 6; i++) {
             color += letters[Math.round(random.nextFloat() * 15)];
             }*/
-            String color = "#";
+            /*String color = "#";
             List <String> colorstr = new ArrayList<>();
             colorstr.add("153465");
             colorstr.add("67160e");
@@ -69,7 +69,7 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
             colorstr.add("585858");
             colorstr.add("b45c18");
             colorstr.add("000000");
-            color += colorstr.get(random.nextInt(colorstr.size()));
+            color += colorstr.get(random.nextInt(colorstr.size()));*/
            // holder.card.setCardBackgroundColor(Color.parseColor(color));
             //end color randomly
             holder.endtime.setText(eventlist.get(position).getEndtime());
@@ -90,7 +90,10 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
         if(activityname.equals("Event")){
             holder.spinner.setVisibility(View.VISIBLE);
         }
+        if(activityname.equals("Completed_event")){
+            holder.txtstatus.setVisibility(View.VISIBLE);
 
+        }
     }
 
     @Override
