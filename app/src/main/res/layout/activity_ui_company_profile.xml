@@ -22,6 +22,7 @@
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_30sdp"
             android:id="@+id/editBtn"
+            android:visibility="gone"
             android:layout_marginLeft="@dimen/_250sdp"
             android:src="@drawable/ic_editbtn" />
     </LinearLayout>

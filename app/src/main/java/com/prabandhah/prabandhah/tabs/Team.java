@@ -75,7 +75,7 @@ public class Team extends Fragment {
 
                         }
                         else{
-                            adapterForTeam = new AdapterForTeam(getContext(),teamlist);
+                            adapterForTeam = new AdapterForTeam(getContext(),teamlist,"Team");
                             recyclerView.setAdapter(adapterForTeam);
                         }
                     }

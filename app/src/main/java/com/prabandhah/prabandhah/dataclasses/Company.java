@@ -5,11 +5,11 @@ package com.prabandhah.prabandhah.dataclasses;
  */
 
 public class Company {
-    String company_name;
-    String company_mail;
-    String company_address;
-    String user_id;
-    String company_id;
+    public String company_name;
+    public String company_mail;
+    public String company_address;
+    public String user_id;
+    public String company_id;
 
     public Company() {
     }

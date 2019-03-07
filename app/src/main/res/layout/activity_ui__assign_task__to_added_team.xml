@@ -31,7 +31,31 @@
             android:textColor="#fff" />
 
     </android.support.v7.widget.Toolbar>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name_of_team"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textColor="@color/lablegreen"/>
+    <TextView
+        android:id="@+id/nameofteam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:text="@string/name_of_team"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_for_team"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textColor="@color/lablegreen"/>
+    <EditText
+        android:id="@+id/taskforteamhead"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_height="wrap_content" />
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -32,22 +32,7 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabtn"
-            android:layout_width="76dp"
-            android:layout_height="62dp"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="@dimen/_10sdp"
-            android:src="@drawable/ic_add_black_24dp"
-            app:backgroundTint="@color/lablegreen"
-            app:fabSize="normal"
-            tools:layout_editor_absoluteX="322dp"
-            tools:layout_editor_absoluteY="527dp" />
-    </android.support.design.widget.CoordinatorLayout>
 
 
 </LinearLayout>

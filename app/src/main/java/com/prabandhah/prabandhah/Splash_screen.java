@@ -90,12 +90,14 @@ public class Splash_screen extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String ro = dataSnapshot.child("role").getValue().toString();
+                    String companyid= dataSnapshot.child("company_id").getValue().toString();
                     Toast.makeText(Splash_screen.this, "at splash role:" + ro, Toast.LENGTH_SHORT).show();
                     if (ro.equals("1") || ro.equals("2") || ro.equals("3") || ro.equals("4")) {
                         int retrole;
                         Toast.makeText(Splash_screen.this, "at retrole", Toast.LENGTH_SHORT).show();
                         retrole = Integer.parseInt(ro);
                         editor.putInt("role", retrole);
+                        editor.putString("companyid",companyid);
                         editor.commit();
                         finish();
                         mainIntent = new Intent(Splash_screen.this,Ui_home.class);
