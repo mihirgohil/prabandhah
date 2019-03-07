@@ -32,10 +32,14 @@
 
     </android.support.v7.widget.Toolbar>
 
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler"/>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabtn"
             android:layout_width="76dp"

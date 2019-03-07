@@ -5,8 +5,8 @@ package com.prabandhah.prabandhah.dataclasses;
  */
 
 public class Teams {
-    String team_id;
-    String team_name;
+    public String team_id;
+    public String team_name;
 
     public String getTeam_id() {
         return team_id;

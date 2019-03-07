@@ -57,16 +57,29 @@ public class Event extends Fragment{
         FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Profile profile = dataSnapshot.getValue(Profile.class);
+                final Profile profile = dataSnapshot.getValue(Profile.class);
                 FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         eventlist = new ArrayList<EventClass>();
                         for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                             EventClass eventclass= dataSnapshot1.getValue(EventClass.class);
-                            if(eventclass.eventstatus.equals("assigned")){
-                                eventlist.add(eventclass);
+                           //for admin all event will be showen
+                            if (profile.role.equals("1")){
+                                if(eventclass.eventstatus.equals("assigned")){
+                                    eventlist.add(eventclass);
+                                }
                             }
+                            //for event manger only included event will shown
+                            if (profile.role.equals("2")){
+                                if(eventclass.eventmanager.equals(profile.user_id)){
+                                    if(eventclass.eventstatus.equals("assigned")){
+                                        eventlist.add(eventclass);
+                                    }
+                                }
+
+                            }
+
 
                         }
                         if(eventlist == null){}

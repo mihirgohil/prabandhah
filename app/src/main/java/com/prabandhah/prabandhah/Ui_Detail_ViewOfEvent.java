@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
     TextView noofguest;
     TextView budget;
     TextView nameofeventManger;
+    CardView addteamtoevent;
     TextView address;
     TextView des;
     Toolbar toolbar;
@@ -42,7 +44,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui__detail__view_of_event);
-        Intent intent= getIntent();
+        final Intent intent= getIntent();
         eventid=intent.getStringExtra("eventid");
         nameofevent = findViewById(R.id.nameofevent);
         typeofevent = findViewById(R.id.eventtype);
@@ -55,6 +57,8 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         budget = findViewById(R.id.budget);
         address = findViewById(R.id.address);
         des = findViewById(R.id.description);
+        addteamtoevent = findViewById(R.id.addteamtoevent);
+        //getting  data
         FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -114,12 +118,25 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
                 finish();
             }
         });
-
+        //getting ui according  to role
+        if(role == 2){
+            addteamtoevent.setVisibility(View.VISIBLE);
+        }
         //Adding toolbar to the activity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        addteamtoevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Ui_Detail_ViewOfEvent.this, "add team to event", Toast.LENGTH_SHORT).show();
 
+                Intent intent1 = new Intent(Ui_Detail_ViewOfEvent.this,Ui_addTeamToEvent.class);
+                intent1.putExtra("eventid",eventid);
+                startActivity(intent1);
+                finish();
+            }
+        });
     }
     @Override
     public void onBackPressed(){
@@ -137,7 +154,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
             inflater.inflate(R.menu.editbtn, menu);
         }
         else if(role == 2)
-        {
+        {   inflater.inflate(R.menu.team_included_in_event, menu);
         }
         return super.onCreateOptionsMenu(menu);
     }

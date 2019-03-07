@@ -51,6 +51,9 @@ public class Ui_companyProfile extends AppCompatActivity {
                 finish();
             }
         });
+        if(role == 1){
+            editbtn.setVisibility(View.VISIBLE);
+        }
         editbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -106,6 +106,8 @@
     <string name="time1">Time:</string>
     <string name="datetime">Date and Time</string>
     <string name="completed">Completed</string>
+    <string name="add_teams_to_event">Add teams to event</string>
+    <string name="task_for_team">Task for Team</string>
     <string-array name="forrecylevieweventstatus">
         <item>"Assigned"</item>
         <item>"Completed"</item>

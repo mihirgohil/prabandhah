@@ -52,26 +52,6 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
     public void onBindViewHolder(@NonNull final myViewholder holder, final int position) {
             holder.nameofevent.setText(eventlist.get(position).getEventname());
             holder.enddate.setText(eventlist.get(position).getEnddate());
-
-            //color randomly
-            Random random = new Random();
-            //heavy method
-            //final String[] letters = "0123456789ABCDEF".split("");
-
-            /*for (int i = 0; i < 6; i++) {
-            color += letters[Math.round(random.nextFloat() * 15)];
-            }*/
-            /*String color = "#";
-            List <String> colorstr = new ArrayList<>();
-            colorstr.add("153465");
-            colorstr.add("67160e");
-            colorstr.add("135714");
-            colorstr.add("585858");
-            colorstr.add("b45c18");
-            colorstr.add("000000");
-            color += colorstr.get(random.nextInt(colorstr.size()));*/
-           // holder.card.setCardBackgroundColor(Color.parseColor(color));
-            //end color randomly
             holder.endtime.setText(eventlist.get(position).getEndtime());
         DatabaseReference user = FirebaseDatabase.getInstance().getReference("users").child(eventlist.get(position).getEventmanager());
         user.addListenerForSingleValueEvent(new ValueEventListener() {
