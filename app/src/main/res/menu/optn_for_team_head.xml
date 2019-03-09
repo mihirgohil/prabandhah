@@ -25,12 +25,12 @@
             android:id="@+id/adm_teamList"
             android:orderInCategory="100"
             android:title="@string/Team_list"
-            app:showAsAction="never" />-->
+            app:showAsAction="never" />
         <item
             android:id="@+id/adm_taskList"
             android:orderInCategory="100"
             android:title="@string/Task_list"
-            app:showAsAction="never" />
+            app:showAsAction="never" />-->
         <item
             android:id="@+id/adm_setting"
             android:orderInCategory="100"

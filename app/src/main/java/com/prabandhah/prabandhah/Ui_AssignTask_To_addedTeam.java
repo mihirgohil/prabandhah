@@ -54,10 +54,10 @@ public class Ui_AssignTask_To_addedTeam extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference dba=FirebaseDatabase.getInstance().getReference("TaskMaster").child(eventid).push();
+                DatabaseReference dba=FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").push();
                 String taskid= dba.getKey();
                 Task task1 = new Task(taskid,task.getText().toString(),"assigned");
-                dba.child(teamid).setValue(task1);
+                dba.setValue(task1);
                 Intent intent = new Intent(getApplicationContext(), Ui_Detail_ViewOfEvent.class);
                 intent.putExtra("eventid",eventid);
                 startActivity(intent);

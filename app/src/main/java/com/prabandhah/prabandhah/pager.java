@@ -4,7 +4,7 @@ package com.prabandhah.prabandhah;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import com.prabandhah.prabandhah.tabs.Chat;
+import com.prabandhah.prabandhah.tabs.Task;
 import com.prabandhah.prabandhah.tabs.Event;
 import com.prabandhah.prabandhah.tabs.Team;
 
@@ -30,8 +30,8 @@ public class pager extends FragmentStatePagerAdapter {
                 Team team = new Team();
                 return team;
             case 2:
-                Chat chat = new Chat();
-                return chat;
+                Task task = new Task();
+                return task;
             default:
                 return null;
         }

@@ -165,6 +165,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
             //for admin
             case R.id.menu_toolbarincludedTeam:
                 Intent intent=new Intent(getApplicationContext(),Ui_incluededTeams.class);
+                intent.putExtra("eventid",eventid);
                 startActivity(intent);
                 finish();
                 return true;

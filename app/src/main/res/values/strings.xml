@@ -108,6 +108,9 @@
     <string name="completed">Completed</string>
     <string name="add_teams_to_event">Add teams to event</string>
     <string name="task_for_team">Task for Team</string>
+    <string name="task">Task:</string>
+    <string name="status1">Status:</string>
+    <string name="no_of_task">No of Task</string>
     <string-array name="forrecylevieweventstatus">
         <item>"Assigned"</item>
         <item>"Completed"</item>

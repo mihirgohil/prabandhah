@@ -58,7 +58,7 @@ public class Completed_event extends Fragment {
                         if(eventlist == null){}
                         else{
 
-                            adapterForEventlist = new AdapterForEventlist(getContext(),eventlist,"Completed_event");
+                            adapterForEventlist = new AdapterForEventlist(getContext(),eventlist,"Completed_event","1");
                             recyclerView.setAdapter(adapterForEventlist);}
                     }
 

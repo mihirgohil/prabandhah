@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/logocom"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".tabs.Delay_task"></activity>
+        <activity android:name=".Ui_Includedteam_taskDetail"></activity>
+        <activity android:name=".tabs.Delay_task" />
         <activity android:name=".tabs.Completed_task" />
         <activity android:name=".tabs.Assigned_task" />
         <activity android:name=".Ui_setting_help" />

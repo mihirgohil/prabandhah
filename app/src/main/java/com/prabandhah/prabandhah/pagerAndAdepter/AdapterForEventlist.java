@@ -1,5 +1,6 @@
 package com.prabandhah.prabandhah.pagerAndAdepter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -34,13 +35,15 @@ import java.util.Random;
 public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlist.myViewholder> {
     ArrayList<EventClass> eventlist;
     String username;
+    String role;
     String colorprv=null;
     String activityname;
     Context context;
-    public AdapterForEventlist(Context c, ArrayList<EventClass> e,String a){
+    public AdapterForEventlist(Context c, ArrayList<EventClass> e,String a,String r){
             eventlist = e;
             context = c;
             activityname = a;
+            role = r;
     }
     @NonNull
     @Override
@@ -68,7 +71,9 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
             }
         });
         if(activityname.equals("Event")){
-            holder.spinner.setVisibility(View.VISIBLE);
+            if(role.equals("1")){
+                holder.spinner.setVisibility(View.VISIBLE);
+            }
         }
         if(activityname.equals("Completed_event")){
             holder.txtstatus.setVisibility(View.VISIBLE);
@@ -105,6 +110,8 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
                     Intent intent= new Intent(context, Ui_Detail_ViewOfEvent.class);
                     intent.putExtra("eventid",eventlist.get(getAdapterPosition()).getEventid());
                     context.startActivity(intent);
+                    //finish activity from adpter
+                    ((Activity)context).finish();
                 }
             });
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

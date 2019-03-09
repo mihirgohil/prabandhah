@@ -28,7 +28,9 @@ import com.prabandhah.prabandhah.Ui_Detail_ViewOfEvent;
 import com.prabandhah.prabandhah.Ui_team_in_DetaiView;
 import com.prabandhah.prabandhah.dataclasses.EventClass;
 import com.prabandhah.prabandhah.dataclasses.Profile;
+import com.prabandhah.prabandhah.dataclasses.Teams;
 import com.prabandhah.prabandhah.pagerAndAdepter.AdapterForEventlist;
+import com.prabandhah.prabandhah.pagerAndAdepter.AdapterForTeam;
 
 import java.util.ArrayList;
 
@@ -39,9 +41,7 @@ public class Event extends Fragment{
         //Returning the layout file after inflating
         //Change R.layout.tab1 in you classes
         //getting data from activity
-        SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
-        final SharedPreferences.Editor editor = pref.edit();
-        role = pref.getInt("role",0);
+
         return inflater.inflate(R.layout.activity_event, container, false);
     }
     TextView event;
@@ -49,51 +49,144 @@ public class Event extends Fragment{
     ArrayList<EventClass> eventlist;
     AdapterForEventlist adapterForEventlist;
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(View view, final Bundle savedInstanceState) {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+        final SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
+        role = pref.getInt("role",0);
         recyclerView = view.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final Profile profile = dataSnapshot.getValue(Profile.class);
-                FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        eventlist = new ArrayList<EventClass>();
-                        for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
-                            EventClass eventclass= dataSnapshot1.getValue(EventClass.class);
-                           //for admin all event will be showen
-                            if (profile.role.equals("1")){
-                                if(eventclass.eventstatus.equals("assigned")){
-                                    eventlist.add(eventclass);
-                                }
-                            }
-                            //for event manger only included event will shown
-                            if (profile.role.equals("2")){
-                                if(eventclass.eventmanager.equals(profile.user_id)){
+                if(profile.role.equals("1") || profile.role.equals("2"))
+                {
+                    FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            eventlist = new ArrayList<EventClass>();
+                            for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
+                                final EventClass eventclass= dataSnapshot1.getValue(EventClass.class);
+                                //for admin all event will be showen
+                                if (profile.role.equals("1")){
                                     if(eventclass.eventstatus.equals("assigned")){
                                         eventlist.add(eventclass);
                                     }
                                 }
+                                //for event manger only included event will shown
+                                if (profile.role.equals("2")){
+                                    if(eventclass.eventmanager.equals(profile.user_id)){
+                                        if(eventclass.eventstatus.equals("assigned")){
+                                            eventlist.add(eventclass);
+                                        }
+                                    }
+
+                                }
+
 
                             }
+                            if(eventlist == null){}
+                            else{
 
+                                adapterForEventlist = new AdapterForEventlist(getContext(),eventlist,"Event","1");
+                                recyclerView.setAdapter(adapterForEventlist);}
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
-                        if(eventlist == null){}
-                        else{
+                    });
+                }
+                else
+                    {   String companyidf = pref.getString("companyid","");
+                        final DatabaseReference dba =FirebaseDatabase.getInstance().getReference("Teams").child(companyidf);
+                        dba.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                final ArrayList<Teams> teams = new ArrayList<Teams>();
+                                for(final DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
+                                    final Teams teamsclass = dataSnapshot1.getValue(Teams.class);
+                                    dba.child(dataSnapshot1.getKey()).child("team_head").addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            for(DataSnapshot dataSnapshot2:dataSnapshot.getChildren()){
+                                                if(profile.user_id.equals(dataSnapshot2.getKey())){
+                                                    teams.add(teamsclass);
+                                                }
+                                            }
+                                            FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                    ArrayList<String> eventid = new ArrayList<String>();
+                                                    for(final DataSnapshot dataSnapshot2:dataSnapshot.getChildren()){
+                                                         FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(dataSnapshot2.getKey()).child("teamid").addValueEventListener(new ValueEventListener() {
+                                                             @Override
+                                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                 for(DataSnapshot dataSnapshot3:dataSnapshot.getChildren()){
+                                                                     for(int i = 0;i<teams.size();i++){
+                                                                         if(dataSnapshot3.getKey().equals(teams.get(i).team_id)){
+                                                                             FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).child(dataSnapshot2.getKey()).addValueEventListener(new ValueEventListener() {
+                                                                                 @Override
+                                                                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                                     eventlist = new ArrayList<EventClass>();
+                                                                                     EventClass eventClass = dataSnapshot.getValue(EventClass.class);
+                                                                                     if(eventClass.eventstatus.equals("assigned")){
+                                                                                         eventlist.add(eventClass);
+                                                                                     }
+                                                                                     if(eventClass==null){
 
-                        adapterForEventlist = new AdapterForEventlist(getContext(),eventlist,"Event");
-                        recyclerView.setAdapter(adapterForEventlist);}
+                                                                                     }
+                                                                                     else {
+                                                                                         adapterForEventlist = new AdapterForEventlist(getContext(), eventlist, "Event", "3");
+                                                                                         recyclerView.setAdapter(adapterForEventlist);
+                                                                                     }
+                                                                                 }
+
+                                                                                 @Override
+                                                                                 public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                                                 }
+                                                                             });
+                                                                         }
+                                                                     }
+
+                                                                 }
+                                                             }
+
+                                                             @Override
+                                                             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                             }
+                                                         });
+                                                      }
+
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                }
+                                            });
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
 
             @Override

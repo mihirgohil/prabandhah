@@ -124,7 +124,19 @@ public class Ui_team_in_DetaiView extends AppCompatActivity {
                                         {
                                             teamheadid = dataSnapshot1.getKey();
                                         }
-                                        final String finalTeamheadid = teamheadid;
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(teamheadid).addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                    Profile profile1 = dataSnapshot.getValue(Profile.class);
+                                                    teamheadname.setText(profile1.user_name);
+                                                    employeelist.add(profile1.user_id);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                                         FirebaseDatabase.getInstance().getReference("users").addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -135,9 +147,7 @@ public class Ui_team_in_DetaiView extends AppCompatActivity {
                                                         else
                                                         {if(profile.user_id.equals(employeelist.get(i))){
                                                             employeeprofiles.add(profile);
-                                                            if(finalTeamheadid.equals(profile.user_id)){
-                                                                teamheadname.setText(profile.user_name);
-                                                            }
+
                                                         }
                                                         }
                                                     }

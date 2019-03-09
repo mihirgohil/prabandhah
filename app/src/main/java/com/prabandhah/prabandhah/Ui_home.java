@@ -57,7 +57,9 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Event"));
         tabLayout.addTab(tabLayout.newTab().setText("Team"));
-      //  tabLayout.addTab(tabLayout.newTab().setText("Chat"));
+        if(role ==3) {
+            tabLayout.addTab(tabLayout.newTab().setText("Task"));
+        }
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //Initializing viewPager
@@ -225,11 +227,11 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
                 startActivity(intent);
                 finish();
                 return true;*/
-            case R.id.adm_taskList:
+           /* case R.id.adm_taskList:
                 intent=new Intent(getApplicationContext(),Ui_taskList.class);
                 startActivity(intent);
                 finish();
-                return true;
+                return true;*/
             case R.id.adm_setting:
                 intent=new Intent(getApplicationContext(),Ui_setting.class);
                 startActivity(intent);

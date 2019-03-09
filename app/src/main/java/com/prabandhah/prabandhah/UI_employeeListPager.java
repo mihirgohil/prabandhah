@@ -5,11 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.prabandhah.prabandhah.tabs.AdminList;
-import com.prabandhah.prabandhah.tabs.Chat;
 import com.prabandhah.prabandhah.tabs.EmpList;
-import com.prabandhah.prabandhah.tabs.Event;
 import com.prabandhah.prabandhah.tabs.EventMangerList;
-import com.prabandhah.prabandhah.tabs.Team;
 
 public class UI_employeeListPager extends FragmentStatePagerAdapter {
     int tabCount;

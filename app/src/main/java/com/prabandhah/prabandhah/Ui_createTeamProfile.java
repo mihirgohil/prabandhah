@@ -84,13 +84,15 @@ public class Ui_createTeamProfile extends AppCompatActivity {
                         for(int i=0;i<adminlist.size();i++){
                             dba.child("Admin_list").child(adminlist.get(i).getUser_id()).child("admin_permission").setValue("true");
                         }
+                        Profile p=adapterForTeammemebers.getselectedprofile();
+                        dba.child("team_head").child(p.user_id).child("admin_permission").setValue("true");
+                        String rolestr = "3";
+                        //removing teamhead from employeelist
+                        list.remove(p);
                         //forloopforaddings the employee
                         for(int i=0;i<list.size();i++){
                             dba.child("employee_list").child(list.get(i).getUser_id()).child("admin_permission").setValue("false");
                         }
-                        Profile p=adapterForTeammemebers.getselectedprofile();
-                        dba.child("team_head").child(p.user_id).child("admin_permission").setValue("true");
-                        String rolestr = "3";
                         FirebaseDatabase.getInstance().getReference("users").child(p.user_id).child("role").setValue(rolestr);
                         Intent intent=new Intent(getApplicationContext(),Ui_home.class);
                         startActivity(intent);

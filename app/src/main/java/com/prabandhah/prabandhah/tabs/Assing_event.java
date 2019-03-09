@@ -60,7 +60,7 @@ public class Assing_event extends Fragment {
                         if(eventlist == null){}
                         else{
 
-                            adapterForEventlist = new AdapterForEventlist(getContext(),eventlist,"Event");
+                            adapterForEventlist = new AdapterForEventlist(getContext(),eventlist,"Event","1");
                             recyclerView.setAdapter(adapterForEventlist);}
                     }
 

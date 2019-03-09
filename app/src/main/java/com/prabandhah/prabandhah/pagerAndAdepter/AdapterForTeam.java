@@ -1,5 +1,6 @@
 package com.prabandhah.prabandhah.pagerAndAdepter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -74,6 +75,7 @@ public class AdapterForTeam extends RecyclerView.Adapter<AdapterForTeam.Viewhodl
                         Intent intent= new Intent(context,Ui_team_in_DetaiView.class);
                         intent.putExtra("teamid",teams.get(getAdapterPosition()).getTeam_id());
                         context.startActivity(intent);
+                        ((Activity)context).finish();
                     }
                 }
             });
