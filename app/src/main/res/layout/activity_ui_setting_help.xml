@@ -30,6 +30,7 @@
         android:orientation="vertical">
 
         <Button
+            android:visibility="gone"
             android:id="@+id/btn_call"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,34 +54,46 @@
     </LinearLayout>
 
     <LinearLayout
+
         android:id="@+id/layout_sub_email"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/_10sdp">
+        android:layout_margin="@dimen/_10sdp"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/edit_subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Subject"
-            android:textColor="#000000"/>
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/attach"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_220sdp"
+            android:text="Attach"
+
+            />
+
         <EditText
             android:id="@+id/edit_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Compose Email"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+
+            />
+
         <Button
             android:id="@+id/btn_send"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_50sdp"
             android:text="Send"
-            android:textSize="@dimen/_15sdp"
             android:textColor="#1310e4"
-            />
+            android:textSize="@dimen/_15sdp" />
 
 
     </LinearLayout>
