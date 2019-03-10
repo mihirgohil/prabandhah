@@ -102,15 +102,7 @@ public class Ui_setting_help extends AppCompatActivity {
             }
         });
 
-        bckbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Ui_setting.class);
 
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
     @Override

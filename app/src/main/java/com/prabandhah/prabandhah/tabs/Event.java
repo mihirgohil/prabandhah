@@ -126,20 +126,28 @@ public class Event extends Fragment{
                                                              @Override
                                                              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                                  for(DataSnapshot dataSnapshot3:dataSnapshot.getChildren()){
+                                                                     eventlist = new ArrayList<EventClass>();
                                                                      for(int i = 0;i<teams.size();i++){
+
                                                                          if(dataSnapshot3.getKey().equals(teams.get(i).team_id)){
                                                                              FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).child(dataSnapshot2.getKey()).addValueEventListener(new ValueEventListener() {
                                                                                  @Override
                                                                                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                                                     eventlist = new ArrayList<EventClass>();
+
                                                                                      EventClass eventClass = dataSnapshot.getValue(EventClass.class);
+                                                                                    // Toast.makeText(getActivity(), "event"+eventClass.eventname, Toast.LENGTH_SHORT).show();
                                                                                      if(eventClass.eventstatus.equals("assigned")){
                                                                                          eventlist.add(eventClass);
+
                                                                                      }
                                                                                      if(eventClass==null){
 
                                                                                      }
-                                                                                     else {
+                                                                                     else { StringBuffer stringBuffer=new StringBuffer();
+                                                                                         for(int i = 0;i<eventlist.size();i++){
+                                                                                             stringBuffer.append(eventlist.get(i).eventname).append("\n");
+                                                                                         }
+                                                                                         Toast.makeText(getActivity(), "str"+stringBuffer.toString(), Toast.LENGTH_SHORT).show();
                                                                                          adapterForEventlist = new AdapterForEventlist(getContext(), eventlist, "Event", "3");
                                                                                          recyclerView.setAdapter(adapterForEventlist);
                                                                                      }

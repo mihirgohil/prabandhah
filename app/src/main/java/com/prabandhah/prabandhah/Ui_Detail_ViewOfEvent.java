@@ -34,7 +34,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
     TextView noofguest;
     TextView budget;
     TextView nameofeventManger;
-    CardView addteamtoevent;
+    CardView addteamtoevent,tasklistforevent;
     TextView address;
     TextView des;
     Toolbar toolbar;
@@ -48,6 +48,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         eventid=intent.getStringExtra("eventid");
         nameofevent = findViewById(R.id.nameofevent);
         typeofevent = findViewById(R.id.eventtype);
+        tasklistforevent = findViewById(R.id.eventtasklist);
         startdate = findViewById(R.id.strdate);
         enddate = findViewById(R.id.enddate);
         starttime = findViewById(R.id.strtime);
@@ -122,6 +123,9 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         if(role == 2){
             addteamtoevent.setVisibility(View.VISIBLE);
         }
+        if(role == 3){
+            tasklistforevent.setVisibility(View.VISIBLE);
+        }
         //Adding toolbar to the activity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -132,6 +136,15 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
                 Toast.makeText(Ui_Detail_ViewOfEvent.this, "add team to event", Toast.LENGTH_SHORT).show();
 
                 Intent intent1 = new Intent(Ui_Detail_ViewOfEvent.this,Ui_addTeamToEvent.class);
+                intent1.putExtra("eventid",eventid);
+                startActivity(intent1);
+                finish();
+            }
+        });
+        tasklistforevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(Ui_Detail_ViewOfEvent.this,Ui_tasklistofteam.class);
                 intent1.putExtra("eventid",eventid);
                 startActivity(intent1);
                 finish();

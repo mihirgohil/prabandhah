@@ -111,6 +111,11 @@
     <string name="task">Task:</string>
     <string name="status1">Status:</string>
     <string name="no_of_task">No of Task</string>
+    <string name="event_task_list">Event Task list</string>
+    <string name="assigned_task">Assigned Task</string>
+    <string name="completed_task">Completed Task</string>
+    <string name="no_of_sub_task">No of sub Task:</string>
+    <string name="name_of_team1">Name of Team</string>
     <string-array name="forrecylevieweventstatus">
         <item>"Assigned"</item>
         <item>"Completed"</item>
