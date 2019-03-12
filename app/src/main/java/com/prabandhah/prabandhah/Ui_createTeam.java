@@ -53,7 +53,8 @@ public class Ui_createTeam extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedlist = adepterForRecylerView.selectedListForTeam();
+                selectedlist = new ArrayList<String>();
+                 selectedlist =  adepterForRecylerView.selectedListForTeam();
                 if(selectedlist.isEmpty()){
                     Toast.makeText(Ui_createTeam.this, "Select Atleast one Employee", Toast.LENGTH_SHORT).show();
                 }
@@ -106,5 +107,11 @@ public class Ui_createTeam extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(getApplicationContext(), Ui_home.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -116,6 +116,16 @@
     <string name="completed_task">Completed Task</string>
     <string name="no_of_sub_task">No of sub Task:</string>
     <string name="name_of_team1">Name of Team</string>
+    <string name="task_for_teamhead">Task for Teamhead</string>
+    <string name="name_of_team2">Name of Team:</string>
+    <string name="task_for_teamhead1">Task for Teamhead:</string>
+    <string name="sub_task_for_team_members">Sub Task for Team members</string>
+    <string name="create_sub_task">Create Sub-Task</string>
+    <string name="select_teammembers">Select Teammembers</string>
+    <string name="no_of_employees">No of employees:</string>
+    <string name="assigned">assigned</string>
+    <string name="detail_of_subtask">Detail of Subtask</string>
+    <string name="employee_name">Employee name:</string>
     <string-array name="forrecylevieweventstatus">
         <item>"Assigned"</item>
         <item>"Completed"</item>

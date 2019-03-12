@@ -20,13 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.prabandhah.prabandhah.dataclasses.Task;
 import com.prabandhah.prabandhah.dataclasses.Teams;
 import com.prabandhah.prabandhah.pagerAndAdepter.AdapterForIncludedTaskteamtaskrecyler;
+import com.prabandhah.prabandhah.pagerAndAdepter.AdpaterForTasklistteamhead;
 
 import java.util.ArrayList;
 
 public class Ui_tasklistofteam extends AppCompatActivity {
     ImageView bckbtn;
-    RecyclerView recyclerView;
-    AdapterForIncludedTaskteamtaskrecyler adapterForIncludedTaskteamtaskrecyler;
+    RecyclerView recyclerView,recyclerView1;
+    AdpaterForTasklistteamhead adapterForIncludedTaskteamtaskrecyler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +35,12 @@ public class Ui_tasklistofteam extends AppCompatActivity {
         bckbtn = findViewById(R.id.createEvent_png_backbtn);
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView1 = findViewById(R.id.recycler1);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(this));
         Intent intent = getIntent();
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
-        String companyid = pref.getString("companyid","");
+        final String companyid = pref.getString("companyid","");
         final String eventid=intent.getStringExtra("eventid");
         final DatabaseReference dba =FirebaseDatabase.getInstance().getReference("Teams").child(companyid);
         dba.addValueEventListener(new ValueEventListener() {
@@ -75,8 +78,10 @@ public class Ui_tasklistofteam extends AppCompatActivity {
                                                                      completedtasks.add(task);
                                                                  }
                                                        }
-                                                       adapterForIncludedTaskteamtaskrecyler = new AdapterForIncludedTaskteamtaskrecyler(Ui_tasklistofteam.this,assignedtasks);
+                                                       adapterForIncludedTaskteamtaskrecyler = new AdpaterForTasklistteamhead(Ui_tasklistofteam.this,assignedtasks,companyid,eventid);
                                                        recyclerView.setAdapter(adapterForIncludedTaskteamtaskrecyler);
+                                                       adapterForIncludedTaskteamtaskrecyler = new AdpaterForTasklistteamhead(Ui_tasklistofteam.this,completedtasks,companyid,eventid);
+                                                       recyclerView1.setAdapter(adapterForIncludedTaskteamtaskrecyler);
                                                    }
 
                                                    @Override

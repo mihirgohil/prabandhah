@@ -165,10 +165,12 @@ public class AdepterForRecylerView extends RecyclerView.Adapter<AdepterForRecyle
                         String tmp = profiles.get(getAdapterPosition()).getUser_id();
                         if (checkBox.isChecked()) {
                             checkBox.setChecked(false);
+                            notifyDataSetChanged();
                             //selected.add(profiles.get(getAdapterPosition()).getUser_name());
                             selected.remove(tmp);
                         } else if (!checkBox.isChecked()) {
                             checkBox.setChecked(true);
+                            notifyDataSetChanged();
                             selected.add(tmp);
                         }
 

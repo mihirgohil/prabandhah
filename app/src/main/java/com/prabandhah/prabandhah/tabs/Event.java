@@ -33,6 +33,8 @@ import com.prabandhah.prabandhah.pagerAndAdepter.AdapterForEventlist;
 import com.prabandhah.prabandhah.pagerAndAdepter.AdapterForTeam;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Event extends Fragment{
     int role;
@@ -121,6 +123,7 @@ public class Event extends Fragment{
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                     ArrayList<String> eventid = new ArrayList<String>();
+
                                                     for(final DataSnapshot dataSnapshot2:dataSnapshot.getChildren()){
                                                          FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(dataSnapshot2.getKey()).child("teamid").addValueEventListener(new ValueEventListener() {
                                                              @Override
@@ -133,23 +136,33 @@ public class Event extends Fragment{
                                                                              FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).child(dataSnapshot2.getKey()).addValueEventListener(new ValueEventListener() {
                                                                                  @Override
                                                                                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                                                                     EventClass eventClass = dataSnapshot.getValue(EventClass.class);
-                                                                                    // Toast.makeText(getActivity(), "event"+eventClass.eventname, Toast.LENGTH_SHORT).show();
+                                                                                     EventClass eventClass =dataSnapshot.getValue(EventClass.class);
+                                                                                     EventClass m = new EventClass();
                                                                                      if(eventClass.eventstatus.equals("assigned")){
-                                                                                         eventlist.add(eventClass);
-
+                                                                                        eventlist.add(eventClass);
                                                                                      }
-                                                                                     if(eventClass==null){
-
+                                                                                     if(eventlist ==null){
+                                                                                         Toast.makeText(getActivity(), "list null", Toast.LENGTH_SHORT).show();
                                                                                      }
-                                                                                     else { StringBuffer stringBuffer=new StringBuffer();
-                                                                                         for(int i = 0;i<eventlist.size();i++){
-                                                                                             stringBuffer.append(eventlist.get(i).eventname).append("\n");
+                                                                                     else {
+                                                                                         if(eventlist == null){
+
+                                                                                         }else{
+                                                                                             //Toast.makeText(getActivity(), "str"+stringBuffer.toString(), Toast.LENGTH_SHORT).show();
+                                                                                             ArrayList<EventClass> selectedevent = new ArrayList<EventClass>();
+                                                                                             for(int j=0 ; j<eventlist.size();j++){
+                                                                                                 for(int i1=j+1;i1<eventlist.size();i1++){
+                                                                                                     if(eventlist.get(j).eventid.equals(eventlist.get(i1).eventid)){
+                                                                                                         eventlist.remove(i1);
+                                                                                                     }
+                                                                                                 }
+                                                                                                 adapterForEventlist = new AdapterForEventlist(getContext(),eventlist,"Event","3");
+                                                                                                 recyclerView.setAdapter(adapterForEventlist);
+                                                                                             }
+
+
                                                                                          }
-                                                                                         Toast.makeText(getActivity(), "str"+stringBuffer.toString(), Toast.LENGTH_SHORT).show();
-                                                                                         adapterForEventlist = new AdapterForEventlist(getContext(), eventlist, "Event", "3");
-                                                                                         recyclerView.setAdapter(adapterForEventlist);
+
                                                                                      }
                                                                                  }
 
