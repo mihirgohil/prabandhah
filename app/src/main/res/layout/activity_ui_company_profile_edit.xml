@@ -37,6 +37,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             app:contentPadding="@dimen/_5sdp">
             <EditText
+                android:id="@+id/companyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Comapany Name"
@@ -50,6 +51,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             app:contentPadding="@dimen/_5sdp">
             <EditText
+                android:id="@+id/companyemail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
@@ -65,6 +67,7 @@
             app:contentPadding="@dimen/_5sdp">
 
             <EditText
+                android:id="@+id/companyAdress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Address"
