@@ -86,7 +86,7 @@ public class Ui_createsubtaskforteammembers extends AppCompatActivity {
                   dba.setValue(subTask);
                   dba = dba.child("employeefortask");
                   for(int i=0;i<selectedmember.size();i++){
-                      SubTaskemp subTaskemp = new SubTaskemp(selectedmember.get(i),subtaskid,"assigned");
+                      SubTaskemp subTaskemp = new SubTaskemp(selectedmember.get(i),subtaskid,"assigned",task.getText().toString(),taskid,eventid,teamid);
                       dba.child(selectedmember.get(i)).setValue(subTaskemp);
                   }
                   startActivity(new Intent(Ui_createsubtaskforteammembers.this,Ui_home.class));

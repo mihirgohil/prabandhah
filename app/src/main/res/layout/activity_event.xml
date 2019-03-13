@@ -19,6 +19,7 @@
           android:textSize="@dimen/_40sdp"
           android:text="@string/Event_list"/>
       <android.support.v7.widget.RecyclerView
+          android:layout_marginLeft="@dimen/_5sdp"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:id="@+id/recycler"/>

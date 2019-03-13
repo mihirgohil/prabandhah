@@ -61,11 +61,12 @@ public class Ui_tasklistofteam extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    final ArrayList<Task> assignedtasks= new ArrayList<Task>();
+                                    final ArrayList<Task> completedtasks= new ArrayList<Task>();
                                     for(DataSnapshot dataSnapshot3:dataSnapshot.getChildren()){
                                        for(int i=0;i<teams.size();i++){
                                            if(dataSnapshot3.getKey().equals(teams.get(i).team_id)){
-                                               final ArrayList<Task> assignedtasks= new ArrayList<Task>();
-                                               final ArrayList<Task> completedtasks= new ArrayList<Task>();
+
                                                FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(dataSnapshot3.getKey()).child("task").addValueEventListener(new ValueEventListener() {
                                                    @Override
                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

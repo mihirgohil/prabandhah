@@ -126,6 +126,10 @@
     <string name="assigned">assigned</string>
     <string name="detail_of_subtask">Detail of Subtask</string>
     <string name="employee_name">Employee name:</string>
+    <string name="team_name2">Team Name:</string>
+    <string name="no_of_task_partner">No of Task Partner:</string>
+    <string name="partners">Partners</string>
+    <string name="name_of_partner">Name of Partner:</string>
     <string-array name="forrecylevieweventstatus">
         <item>"Assigned"</item>
         <item>"Completed"</item>

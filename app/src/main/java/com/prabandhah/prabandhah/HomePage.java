@@ -53,7 +53,7 @@ public class HomePage extends AppCompatActivity implements TabLayout.OnTabSelect
         viewPager = findViewById(R.id.pager);
 
         //Creating our pager adapter
-        pager adapter = new pager(getSupportFragmentManager(), tabLayout.getTabCount());
+        pager adapter = new pager(getSupportFragmentManager(), tabLayout.getTabCount(),HomePage.this);
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);

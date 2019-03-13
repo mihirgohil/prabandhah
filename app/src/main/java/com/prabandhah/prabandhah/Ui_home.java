@@ -1,6 +1,7 @@
 package com.prabandhah.prabandhah;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,10 +56,19 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         //Initializing the tablayout
         tabLayout = findViewById(R.id.tabLayoutF);
         //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("Event"));
-        tabLayout.addTab(tabLayout.newTab().setText("Team"));
+
         if(role ==3) {
+            tabLayout.addTab(tabLayout.newTab().setText("Event"));
+            tabLayout.addTab(tabLayout.newTab().setText("Team"));
             tabLayout.addTab(tabLayout.newTab().setText("Task"));
+        }
+        else if(role == 4) {
+            tabLayout.addTab(tabLayout.newTab().setText("Task"));
+            tabLayout.addTab(tabLayout.newTab().setText("Team"));
+        }
+        else {
+            tabLayout.addTab(tabLayout.newTab().setText("Event"));
+            tabLayout.addTab(tabLayout.newTab().setText("Team"));
         }
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -66,7 +76,7 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         viewPager = findViewById(R.id.pager);
 
         //Creating our pager adapter
-        pager adapter = new pager(getSupportFragmentManager(), tabLayout.getTabCount());
+        pager adapter = new pager(getSupportFragmentManager(), tabLayout.getTabCount(), getApplicationContext());
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
@@ -248,8 +258,9 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
                             public void onClick(DialogInterface dialog, int which) {
                                 FirebaseAuth firebaseAuth =FirebaseAuth.getInstance();
                                 firebaseAuth.signOut();
+                                finishAffinity();
                                 startActivity(new Intent(Ui_home.this,LoginPage.class));
-                                finish();
+
                             }
 
                         })
@@ -266,12 +277,15 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         if(viewPager.getCurrentItem() == 0)
         {   Intent intent = getIntent();
             intent=new Intent(getApplicationContext(),Ui_createEvent.class);
+            finish();
             startActivity(intent);
+
         }
         if(viewPager.getCurrentItem() == 1)
         {
             Intent intent = getIntent();
             intent=new Intent(getApplicationContext(),Ui_createTeam.class);
+            finish();
             startActivity(intent);
 
         }
