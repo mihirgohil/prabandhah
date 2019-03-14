@@ -15,7 +15,8 @@
         android:roundIcon="@drawable/logocom"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Ui_TaskpartnersDetail_for_emp"></activity>
+        <activity android:name=".Account_Settings_Change_Password"></activity>
+        <activity android:name=".Account_Settings_Edit_Profile" />
         <activity android:name=".Ui_subtaskDetailview" />
         <activity android:name=".Ui_createsubtaskforteammembers" />
         <activity android:name=".Ui_subtaskForteammembers" />
