@@ -42,11 +42,11 @@ public class Assing_event extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Profile profile = dataSnapshot.getValue(Profile.class);
-                FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).addValueEventListener(new ValueEventListener() {
+                FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         eventlist = new ArrayList<EventClass>();

@@ -48,7 +48,7 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                     final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                     dataref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                     dataref.keepSynced(true);
-                    dataref.addValueEventListener(new ValueEventListener() {
+                    dataref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             ro = dataSnapshot.child("role").getValue().toString();
@@ -73,7 +73,7 @@ public class are_you_owner_or_admin extends AppCompatActivity {
                     final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                     dataref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                     dataref.keepSynced(true);
-                    dataref.addValueEventListener(new ValueEventListener() {
+                    dataref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             ro = dataSnapshot.child("role").getValue().toString();

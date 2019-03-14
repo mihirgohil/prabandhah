@@ -42,7 +42,7 @@ public class Ui_subtaskForteammembers extends AppCompatActivity {
         final String taskid = intent.getStringExtra("taskid");
         final String teamid = intent.getStringExtra("teamid");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Task task=dataSnapshot.getValue(Task.class);
@@ -56,7 +56,7 @@ public class Ui_subtaskForteammembers extends AppCompatActivity {
             }
         });
         final ArrayList<SubTask> tasks= new ArrayList<SubTask>();
-        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).child("subtask").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).child("subtask").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){

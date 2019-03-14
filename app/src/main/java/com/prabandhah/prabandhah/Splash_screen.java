@@ -86,7 +86,7 @@ public class Splash_screen extends AppCompatActivity {
         if(user != null)
         {   DatabaseReference dataref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
             dataref.keepSynced(true);
-            dataref.addValueEventListener(new ValueEventListener() {
+            dataref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String ro = dataSnapshot.child("role").getValue().toString();

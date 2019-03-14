@@ -75,7 +75,7 @@ public class Ui_team_in_DetaiView extends AppCompatActivity {
                                    }
                                    //getting user profiles
                                     final ArrayList<Profile> adminprofiles = new ArrayList<Profile>();
-                                   FirebaseDatabase.getInstance().getReference("users").addValueEventListener(new ValueEventListener() {
+                                   FirebaseDatabase.getInstance().getReference("users").addListenerForSingleValueEvent(new ValueEventListener() {
                                        @Override
                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                            for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
@@ -116,7 +116,7 @@ public class Ui_team_in_DetaiView extends AppCompatActivity {
                                 }
                                 //getting employee profile
                                 final ArrayList<Profile> employeeprofiles = new ArrayList<Profile>();
-                                FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamid).child("team_head").addValueEventListener(new ValueEventListener() {
+                                FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamid).child("team_head").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         String teamheadid = null;
@@ -124,7 +124,7 @@ public class Ui_team_in_DetaiView extends AppCompatActivity {
                                         {
                                             teamheadid = dataSnapshot1.getKey();
                                         }
-                                        FirebaseDatabase.getInstance().getReference().child("users").child(teamheadid).addValueEventListener(new ValueEventListener() {
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(teamheadid).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                     Profile profile1 = dataSnapshot.getValue(Profile.class);
@@ -137,7 +137,7 @@ public class Ui_team_in_DetaiView extends AppCompatActivity {
 
                                             }
                                         });
-                                        FirebaseDatabase.getInstance().getReference("users").addValueEventListener(new ValueEventListener() {
+                                        FirebaseDatabase.getInstance().getReference("users").addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())

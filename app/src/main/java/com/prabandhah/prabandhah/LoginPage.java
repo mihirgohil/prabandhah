@@ -141,7 +141,7 @@ public class LoginPage extends AppCompatActivity {
             final SharedPreferences.Editor editor = pref.edit();
             DatabaseReference dataref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
             dataref.keepSynced(true);
-            dataref.addValueEventListener(new ValueEventListener() {
+            dataref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String ro = dataSnapshot.child("role").getValue().toString();

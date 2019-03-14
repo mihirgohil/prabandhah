@@ -38,7 +38,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
     TextView address;
     TextView des;
     Toolbar toolbar;
-    String eventid;
+    String eventid,maintask,subtaskid,teamid;
     int role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,9 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         setContentView(R.layout.activity_ui__detail__view_of_event);
         final Intent intent= getIntent();
         eventid=intent.getStringExtra("eventid");
+        maintask = intent.getStringExtra("maintask");
+        subtaskid = intent.getStringExtra("subtaskid");
+        teamid = intent.getStringExtra("teamid");
         nameofevent = findViewById(R.id.nameofevent);
         typeofevent = findViewById(R.id.eventtype);
         tasklistforevent = findViewById(R.id.eventtasklist);
@@ -58,13 +61,13 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         budget = findViewById(R.id.budget);
         address = findViewById(R.id.address);
         des = findViewById(R.id.description);
-        addteamtoevent = findViewById(R.id.addteamtoevent);
+        addteamtoevent = findViewById(R.id.addteamtoevent); 
         //getting  data
-        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final Profile profile = dataSnapshot.getValue(Profile.class);
-                FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).child(eventid).addValueEventListener(new ValueEventListener() {
+                FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).child(eventid).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         EventClass event= dataSnapshot.getValue(EventClass.class);
@@ -79,7 +82,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
                         budget.setText(event.budget);
                         address.setText(event.address);
                         des.setText(event.description);
-                        FirebaseDatabase.getInstance().getReference("users").child(event.eventmanager).addValueEventListener(new ValueEventListener() {
+                        FirebaseDatabase.getInstance().getReference("users").child(event.eventmanager).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Profile profile1= dataSnapshot.getValue(Profile.class);

@@ -119,7 +119,7 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if(position == 1){
                         final String eventid = eventlist.get(getAdapterPosition()).eventid;
-                        FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                        FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Profile profile = dataSnapshot.getValue(Profile.class);

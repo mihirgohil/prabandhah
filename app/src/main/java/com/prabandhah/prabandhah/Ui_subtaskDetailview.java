@@ -37,7 +37,7 @@ public class Ui_subtaskDetailview extends AppCompatActivity {
         status = findViewById(R.id.status);
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).child("subtask").child(subtaskid).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).child("subtask").child(subtaskid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 SubTask subTask=dataSnapshot.getValue(SubTask.class);
@@ -50,12 +50,12 @@ public class Ui_subtaskDetailview extends AppCompatActivity {
 
             }
         });
-        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).child("subtask").child(subtaskid).child("employeefortask").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).child("subtask").child(subtaskid).child("employeefortask").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final ArrayList<SubTaskemp> subTaskemps = new ArrayList<SubTaskemp>();
                 for(final DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
-                    FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).child("subtask").child(subtaskid).child("employeefortask").child(dataSnapshot1.getKey()).addValueEventListener(new ValueEventListener() {
+                    FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(taskid).child("subtask").child(subtaskid).child("employeefortask").child(dataSnapshot1.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             Toast.makeText(Ui_subtaskDetailview.this, "j"+dataSnapshot1.getKey(), Toast.LENGTH_SHORT).show();

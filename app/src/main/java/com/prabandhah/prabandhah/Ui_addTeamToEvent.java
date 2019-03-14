@@ -47,7 +47,7 @@ public class Ui_addTeamToEvent extends AppCompatActivity {
                 dba = FirebaseDatabase.getInstance().getReference("Teams").child(companyid);
                 //Toast.makeText(getContext(), "cmpid"+companyid, Toast.LENGTH_SHORT).show();
                 //getting team list
-                dba.addValueEventListener(new ValueEventListener() {
+                dba.addListenerForSingleValueEvent(new ValueEventListener() {
                     ArrayList<Teams> teamlist = new ArrayList<Teams>();
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

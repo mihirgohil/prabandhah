@@ -37,7 +37,7 @@ public class Ui_TaskpartnersDetail_for_emp extends AppCompatActivity {
         final ArrayList<String> empid= new ArrayList<String>();
         final ArrayList<SubTaskemp> subTaskemps=new ArrayList<SubTaskemp>();
        final String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(maintask).child("subtask").child(subtaskid).child("employeefortask").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamid).child("task").child(maintask).child("subtask").child(subtaskid).child("employeefortask").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){

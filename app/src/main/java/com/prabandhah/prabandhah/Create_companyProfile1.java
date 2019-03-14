@@ -47,9 +47,9 @@ public class Create_companyProfile1 extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
-                        {   finishAffinity();
+                        {
                             startActivity(new Intent(getApplicationContext(),Ui_home.class));
-
+                            finishAffinity();
                         }
                         else
                         {

@@ -65,7 +65,7 @@ public class Team extends Fragment {
                     dba = FirebaseDatabase.getInstance().getReference("Teams").child(companyid);
                     //Toast.makeText(getContext(), "cmpid"+companyid, Toast.LENGTH_SHORT).show();
                     //getting team list
-                    dba.addValueEventListener(new ValueEventListener() {
+                    dba.addListenerForSingleValueEvent(new ValueEventListener() {
                         ArrayList<Teams> teamlist = new ArrayList<Teams>();
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -99,13 +99,13 @@ public class Team extends Fragment {
         else if(role == 3 || role == 4){
             final String cuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             final DatabaseReference dba =FirebaseDatabase.getInstance().getReference("Teams").child(companyidf);
-            dba.addValueEventListener(new ValueEventListener() {
+            dba.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     final ArrayList<Teams> teams = new ArrayList<Teams>();
                     for(final DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                         final Teams teamsclass = dataSnapshot1.getValue(Teams.class);
-                        dba.child(dataSnapshot1.getKey()).child("team_head").addValueEventListener(new ValueEventListener() {
+                        dba.child(dataSnapshot1.getKey()).child("team_head").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot dataSnapshot2:dataSnapshot.getChildren()){
@@ -113,7 +113,7 @@ public class Team extends Fragment {
                                         teams.add(teamsclass);
                                     }
                                 }
-                                dba.child(dataSnapshot1.getKey()).child("employee_list").addValueEventListener(new ValueEventListener() {
+                                dba.child(dataSnapshot1.getKey()).child("employee_list").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         for(DataSnapshot dataSnapshot3:dataSnapshot.getChildren()){

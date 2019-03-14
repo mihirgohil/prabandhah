@@ -39,7 +39,7 @@ public class Ui_AssignTask_To_addedTeam extends AppCompatActivity {
         final String eventid= intent.getStringExtra("eventid");
         final String teamid = intent.getStringExtra("teamid");
 
-        FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamid).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Teams teams = dataSnapshot.getValue(Teams.class);

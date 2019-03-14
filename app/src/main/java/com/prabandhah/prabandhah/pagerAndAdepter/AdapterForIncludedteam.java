@@ -46,24 +46,24 @@ public class AdapterForIncludedteam extends RecyclerView.Adapter<AdapterForInclu
     @Override
     public void onBindViewHolder(@NonNull final Viewholder holder, final int position) {
        dba = FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamslist.get(position));
-       dba.addValueEventListener(new ValueEventListener() {
+       dba.addListenerForSingleValueEvent(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                holder.nameoftheteam.setText(dataSnapshot.child("team_name").getValue().toString());
                dba = FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamslist.get(position)).child("team_head");
-               dba.addValueEventListener(new ValueEventListener() {
+               dba.addListenerForSingleValueEvent(new ValueEventListener() {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         String teamheadid;
                         for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                             teamheadid = dataSnapshot1.getKey();
                             dba = FirebaseDatabase.getInstance().getReference("users").child(teamheadid);
-                                    dba.addValueEventListener(new ValueEventListener() {
+                                    dba.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     holder.nameoftheteamhead.setText(dataSnapshot.child("user_name").getValue().toString());
                                     dba = FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(teamslist.get(position)).child("task");
-                                    dba.addValueEventListener(new ValueEventListener() {
+                                    dba.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             int count = 0;

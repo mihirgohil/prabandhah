@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.prabandhah.prabandhah.R;
+import com.prabandhah.prabandhah.Ui_Detail_ViewOfEvent;
 import com.prabandhah.prabandhah.Ui_TaskpartnersDetail_for_emp;
 import com.prabandhah.prabandhah.dataclasses.SubTask;
 import com.prabandhah.prabandhah.dataclasses.SubTaskemp;
@@ -49,7 +50,7 @@ public class AdapterForEmployeesubTask extends RecyclerView.Adapter<AdapterForEm
         SharedPreferences pref = context.getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
         String companyid = pref.getString("companyid","");
-        FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(subTaskemps.get(position).teamid).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(subTaskemps.get(position).teamid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Teams teams = dataSnapshot.getValue(Teams.class);
@@ -61,7 +62,7 @@ public class AdapterForEmployeesubTask extends RecyclerView.Adapter<AdapterForEm
 
             }
         });
-        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(subTaskemps.get(position).eventid).child("teamid").child(subTaskemps.get(position).teamid).child("task").child(subTaskemps.get(position).maintaskid).child("subtask").child(subTaskemps.get(position).subtaskid).child("employeefortask").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(subTaskemps.get(position).eventid).child("teamid").child(subTaskemps.get(position).teamid).child("task").child(subTaskemps.get(position).maintaskid).child("subtask").child(subTaskemps.get(position).subtaskid).child("employeefortask").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int counter=0;
@@ -78,7 +79,7 @@ public class AdapterForEmployeesubTask extends RecyclerView.Adapter<AdapterForEm
 
             }
         });
-        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(subTaskemps.get(position).eventid).child("teamid").child(subTaskemps.get(position).teamid).child("task").child(subTaskemps.get(position).maintaskid).child("subtask").child(subTaskemps.get(position).subtaskid).child("employeefortask").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(subTaskemps.get(position).eventid).child("teamid").child(subTaskemps.get(position).teamid).child("task").child(subTaskemps.get(position).maintaskid).child("subtask").child(subTaskemps.get(position).subtaskid).child("employeefortask").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String userid= FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -97,7 +98,6 @@ public class AdapterForEmployeesubTask extends RecyclerView.Adapter<AdapterForEm
 
             }
         });
-        holder.pos.setText(String.valueOf(position));
     }
 
     @Override
@@ -114,7 +114,6 @@ public class AdapterForEmployeesubTask extends RecyclerView.Adapter<AdapterForEm
             nameofteam = itemView.findViewById(R.id.nameofteam);
             status = itemView.findViewById(R.id.statusspiner);
             noofemployee = itemView.findViewById(R.id.noofemployee);
-            pos = itemView.findViewById(R.id.position);
             status.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
@@ -123,7 +122,7 @@ public class AdapterForEmployeesubTask extends RecyclerView.Adapter<AdapterForEm
                        dba.child("employeefortask").child(subTaskemps.get(getAdapterPosition()).userid).child("status").setValue("completed").addOnCompleteListener(new OnCompleteListener<Void>() {
                            @Override
                            public void onComplete(@NonNull Task<Void> task) {
-                               dba.child("employeefortask").addValueEventListener(new ValueEventListener() {
+                               dba.child("employeefortask").addListenerForSingleValueEvent(new ValueEventListener() {
                                    @Override
                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                        int noofemployee=0;
@@ -158,34 +157,13 @@ public class AdapterForEmployeesubTask extends RecyclerView.Adapter<AdapterForEm
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(subTaskemps.get(getAdapterPosition()).eventid).child("teamid").child(subTaskemps.get(getAdapterPosition()).teamid).child("task").child(subTaskemps.get(getAdapterPosition()).maintaskid).child("subtask").child(subTaskemps.get(getAdapterPosition()).subtaskid).child("employeefortask").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            int counter=0;
-                            for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
 
-                                counter++;
-                            }
-                            counter =counter-1;
-                            if(counter > 0){
-                                Intent intent=new Intent(context,Ui_TaskpartnersDetail_for_emp.class);
-                            //    intent.putExtra("eventid",subTaskemps.get(getAdapterPosition()).eventid);
-                              //  intent.putExtra("maintask",subTaskemps.get(getAdapterPosition()).maintaskid);
-                                //intent.putExtra("subtaskid",subTaskemps.get(getAdapterPosition()).subtaskid);
-                                //intent.putExtra("teamid",subTaskemps.get(getAdapterPosition()).teamid);
-
+                                Intent intent=new Intent(context, Ui_Detail_ViewOfEvent.class);
+                                intent.putExtra("eventid",subTaskemps.get(getAdapterPosition()).eventid);
+                                intent.putExtra("maintask",subTaskemps.get(getAdapterPosition()).maintaskid);
+                                intent.putExtra("subtaskid",subTaskemps.get(getAdapterPosition()).subtaskid);
+                                intent.putExtra("teamid",subTaskemps.get(getAdapterPosition()).teamid);
                                 context.startActivity(intent);
-                                ((Activity)context).finish();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-
                 }
             });
         }

@@ -101,7 +101,7 @@ public class Ui_companyProfile extends AppCompatActivity {
                             address.setText(company.getCompany_address());
                            String uid= company.getUser_id();
                             DatabaseReference getOwner = FirebaseDatabase.getInstance().getReference("users").child(uid);
-                            getOwner.addValueEventListener(new ValueEventListener() {
+                            getOwner.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     String uname;

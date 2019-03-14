@@ -33,7 +33,7 @@ public class AdapterforSubtaskemp extends RecyclerView.Adapter<AdapterforSubtask
 
     @Override
     public void onBindViewHolder(@NonNull final AdapterforSubtaskemp.viewHolder holder, int position) {
-        FirebaseDatabase.getInstance().getReference("users").child(subTaskemps.get(position).userid).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("users").child(subTaskemps.get(position).userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Profile p=dataSnapshot.getValue(Profile.class);

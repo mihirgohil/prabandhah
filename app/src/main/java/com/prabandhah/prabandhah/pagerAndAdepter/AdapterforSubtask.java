@@ -40,7 +40,7 @@ public class AdapterforSubtask extends RecyclerView.Adapter<AdapterforSubtask.vi
     public void onBindViewHolder(@NonNull final viewHolder holder, int position) {
         holder.nameoftask.setText(tasks.get(position).subtask);
         holder.status.setText(tasks.get(position).subtaskstatus);
-        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(tasks.get(position).teamid).child("task").child(tasks.get(position).maintaskid).child("subtask").child(tasks.get(position).subtaskid).child("employeefortask").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(tasks.get(position).teamid).child("task").child(tasks.get(position).maintaskid).child("subtask").child(tasks.get(position).subtaskid).child("employeefortask").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
               int counter=0;

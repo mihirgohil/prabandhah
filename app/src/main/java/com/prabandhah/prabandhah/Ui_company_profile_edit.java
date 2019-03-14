@@ -37,7 +37,7 @@ public class Ui_company_profile_edit extends AppCompatActivity {
         final SharedPreferences.Editor editor = pref.edit();
         role = pref.getInt("role",0);
         final String companyid = pref.getString("companyid","");
-        FirebaseDatabase.getInstance().getReference("CompanyMaster").child(companyid).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("CompanyMaster").child(companyid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Company company=dataSnapshot.getValue(Company.class);

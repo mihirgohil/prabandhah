@@ -47,12 +47,12 @@ public class Ui_createsubtaskforteammembers extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
         String companyid = pref.getString("companyid","");
-        FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamid).child("employee_list").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(teamid).child("employee_list").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 profiles = new ArrayList<Profile>();
               for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
-                  FirebaseDatabase.getInstance().getReference("users").child(dataSnapshot1.getKey()).addValueEventListener(new ValueEventListener() {
+                  FirebaseDatabase.getInstance().getReference("users").child(dataSnapshot1.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
                       @Override
                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                            Profile p =dataSnapshot.getValue(Profile.class);

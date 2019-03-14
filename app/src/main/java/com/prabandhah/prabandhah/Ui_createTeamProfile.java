@@ -114,7 +114,7 @@ public class Ui_createTeamProfile extends AppCompatActivity {
                 final Profile profile = dataSnapshot.getValue(Profile.class);
                 companyid = profile.getCompany_id();
                 reference = FirebaseDatabase.getInstance().getReference("users");
-                reference.addValueEventListener(new ValueEventListener() {
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         list = new ArrayList<Profile>();

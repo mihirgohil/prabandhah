@@ -43,14 +43,14 @@ public class Ui_tasklistofteam extends AppCompatActivity {
         final String companyid = pref.getString("companyid","");
         final String eventid=intent.getStringExtra("eventid");
         final DatabaseReference dba =FirebaseDatabase.getInstance().getReference("Teams").child(companyid);
-        dba.addValueEventListener(new ValueEventListener() {
+        dba.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String cuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 final ArrayList<Teams> teams = new ArrayList<Teams>();
                 for(final DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                     final Teams teamsclass = dataSnapshot1.getValue(Teams.class);
-                    dba.child(dataSnapshot1.getKey()).child("team_head").addValueEventListener(new ValueEventListener() {
+                    dba.child(dataSnapshot1.getKey()).child("team_head").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for(DataSnapshot dataSnapshot2:dataSnapshot.getChildren()){
@@ -58,7 +58,7 @@ public class Ui_tasklistofteam extends AppCompatActivity {
                                     teams.add(teamsclass);
                                 }
                             }
-                            FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").addValueEventListener(new ValueEventListener() {
+                            FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     final ArrayList<Task> assignedtasks= new ArrayList<Task>();
@@ -67,7 +67,7 @@ public class Ui_tasklistofteam extends AppCompatActivity {
                                        for(int i=0;i<teams.size();i++){
                                            if(dataSnapshot3.getKey().equals(teams.get(i).team_id)){
 
-                                               FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(dataSnapshot3.getKey()).child("task").addValueEventListener(new ValueEventListener() {
+                                               FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(dataSnapshot3.getKey()).child("task").addListenerForSingleValueEvent(new ValueEventListener() {
                                                    @Override
                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                        for(DataSnapshot dataSnapshot4:dataSnapshot.getChildren()){

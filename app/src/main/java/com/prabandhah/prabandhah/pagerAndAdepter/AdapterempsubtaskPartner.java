@@ -37,7 +37,7 @@ public class AdapterempsubtaskPartner extends RecyclerView.Adapter<Adapterempsub
     @Override
     public void onBindViewHolder(@NonNull final Viewholder holder, int position) {
         holder.status.setText(subTaskemps.get(position).status);
-        FirebaseDatabase.getInstance().getReference("users").child(subTaskemps.get(position).userid).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("users").child(subTaskemps.get(position).userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Profile p = dataSnapshot.getValue(Profile.class);

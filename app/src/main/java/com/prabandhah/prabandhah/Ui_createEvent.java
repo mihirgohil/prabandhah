@@ -111,7 +111,7 @@ public class Ui_createEvent extends AppCompatActivity implements
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final Profile profile = dataSnapshot.getValue(Profile.class);
                 reference = FirebaseDatabase.getInstance().getReference("users");
-                reference.addValueEventListener(new ValueEventListener() {
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         list = new ArrayList<Profile>();
@@ -191,7 +191,7 @@ public class Ui_createEvent extends AppCompatActivity implements
        fab.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+               FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                        Profile p = dataSnapshot.getValue(Profile.class);

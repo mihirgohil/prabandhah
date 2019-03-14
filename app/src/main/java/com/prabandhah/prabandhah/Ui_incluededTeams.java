@@ -39,7 +39,7 @@ public class Ui_incluededTeams extends AppCompatActivity {
         Intent intent = getIntent();
         final String eventid= intent.getStringExtra("eventid");
         dba = FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid");
-                dba.addValueEventListener(new ValueEventListener() {
+                dba.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 incluededteam = new ArrayList<String>();

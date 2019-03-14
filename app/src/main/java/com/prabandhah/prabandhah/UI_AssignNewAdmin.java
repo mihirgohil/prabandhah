@@ -67,7 +67,7 @@ public class UI_AssignNewAdmin extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final Profile profile = dataSnapshot.getValue(Profile.class);
                 reference = FirebaseDatabase.getInstance().getReference("users");
-                reference.addValueEventListener(new ValueEventListener() {
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         list = new ArrayList<Profile>();

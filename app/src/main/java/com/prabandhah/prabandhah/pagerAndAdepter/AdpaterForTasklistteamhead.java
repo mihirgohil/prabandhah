@@ -47,7 +47,7 @@ public class AdpaterForTasklistteamhead extends RecyclerView.Adapter<AdpaterForT
     public void onBindViewHolder(@NonNull final viewHolder holder, final int position) {
          holder.nameoftask.setText(tasklist.get(position).task);
         Toast.makeText(context, "cid"+companyid, Toast.LENGTH_SHORT).show();
-        FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(tasklist.get(position).teamid).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Teams").child(companyid).child(tasklist.get(position).teamid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Teams teams =dataSnapshot.getValue(Teams.class);
@@ -59,7 +59,7 @@ public class AdpaterForTasklistteamhead extends RecyclerView.Adapter<AdpaterForT
 
             }
         });
-        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(tasklist.get(position).teamid).child("task").child(tasklist.get(position).taskid).child("subtask").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(eventid).child("teamid").child(tasklist.get(position).teamid).child("task").child(tasklist.get(position).taskid).child("subtask").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  int counter = 0;
