@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#7bd3f7"
     tools:context="com.prabandhah.prabandhah.Ui_createTeam">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -34,11 +35,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         />
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/About_us"
-        />
+        android:layout_height="match_parent"
+        android:src="@drawable/aboutusimg"/>
 
 
 </LinearLayout>
