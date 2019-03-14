@@ -131,6 +131,7 @@
     <string name="partners">Partners</string>
     <string name="name_of_partner">Name of Partner:</string>
     <string name="pos">pos</string>
+    <string name="task_partner_list">Task Partner List</string>
     <string-array name="forrecylevieweventstatus">
         <item>"Assigned"</item>
         <item>"Completed"</item>

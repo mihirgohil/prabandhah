@@ -34,11 +34,11 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
     TextView noofguest;
     TextView budget;
     TextView nameofeventManger;
-    CardView addteamtoevent,tasklistforevent;
+    CardView addteamtoevent,tasklistforevent,taskpartnerlist;
     TextView address;
     TextView des;
     Toolbar toolbar;
-    String eventid,maintask,subtaskid,teamid;
+    String eventid,maintask,subtaskid,teamid,prev;
     int role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +49,11 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         maintask = intent.getStringExtra("maintask");
         subtaskid = intent.getStringExtra("subtaskid");
         teamid = intent.getStringExtra("teamid");
+        prev = intent.getStringExtra("prev");
         nameofevent = findViewById(R.id.nameofevent);
         typeofevent = findViewById(R.id.eventtype);
         tasklistforevent = findViewById(R.id.eventtasklist);
+        taskpartnerlist = findViewById(R.id.taskpartner);
         startdate = findViewById(R.id.strdate);
         enddate = findViewById(R.id.enddate);
         starttime = findViewById(R.id.strtime);
@@ -129,6 +131,12 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         if(role == 3){
             tasklistforevent.setVisibility(View.VISIBLE);
         }
+        if(role == 3 || role == 4){
+            if(prev.equals("show")){
+                tasklistforevent.setVisibility(View.INVISIBLE);
+                taskpartnerlist.setVisibility(View.VISIBLE);
+            }
+        }
         //Adding toolbar to the activity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -153,6 +161,18 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
                 finish();
             }
         });
+        taskpartnerlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(Ui_Detail_ViewOfEvent.this, Ui_TaskpartnersDetail_for_emp.class);
+                intent1.putExtra("eventid",eventid);
+                intent1.putExtra("maintask",maintask);
+                intent1.putExtra("subtaskid",subtaskid);
+                intent1.putExtra("teamid",teamid);
+                finish();
+                startActivity(intent1);
+            }
+        });
     }
     @Override
     public void onBackPressed(){
@@ -172,6 +192,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
         else if(role == 2)
         {   inflater.inflate(R.menu.team_included_in_event, menu);
         }
+
         return super.onCreateOptionsMenu(menu);
     }
     // menu item click
@@ -189,6 +210,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
                 intent = new Intent(getApplicationContext(), Ui_edit_Detail_of_event.class);
                 startActivity(intent);
                 finish();
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

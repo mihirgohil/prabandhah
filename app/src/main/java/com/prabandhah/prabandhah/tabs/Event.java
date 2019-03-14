@@ -59,13 +59,13 @@ public class Event extends Fragment{
         role = pref.getInt("role",0);
         recyclerView = view.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final Profile profile = dataSnapshot.getValue(Profile.class);
                 if(profile.role.equals("1") || profile.role.equals("2"))
                 {
-                    FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).addListenerForSingleValueEvent(new ValueEventListener() {
+                    FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             eventlist = new ArrayList<EventClass>();
@@ -105,13 +105,13 @@ public class Event extends Fragment{
                 else
                     {   String companyidf = pref.getString("companyid","");
                         final DatabaseReference dba =FirebaseDatabase.getInstance().getReference("Teams").child(companyidf);
-                        dba.addListenerForSingleValueEvent(new ValueEventListener() {
+                        dba.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 final ArrayList<Teams> teams = new ArrayList<Teams>();
                                 for(final DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                                     final Teams teamsclass = dataSnapshot1.getValue(Teams.class);
-                                    dba.child(dataSnapshot1.getKey()).child("team_head").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    dba.child(dataSnapshot1.getKey()).child("team_head").addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             for(DataSnapshot dataSnapshot2:dataSnapshot.getChildren()){
@@ -119,13 +119,13 @@ public class Event extends Fragment{
                                                     teams.add(teamsclass);
                                                 }
                                             }
-                                            FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").addListenerForSingleValueEvent(new ValueEventListener() {
+                                            FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").addValueEventListener(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                     ArrayList<String> eventid = new ArrayList<String>();
 
                                                     for(final DataSnapshot dataSnapshot2:dataSnapshot.getChildren()){
-                                                         FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(dataSnapshot2.getKey()).child("teamid").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                         FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid").child(dataSnapshot2.getKey()).child("teamid").addValueEventListener(new ValueEventListener() {
                                                              @Override
                                                              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                                  for(DataSnapshot dataSnapshot3:dataSnapshot.getChildren()){
@@ -133,7 +133,7 @@ public class Event extends Fragment{
                                                                      for(int i = 0;i<teams.size();i++){
 
                                                                          if(dataSnapshot3.getKey().equals(teams.get(i).team_id)){
-                                                                             FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).child(dataSnapshot2.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                             FirebaseDatabase.getInstance().getReference("EventMaster").child(profile.company_id).child(dataSnapshot2.getKey()).addValueEventListener(new ValueEventListener() {
                                                                                  @Override
                                                                                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                                                      EventClass eventClass =dataSnapshot.getValue(EventClass.class);

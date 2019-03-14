@@ -169,6 +169,10 @@
             android:launchMode="singleTask"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Ui_TaskpartnersDetail_for_emp"
+            android:launchMode="singleTask"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Ui_Setting_Report_bug"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>

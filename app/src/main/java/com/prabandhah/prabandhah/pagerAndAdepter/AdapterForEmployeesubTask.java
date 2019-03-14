@@ -163,6 +163,7 @@ public class AdapterForEmployeesubTask extends RecyclerView.Adapter<AdapterForEm
                                 intent.putExtra("maintask",subTaskemps.get(getAdapterPosition()).maintaskid);
                                 intent.putExtra("subtaskid",subTaskemps.get(getAdapterPosition()).subtaskid);
                                 intent.putExtra("teamid",subTaskemps.get(getAdapterPosition()).teamid);
+                                intent.putExtra("prev","show");
                                 context.startActivity(intent);
                 }
             });

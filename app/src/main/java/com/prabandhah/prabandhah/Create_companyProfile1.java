@@ -29,34 +29,43 @@ public class Create_companyProfile1 extends AppCompatActivity {
         cmpname = findViewById(R.id.cmpname);
         cmdemail = findViewById(R.id.cmpemail);
         cmpaddress = findViewById(R.id.cmpaddress);
+        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser fbu = FirebaseAuth.getInstance().getCurrentUser();
-                String uid=fbu.getUid();
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("CompanyMaster");
-                DatabaseReference cmpid = databaseReference.push();
-                String cmpidstr = cmpid.getKey();
-                Company cmp = new Company(cmpname.getText().toString(),cmdemail.getText().toString(),cmpaddress.getText().toString(),uid,cmpid.getKey());
-                cmpid.setValue(cmp);
-                //passtouser(cmpidstr);
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
-                databaseReference.keepSynced(true);
-                Profile profile = new Profile(cmpidstr);
-                databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("company_id").setValue(profile.getCompany_id()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                        {
-                            startActivity(new Intent(getApplicationContext(),Ui_home.class));
-                            finishAffinity();
-                        }
-                        else
-                        {
-                            Toast.makeText(Create_companyProfile1.this, "locha", Toast.LENGTH_SHORT).show();
-                        }
+                if(!cmpname.getText().toString().isEmpty()&&!cmdemail.getText().toString().isEmpty()&&!cmpaddress.getText().toString().isEmpty()){
+                    if (cmdemail.getText().toString().matches(emailPattern)){
+                        FirebaseUser fbu = FirebaseAuth.getInstance().getCurrentUser();
+                        String uid=fbu.getUid();
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("CompanyMaster");
+                        DatabaseReference cmpid = databaseReference.push();
+                        String cmpidstr = cmpid.getKey();
+                        Company cmp = new Company(cmpname.getText().toString(),cmdemail.getText().toString(),cmpaddress.getText().toString(),uid,cmpid.getKey());
+                        cmpid.setValue(cmp);
+                        //passtouser(cmpidstr);
+                        databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
+                        databaseReference.keepSynced(true);
+                        Profile profile = new Profile(cmpidstr);
+                        databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("company_id").setValue(profile.getCompany_id()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful())
+                                {
+                                    startActivity(new Intent(getApplicationContext(),Ui_home.class));
+                                    finishAffinity();
+                                }
+                                else
+                                {
+                                    Toast.makeText(Create_companyProfile1.this, "locha", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
-                });
+                    else{
+                        Toast.makeText(Create_companyProfile1.this, "Fill Details properly", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
 
             }
         });

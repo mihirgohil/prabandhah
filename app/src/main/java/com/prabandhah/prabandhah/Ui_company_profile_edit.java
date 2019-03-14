@@ -36,6 +36,7 @@ public class Ui_company_profile_edit extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
         role = pref.getInt("role",0);
+
         final String companyid = pref.getString("companyid","");
         FirebaseDatabase.getInstance().getReference("CompanyMaster").child(companyid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
