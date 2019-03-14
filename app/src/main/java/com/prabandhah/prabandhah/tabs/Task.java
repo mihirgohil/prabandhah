@@ -80,7 +80,10 @@ public class Task extends Fragment {
 
                                                                    for(final DataSnapshot dataSnapshot5:dataSnapshot.getChildren()){
                                                                        final SubTask subTask=dataSnapshot5.getValue(SubTask.class);
-                                                                       dbadata1.child(dataSnapshot4task.getKey()).child("subtask").child(dataSnapshot5.getKey()).child("employeefortask").addValueEventListener(new ValueEventListener() {
+                                                                       String subtaskstatus = dataSnapshot5.child("subtaskstatus").getValue().toString();
+                                                                    //   Toast.makeText(getContext(), "j\n"+subtaskstatus, Toast.LENGTH_SHORT).show();
+                                                                       if(subtaskstatus.equals("assigned")){
+                                                                           dbadata1.child(dataSnapshot4task.getKey()).child("subtask").child(dataSnapshot5.getKey()).child("employeefortask").addValueEventListener(new ValueEventListener() {
                                                                            @Override
                                                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                                                for(DataSnapshot dataSnapshot6:dataSnapshot.getChildren()){
@@ -95,12 +98,26 @@ public class Task extends Fragment {
                                                                                ArrayList<SubTaskemp> subTaskemps1 = new ArrayList<SubTaskemp>();
                                                                                for(int i=0;i<subTaskemps.size();i++){
                                                                                    stringBuffer.append(subTaskemps.get(i).subtaskid).append("\n");
-                                                                                   if(subTaskemps.get(i).status.equals("assigned")){
-                                                                                       subTaskemps1.add(subTaskemps.get(i));
+                                                                                 //  if(subTaskemps.get(i).status.equals("assigned")){
+                                                                                   //    subTaskemps1.add(subTaskemps.get(i));
+                                                                                   //}
+                                                                               }
+                                                                             //  Toast.makeText(getActivity(), "task"+stringBuffer.toString(), Toast.LENGTH_SHORT).show();
+                                                                               for(int j=0 ; j<subTaskemps.size();j++){
+                                                                                   for(int i1=j+1;i1<subTaskemps.size();i1++){
+                                                                                       if(subTaskemps.get(j).subtaskid.equals(subTaskemps.get(i1).subtaskid)){
+                                                                                           subTaskemps.remove(i1);
+                                                                                       }
                                                                                    }
                                                                                }
-                                                                               Toast.makeText(getActivity(), "task"+stringBuffer.toString(), Toast.LENGTH_SHORT).show();
-                                                                               adapterForEmployeesubTask = new AdapterForEmployeesubTask(getContext(),subTaskemps1);
+                                                                               for(int i=0;i<subTaskemps.size();i++){
+                                                                                   if(subTask.subtaskstatus.equals("completed")){
+                                                                                       if(subTask.subtaskid.equals(subTaskemps.get(i).subtaskid)){
+                                                                                           subTaskemps.remove(i);
+                                                                                       }
+                                                                                   }
+                                                                               }
+                                                                               adapterForEmployeesubTask = new AdapterForEmployeesubTask(getContext(),subTaskemps);
                                                                                recyclerView.setAdapter(adapterForEmployeesubTask);
                                                                            }
 
@@ -110,7 +127,8 @@ public class Task extends Fragment {
                                                                            }
                                                                        });
                                                                        }
-                                                               }
+                                                                   }
+                                                                   }
 
                                                                @Override
                                                                public void onCancelled(@NonNull DatabaseError databaseError) {
