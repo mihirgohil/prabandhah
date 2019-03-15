@@ -14,7 +14,15 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/custPopupstyle"
-        />
+        >
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Help"
+            android:textColor="#ffffff"
+            />
+    </android.support.v7.widget.Toolbar>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,6 +48,7 @@
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"/>
         <Button
+            android:visibility="gone"
             android:id="@+id/btn_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

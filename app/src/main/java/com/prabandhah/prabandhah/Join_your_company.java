@@ -57,8 +57,9 @@ public class Join_your_company extends AppCompatActivity {
                        @Override
                        public void onComplete(@NonNull Task<Void> task) {
                            if(task.isSuccessful())
-                           {startActivity(new Intent(getApplicationContext(),Ui_home.class));
-                               finish();
+                           {    finishAffinity();
+                               startActivity(new Intent(getApplicationContext(),Ui_home.class));
+
                            }
                            else
                            {
