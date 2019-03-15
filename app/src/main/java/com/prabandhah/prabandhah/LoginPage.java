@@ -126,6 +126,7 @@ public class LoginPage extends AppCompatActivity {
                     email_verifed();
                 }
                 else{
+                    progressBar.hide();
                     Toast.makeText(LoginPage.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                 }
 
@@ -152,6 +153,7 @@ public class LoginPage extends AppCompatActivity {
                         Toast.makeText(LoginPage.this, "at retrole", Toast.LENGTH_SHORT).show();
                         retrole = Integer.parseInt(ro);
                         editor.putInt("role", retrole);
+                        editor.putString("companyid",cmp);
                         editor.commit();
                         finish();
                         if(cmp.equals("")){
@@ -194,6 +196,7 @@ public class LoginPage extends AppCompatActivity {
 
                 if(!emailpresent){
                     //not present
+                    progressBar.hide();
                     Toast.makeText(LoginPage.this, "No account Exist on This Mail id!", Toast.LENGTH_SHORT).show();
                 }
                 else

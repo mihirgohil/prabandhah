@@ -1,6 +1,7 @@
 package com.prabandhah.prabandhah;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,11 +36,13 @@ public class Create_companyProfile1 extends AppCompatActivity {
             public void onClick(View v) {
                 if(!cmpname.getText().toString().isEmpty()&&!cmdemail.getText().toString().isEmpty()&&!cmpaddress.getText().toString().isEmpty()){
                     if (cmdemail.getText().toString().matches(emailPattern)){
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+                        final SharedPreferences.Editor editor = pref.edit();
                         FirebaseUser fbu = FirebaseAuth.getInstance().getCurrentUser();
                         String uid=fbu.getUid();
                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("CompanyMaster");
                         DatabaseReference cmpid = databaseReference.push();
-                        String cmpidstr = cmpid.getKey();
+                        final String cmpidstr = cmpid.getKey();
                         Company cmp = new Company(cmpname.getText().toString(),cmdemail.getText().toString(),cmpaddress.getText().toString(),uid,cmpid.getKey());
                         cmpid.setValue(cmp);
                         //passtouser(cmpidstr);
@@ -50,7 +53,9 @@ public class Create_companyProfile1 extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful())
-                                {
+                                {   editor.putInt("role", 1);
+                                    editor.putString("companyid",cmpidstr);
+                                    editor.commit();
                                     startActivity(new Intent(getApplicationContext(),Ui_home.class));
                                     finishAffinity();
                                 }
