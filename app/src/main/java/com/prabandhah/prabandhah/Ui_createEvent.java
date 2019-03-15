@@ -91,7 +91,7 @@ public class Ui_createEvent extends AppCompatActivity implements
         });
         final List<String> eventtypes= new ArrayList<>();
         eventtypes.add(0,"select type");
-        eventtypes.add("Birth day");
+        eventtypes.add("Birthday");
         eventtypes.add("Dj party");
         eventtypes.add("Seminar");
         eventtypes.add("Conferences");

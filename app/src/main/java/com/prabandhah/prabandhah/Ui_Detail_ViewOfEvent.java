@@ -137,6 +137,7 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
                 taskpartnerlist.setVisibility(View.VISIBLE);
             }
         }
+
         //Adding toolbar to the activity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

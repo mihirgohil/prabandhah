@@ -190,7 +190,7 @@ public class Ui_home extends AppCompatActivity implements TabLayout.OnTabSelecte
         {
             inflater.inflate(R.menu.optn_for_emp, menu);
         }
-        inflater.inflate(R.menu.notification,menu);
+        //inflater.inflate(R.menu.notification,menu);
         //inflater.inflate(R.menu.search,menu);
         return super.onCreateOptionsMenu(menu);
     }

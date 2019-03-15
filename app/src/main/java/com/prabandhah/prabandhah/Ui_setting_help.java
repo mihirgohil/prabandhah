@@ -48,7 +48,7 @@ public class Ui_setting_help extends AppCompatActivity {
 
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.putExtra(Intent.EXTRA_EMAIL, to);
-                intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Help");
                 intent.putExtra(Intent.EXTRA_TEXT, edit_subject.getText().toString());
                 intent.putExtra(Intent.EXTRA_TEXT, edit_email.getText().toString());
                 intent.setData(Uri.parse("mailto:typrojectcpi@gmail.com"));
