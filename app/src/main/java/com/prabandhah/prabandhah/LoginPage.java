@@ -79,7 +79,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
                 progressBar.setCancelable(true);
                 progressBar.setTitle("Welcome");
-                progressBar.setMessage("Please wait, while we are Logging you in");
+                progressBar.setMessage("Please wait, while we are Logging in");
                 progressBar.setCanceledOnTouchOutside(false);
                 progressBar.show();
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
