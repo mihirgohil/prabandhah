@@ -132,10 +132,13 @@ public class Ui_Detail_ViewOfEvent extends AppCompatActivity {
             tasklistforevent.setVisibility(View.VISIBLE);
         }
         if(role == 3 || role == 4){
-            if(prev.equals("show")){
-                tasklistforevent.setVisibility(View.INVISIBLE);
-                taskpartnerlist.setVisibility(View.VISIBLE);
+            if(prev != null && !prev.isEmpty()){
+                if(prev.equals("show")){
+                    tasklistforevent.setVisibility(View.INVISIBLE);
+                    taskpartnerlist.setVisibility(View.VISIBLE);
+                }
             }
+
         }
 
         //Adding toolbar to the activity
