@@ -53,9 +53,10 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
 
     @Override
     public void onBindViewHolder(@NonNull final myViewholder holder, final int position) {
-            holder.nameofevent.setText(eventlist.get(position).getEventname());
-            holder.enddate.setText(eventlist.get(position).getEnddate());
-            holder.endtime.setText(eventlist.get(position).getEndtime());
+            holder.nameofevent.setText(eventlist.get(position).eventname);
+            holder.enddate.setText(eventlist.get(position).enddate);
+            holder.endtime.setText(eventlist.get(position).endtime);
+            holder.eventtype.setText(eventlist.get(position).eventype);
         DatabaseReference user = FirebaseDatabase.getInstance().getReference("users").child(eventlist.get(position).getEventmanager());
         user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -91,6 +92,7 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
         TextView enddate;
         TextView endtime;
         TextView eventmangername;
+        TextView eventtype;
         TextView txtstatus;
         Spinner spinner;
         CardView card;
@@ -103,7 +105,7 @@ public class AdapterForEventlist extends RecyclerView.Adapter<AdapterForEventlis
             eventmangername = itemView.findViewById(R.id.eventmanagername);
             txtstatus = itemView.findViewById(R.id.txtstatus);
             spinner = itemView.findViewById(R.id.statusspiner);
-
+            eventtype = itemView.findViewById(R.id.eventtype);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
