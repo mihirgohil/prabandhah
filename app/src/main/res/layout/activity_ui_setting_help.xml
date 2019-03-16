@@ -16,10 +16,18 @@
         app:popupTheme="@style/custPopupstyle"
         >
             />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:contentDescription="TODO"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Help"
+            android:layout_marginLeft="@dimen/_28sdp"
+            android:textSize="@dimen/_17sdp"
             android:textColor="#ffffff"
             />
     </android.support.v7.widget.Toolbar>
@@ -78,6 +86,7 @@
             android:textColor="#000000" />
 
         <Button
+            android:visibility="gone"
             android:id="@+id/attach"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -48,12 +48,12 @@ public class EventMangerList extends Fragment {
         recyclerView = view.findViewById(R.id.eventmangerlist_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final Profile profile = dataSnapshot.getValue(Profile.class);
                 reference = FirebaseDatabase.getInstance().getReference("users");
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         list = new ArrayList<Profile>();

@@ -48,7 +48,7 @@ public class Task extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
       //  Toast.makeText(getContext(), "at task", Toast.LENGTH_SHORT).show();
         final DatabaseReference dba= FirebaseDatabase.getInstance().getReference("Teams").child(companyid);
-        dba.addListenerForSingleValueEvent(new ValueEventListener() {
+        dba.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final ArrayList<Teams> teams = new ArrayList<Teams>();
@@ -56,25 +56,25 @@ public class Task extends Fragment {
                 final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 for(final DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                     final Teams teamsclass = dataSnapshot1.getValue(Teams.class);
-                    dba.child(dataSnapshot1.getKey()).child("employee_list").addListenerForSingleValueEvent(new ValueEventListener() {
+                    dba.child(dataSnapshot1.getKey()).child("employee_list").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for(final DataSnapshot dataSnapshot2empid:dataSnapshot.getChildren()){
                                 if(userid.equals(dataSnapshot2empid.getKey())){
                                     final DatabaseReference dbadata = FirebaseDatabase.getInstance().getReference("TaskMaster").child("eventid");
-                                    dbadata.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    dbadata.addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
                                            for(DataSnapshot dataSnapshot3:dataSnapshot.getChildren()){
                                                final DatabaseReference dbadata1 =dbadata.child(dataSnapshot3.getKey()).child("teamid").child(teamsclass.team_id).child("task");
-                                               dbadata1.addListenerForSingleValueEvent(new ValueEventListener() {
+                                               dbadata1.addValueEventListener(new ValueEventListener() {
                                                    @Override
                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                        for(final DataSnapshot dataSnapshot4task:dataSnapshot.getChildren()){
 
-                                                           dbadata1.child(dataSnapshot4task.getKey()).child("subtask").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                           dbadata1.child(dataSnapshot4task.getKey()).child("subtask").addValueEventListener(new ValueEventListener() {
                                                                @Override
                                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -83,7 +83,7 @@ public class Task extends Fragment {
                                                                        String subtaskstatus = dataSnapshot5.child("subtaskstatus").getValue().toString();
                                                                     //   Toast.makeText(getContext(), "j\n"+subtaskstatus, Toast.LENGTH_SHORT).show();
                                                                        if(subtaskstatus.equals("assigned")){
-                                                                           dbadata1.child(dataSnapshot4task.getKey()).child("subtask").child(dataSnapshot5.getKey()).child("employeefortask").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                           dbadata1.child(dataSnapshot4task.getKey()).child("subtask").child(dataSnapshot5.getKey()).child("employeefortask").addValueEventListener(new ValueEventListener() {
                                                                            @Override
                                                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                                                for(DataSnapshot dataSnapshot6:dataSnapshot.getChildren()){
